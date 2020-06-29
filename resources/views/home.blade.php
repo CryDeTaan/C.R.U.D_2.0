@@ -14,7 +14,7 @@
                 target="_blank"
                 class="text-blue-500"
                 href="https://laravel.com/docs/master/controllers#resource-controllers"
-            >Resource Controllers<a>.
+            >Resource Controllers</a>.
         </p>
         <p>
             In this example I try to use generic terms like <strong>Platform</strong> and <strong>Entity</strong>. <br>
