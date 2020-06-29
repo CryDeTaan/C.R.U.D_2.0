@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+
+body {
+    font-family: 'Source Code Pro', monospace;
+}
+p {
+    @apply mb-4 text-xs;
+}
+
+.myCode {
+    @apply text-red-500 bg-gray-200;
+}
+
+@tailwind utilities;
