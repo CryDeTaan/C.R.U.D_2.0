@@ -67,16 +67,6 @@ class User extends Authenticatable
     }
 
     /**
-     * A user may be assigned to many resources.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function resources()
-    {
-        return $this->belongsToMany(Resource::class)->withTimestamps();
-    }
-
-    /**
      * A user may be assigned to an Entity.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -105,4 +95,14 @@ class User extends Authenticatable
         $this->save();
     }
 
+    /**
+     * A user may be assigned to many resources.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function resources()
+    {
+        return $this->belongsToMany(Resource::class)->withTimestamps();
+    }
+    
 }
