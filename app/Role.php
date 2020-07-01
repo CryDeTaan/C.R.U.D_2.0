@@ -11,6 +11,16 @@ class Role extends Model
     ];
 
     /**
+     * A role may have many Abilities.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function abilities()
+    {
+        return $this->belongsToMany(Ability::class);
+    }
+
+    /**
      * Grant the given ability to the role.
      *
      * @param  mixed  $ability
@@ -24,15 +34,6 @@ class Role extends Model
         $this->abilities()->sync($ability, false);
     }
 
-    /**
-     * A role may have many Abilities.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function abilities()
-    {
-        return $this->belongsToMany(Ability::class);
-    }
 
     /**
      * A role may have many Users.
