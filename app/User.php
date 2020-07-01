@@ -43,16 +43,6 @@ class User extends Authenticatable
     }
 
     /**
-     * A user may be assigned to many resources.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function resources()
-    {
-        return $this->belongsToMany(Resource::class)->withTimestamps();
-    }
-
-    /**
      * A user may be assigned many roles.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -60,6 +50,30 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
+    /**
+     * Assign a new role to the user.
+     *
+     * @param  mixed  $role
+     */
+    public function assignRole($role)
+    {
+        if (is_string($role)) {
+            $role = Role::whereName($role)->firstOrFail();
+        }
+
+        $this->roles()->sync($role, false);
+    }
+
+    /**
+     * A user may be assigned to many resources.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function resources()
+    {
+        return $this->belongsToMany(Resource::class)->withTimestamps();
     }
 
     /**
@@ -78,20 +92,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $with = ['entity', 'roles'];
-
-    /**
-     * Assign a new role to the user.
-     *
-     * @param  mixed  $role
-     */
-    public function assignRole($role)
-    {
-        if (is_string($role)) {
-            $role = Role::whereName($role)->firstOrFail();
-        }
-
-        $this->roles()->sync($role, false);
-    }
 
     /**
      * Assign an Entity to a User.
