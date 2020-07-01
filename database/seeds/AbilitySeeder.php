@@ -12,7 +12,7 @@ class AbilitySeeder extends Seeder
      */
     public function run()
     {
-        foreach (['platform', 'entity', 'resource'] as $item) {
+        foreach (['platform', 'entity', 'resource', 'user'] as $item) {
             foreach (['create', 'read', 'update', 'delete'] as $action) {
                 $ability = $action . '_' . $item;
                 Ability::create([
