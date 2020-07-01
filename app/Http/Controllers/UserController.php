@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -23,6 +24,10 @@ class UserController extends Controller
 
     public function create()
     {
+        // https://github.com/laravel/ideas/issues/1933
+        $role = Role::whereName(request()->actionOn)->first();
+//        return $role;
+        $this->authorize('create', $role);
         return view('actions.user.create');
     }
 
