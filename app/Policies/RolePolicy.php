@@ -19,7 +19,7 @@ class RolePolicy
      */
     public function create(User $user, Role $role)
     {
-//        ddd($role->name);
+        
         if ($role->name === 'platform-contributor') {
             return $user->roles->contains('name','platform-admin');
         }
