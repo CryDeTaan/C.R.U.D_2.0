@@ -37,6 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['entity', 'roles'];
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
@@ -76,12 +83,6 @@ class User extends Authenticatable
         return $this->belongsTo(Entity::class);
     }
 
-    /**
-     * The relationships that should always be loaded.
-     *
-     * @var array
-     */
-    protected $with = ['entity', 'roles'];
 
     /**
      * Assign an Entity to a User.
@@ -104,5 +105,5 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Resource::class)->withTimestamps();
     }
-    
+
 }
