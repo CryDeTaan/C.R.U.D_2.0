@@ -74,6 +74,18 @@ class User extends Authenticatable
     }
 
     /**
+     * Fetch the user's abilities.
+     *
+     * @return array
+     */
+    public function abilities()
+    {
+        return $this->roles
+            ->map->abilities
+            ->flatten()->pluck('name')->unique();
+    }
+
+    /**
      * A user may be assigned to an Entity.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
