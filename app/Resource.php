@@ -24,4 +24,9 @@ class Resource extends Model
     {
         return $this->belongsTo(user::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 }

@@ -43,13 +43,13 @@ class User extends Authenticatable
     }
 
     /**
-     * A user has many resources.
+     * A user may be assigned to many resources.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function resources()
     {
-        return $this->hasMany(Resource::class);
+        return $this->belongsToMany(Resource::class)->withTimestamps();
     }
 
     /**

@@ -17,8 +17,25 @@ class CreateResourcesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('field');
-            $table->foreignId('user_id')->constrained();
             $table->timestamps();
+        });
+
+        Schema::create('resource_user', function (Blueprint $table) {
+            $table->primary(['user_id', 'resource_id']);
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('resource_id');
+            $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('resource_id')
+                ->references('id')
+                ->on('roles')
+                ->onDelete('cascade');
         });
     }
 
