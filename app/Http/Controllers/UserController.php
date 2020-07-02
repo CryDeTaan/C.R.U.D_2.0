@@ -46,12 +46,7 @@ class UserController extends Controller
             'role'      => ['required', 'exists:roles,name'],
             'entity'    => ['exists:entities,name'],
         ]);
-
-        // Consider
-        // $user = User::firstOrCreate($validatedAttributes)
-        /*
-         *
-         */
+        
         $user = User::firstOrCreate([
             'name'      => $validatedAttributes['name'],
             'email'     => $validatedAttributes['email']
