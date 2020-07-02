@@ -33,6 +33,10 @@ class UserController extends Controller
 
     public function store()
     {
+        // https://github.com/laravel/ideas/issues/1933
+        $role = Role::whereName(request()->role)->first();
+        $this->authorize('create', $role);
+
         $validatedAttributes = request()->validate([
             'name'      => ['required', 'string', 'max:255'],
             'email'     => ['required', 'string', 'email', 'max:255'],
