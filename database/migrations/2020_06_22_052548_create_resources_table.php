@@ -17,6 +17,7 @@ class CreateResourcesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('field');
+            $table->foreignId('user_id'); // Essentially the Resource Owner.
             $table->timestamps();
         });
 
