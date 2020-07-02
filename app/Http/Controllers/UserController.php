@@ -46,7 +46,7 @@ class UserController extends Controller
             'role'      => ['required', 'exists:roles,name'],
             'entity'    => ['exists:entities,name'],
         ]);
-        
+
         $user = User::firstOrCreate([
             'name'      => $validatedAttributes['name'],
             'email'     => $validatedAttributes['email']
@@ -72,11 +72,15 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        $role = get_role(request()->actionOn);
+        $this->authorize('accessToRole', $role);
          return view('actions.user.edit', compact('user'));
     }
 
     public function update(User $user)
     {
+        $role = get_role(request()->actionOn);
+        $this->authorize('accessToRole', $role);
 
         $validatedAttributes = request()->validate([
             'name'      => ['string', 'max:255'],
