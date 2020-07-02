@@ -17,6 +17,8 @@ class UserController extends Controller
     public function index()
     {
         $role = get_role(request()->actionOn);
+        $this->authorize('accessToRole', $role);
+
         $users = $role->users;
 
         return view('actions.user.read', compact('users'));
@@ -68,6 +70,8 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        $role = get_role(request()->actionOn);
+        $this->authorize('accessToRole', $role);
         return view('actions.user.show', compact('user'));
     }
 
