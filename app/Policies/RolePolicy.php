@@ -19,7 +19,7 @@ class RolePolicy
      */
     public function create(User $user, Role $role)
     {
-        
+
         if ($role->name === 'platform-contributor') {
             return $user->roles->contains('name','platform-admin');
         }
@@ -34,6 +34,5 @@ class RolePolicy
             return $user->roles->contains('name', 'entity-admin');
         }
 
-        return  false;
     }
 }
