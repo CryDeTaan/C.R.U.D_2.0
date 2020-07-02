@@ -26,7 +26,6 @@ class UserController extends Controller
     {
         // https://github.com/laravel/ideas/issues/1933
         $role = Role::whereName(request()->actionOn)->first();
-//        return $role;
         $this->authorize('create', $role);
         return view('actions.user.create');
     }
