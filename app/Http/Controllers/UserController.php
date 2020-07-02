@@ -101,7 +101,15 @@ class UserController extends Controller
 
     public function delete()
     {
+        /*
+         * Bit of a hack to trigger the resourceful UserPolicy because this
+         * delete() function is not really part of the C.R.U.D actions.
+         */
+        $this->authorize('delete', [auth()->user(), auth()->user()]);
+
         $role = get_role(request()->actionOn);
+        $this->authorize('accessToRole', $role);
+
         $users = $role->users;
 
         return view('actions.user.delete', compact('users'));
@@ -117,6 +125,8 @@ class UserController extends Controller
             the resource will just be deleted as expected.
         */
         $role = get_role(request()->actionOn);
+        $this->authorize('accessToRole', $role);
+
         $users = $role->users;
         if(count($users) > 1) {
             $user->delete();
