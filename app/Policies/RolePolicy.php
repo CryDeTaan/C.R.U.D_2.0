@@ -17,7 +17,7 @@ class RolePolicy
      * @param  \App\Role  $role
      * @return bool
      */
-    public function create(User $user, Role $role)
+    public function accessToRole(User $user, Role $role)
     {
 
         if ($role->name === 'platform-contributor') {

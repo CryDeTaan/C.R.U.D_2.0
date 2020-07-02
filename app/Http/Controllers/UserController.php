@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         // https://github.com/laravel/ideas/issues/1933
         $role = Role::whereName(request()->actionOn)->first();
-        $this->authorize('create', $role);
+        $this->authorize('accessToRole', $role);
         return view('actions.user.create');
     }
 
@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         // https://github.com/laravel/ideas/issues/1933
         $role = Role::whereName(request()->role)->first();
-        $this->authorize('create', $role);
+        $this->authorize('accessToRole', $role);
 
         $validatedAttributes = request()->validate([
             'name'      => ['required', 'string', 'max:255'],
