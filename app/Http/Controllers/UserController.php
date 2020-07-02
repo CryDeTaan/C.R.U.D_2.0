@@ -27,7 +27,7 @@ class UserController extends Controller
     public function create()
     {
         // https://github.com/laravel/ideas/issues/1933
-        $role = Role::whereName(request()->actionOn)->first();
+        $role = get_role(request()->actionOn);
         $this->authorize('accessToRole', $role);
         return view('actions.user.create');
     }
@@ -36,7 +36,7 @@ class UserController extends Controller
     public function store()
     {
         // https://github.com/laravel/ideas/issues/1933
-        $role = Role::whereName(request()->role)->first();
+        $role = get_role(request()->actionOn);
         $this->authorize('accessToRole', $role);
 
         $validatedAttributes = request()->validate([
