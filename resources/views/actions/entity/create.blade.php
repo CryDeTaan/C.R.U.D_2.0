@@ -29,11 +29,11 @@
         </p>
 
         {{-- Form Component --}}
-        <x-resource-form
+        <x-entity-form
             action="/entities?actionOn={{ request()->actionOn }}"
             method="POST"
             button="Create"
-        ></x-resource-form>
+        ></x-entity-form>
 
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>

@@ -27,10 +27,10 @@
         </p>
 
         {{-- Resource Table --}}
-        <x-resource-table
+        <x-entity-table
             :resources="App\Entity::all()"
             edit="/edit"
-        ></x-resource-table>
+        ></x-entity-table>
 
         {{-- Form Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Form</div>
@@ -40,12 +40,12 @@
         </p>
 
         {{-- Form Component --}}
-        <x-resource-form
+        <x-entity-form
             action="/entities/{{ $entity->id }}?actionOn={{ request()->actionOn }}"
             method="PUT"
             :resource="$entity"
             button="Update"
-        ></x-resource-form>
+        ></x-entity-form>
 
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
