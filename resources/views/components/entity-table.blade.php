@@ -1,6 +1,6 @@
 <div>
     <!-- Well begun is half done. - Aristotle -->
-    @if($resources->isEmpty())
+    @if($entities->isEmpty())
         <p>
             There aren't any {{ request()->actionOn }}, please
             <a class="text-blue-500" href="{{ url()->current() }}/create?actionOn={{ request()->actionOn }}">Create</a>
@@ -12,20 +12,14 @@
             <tr>
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Field</th>
-                @if($resources[0]['user'])
-                    <th class="px-4 py-2">Resource Owner ID</th>
-                @endif
             </tr>
             </thead>
             <tbody>
-            @foreach($resources as $resource)
+            @foreach($entities as $entities)
                 <tr class="cursor-pointer hover:bg-gray-200 hover:border-gray-700"
-                    onclick="document.location = '/entities/{{ $resource->id }}{{ $edit ?? '' }}?actionOn={{ request()->actionOn }}';">
-                    <td class="border px-4 py-2">{{ $resource->name }}</td>
-                    <td class="border px-4 py-2">{{ $resource->field }}</td>
-                    @if($resource['user'])
-                    <td class="border px-4 py-2">{{ $resource->user->name }}</td>
-                    @endif
+                    onclick="document.location = '/entities/{{ $entities->id }}{{ $edit ?? '' }}?actionOn={{ request()->actionOn }}';">
+                    <td class="border px-4 py-2">{{ $entities->name }}</td>
+                    <td class="border px-4 py-2">{{ $entities->field }}</td>
                 </tr>
             @endforeach
             </tbody>

@@ -24,7 +24,7 @@
         </p>
 
         {{-- Resource Table --}}
-        <x-resource-table :resources="$entities"></x-resource-table>
+        <x-entity-table :entities="$entities"></x-entity-table>
 
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
