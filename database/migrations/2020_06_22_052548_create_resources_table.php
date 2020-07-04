@@ -36,7 +36,7 @@ class CreateResourcesTable extends Migration
 
             $table->foreign('resource_id')
                 ->references('id')
-                ->on('roles')
+                ->on('resources')
                 ->onDelete('cascade');
         });
     }
