@@ -44,7 +44,7 @@ class UserController extends Controller
             'email'     => ['required', 'string', 'email', 'max:255'],
             'password'  => ['required', 'string', 'min:8', 'confirmed'],
             'role'      => ['required', 'exists:roles,name'],
-            'entity'    => ['exists:entities,name'],
+            'entity'    => ['exists:entities,id'],
         ]);
 
         $user = User::firstOrCreate([
@@ -87,7 +87,7 @@ class UserController extends Controller
             'email'     => ['string', 'email', 'max:255'],
             'password'  => ['string', 'min:8', 'confirmed'],
             'role'      => ['exists:roles,name'],
-            'entity'    => ['exists:entities,name'],
+            'entity'    => ['exists:entities,id'],
         ]);
         $user->update($validatedAttributes);
 
