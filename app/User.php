@@ -103,7 +103,7 @@ class User extends Authenticatable
      */
     public function assignEntity($entity)
     {
-        $entity = Entity::find($entity)->firstorFail();
+        $entity = Entity::find($entity);
         $this->entity()->associate($entity);
         $this->save();
     }
