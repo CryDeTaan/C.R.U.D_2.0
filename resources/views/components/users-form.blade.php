@@ -12,7 +12,7 @@
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3
                     px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                     id="name" name="name" type="text"
-                    value="{{ $resource->name ?? Faker\Factory::create()->name }}">
+                    value="{{ $user->name ?? Faker\Factory::create()->name }}">
             </div>
             <div class="w-full md:w-1/2 px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="password">
@@ -35,7 +35,7 @@
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3
                     px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="email" name="email" type="email"
-                    value="{{ $resource->field ?? Faker\Factory::create()->email }}">
+                    value="{{ $user->email ?? Faker\Factory::create()->email }}">
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
