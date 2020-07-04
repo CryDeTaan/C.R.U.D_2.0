@@ -18,7 +18,7 @@ class ResourcePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->abilities()->contains('read_resource');
     }
 
     /**
@@ -30,7 +30,7 @@ class ResourcePolicy
      */
     public function view(User $user, Resource $resource)
     {
-        //
+        return $user->abilities()->contains('read_resource');
     }
 
     /**
@@ -67,7 +67,9 @@ class ResourcePolicy
      */
     public function update(User $user, Resource $resource)
     {
-        //
+        return
+            $user->abilities()->contains('create_resource') &&
+            $resource->users()->get()->contains('id',$user->id);
     }
 
     /**
@@ -79,7 +81,7 @@ class ResourcePolicy
      */
     public function delete(User $user, Resource $resource)
     {
-        //
+        return $user->abilities()->contains('delete_resource');
     }
 
     /**
