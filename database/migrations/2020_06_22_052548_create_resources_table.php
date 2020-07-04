@@ -18,6 +18,7 @@ class CreateResourcesTable extends Migration
             $table->string('name');
             $table->text('field');
             $table->foreignId('user_id'); // Essentially the Resource Owner.
+            $table->foreignId('entity_id'); // Resource needs to be assigned to Entity.
             $table->timestamps();
         });
 
