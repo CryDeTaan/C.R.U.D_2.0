@@ -42,7 +42,7 @@
                                 'text-gray-500'
                             }}
                     ">
-                <a href="/{{ Str::of($name)->lower()->plural() }}/1/edit?actionOn={{ Str::of($name)->lower() }}">
+                <a href="/{{ Str::of($name)->lower()->plural() }}/{{ App\Resource::where('user_id', auth()->user()->id)->first()->id ?? 1 }}/edit?actionOn={{ Str::of($name)->lower() }}">
                     Update
                 </a>
             </div>
