@@ -33,7 +33,7 @@
         <x-users-form
             action="/users/?actionOn={{ request()->actionOn }}"
             method="POST"
-            :user="get_role(request()->actionOn)->users->first()"
+            :user="get_role(request()->actionOn)->users->first()" {{-- Not using it anymore but keeping around for now --}}
             button="Create"
         ></x-users-form>
 
