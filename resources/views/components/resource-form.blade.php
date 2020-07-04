@@ -20,7 +20,7 @@
                     Some other field
                 </label>
                 <input
-                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3
                     px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="field" name="field" type="text"
                     value="{{ $resource->field ?? Str::of(Faker\Factory::create()->word)->title() }}">
@@ -34,7 +34,7 @@
                 </label>
                 <div class="relative">
                     <select
-                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4
+                        class="block appearance-none w-full bg-gray-200 border border-gray-500 text-gray-700 py-3 px-4
                         pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="resource_contributor" name="resource_contributor">
                         @foreach( get_role('resource-contributor')->users as $resource_contributor)
