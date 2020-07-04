@@ -116,7 +116,16 @@ class EntityController extends Controller
      */
     public function destroy(Entity $entity)
     {
-        $entity->delete();
+        /*
+            I just want to make sure that the last entity cannot be
+            delete, so that this demo app remains working. Deleting
+            the last resource will be detrimental to the function of
+            this demo application. In normal destroy circumstances,
+            the resource will just be deleted as expected.
+        */
+        if(Entity::all() > 1) {
+            $entity->delete();
+        }
 
         return view('actions.entity.destroy');
     }
