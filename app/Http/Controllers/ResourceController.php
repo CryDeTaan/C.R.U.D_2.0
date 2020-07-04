@@ -62,6 +62,8 @@ class ResourceController extends Controller
             'entity_id' => auth()->user()->entity_id
         ]);
 
+        $resource->assignUser($resource_contributor);
+
         return view('actions.resource.store', compact('resource'));
     }
 
