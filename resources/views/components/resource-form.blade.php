@@ -12,7 +12,7 @@
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-500 rounded py-3
                     px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                     id="name" name="name" type="text"
-                    value="{{ $resource->field ?? Str::of(Faker\Factory::create()->words(2, true))->title() }}">
+                    value="{{ $resource->name ?? Str::of(Faker\Factory::create()->words(2, true))->title() }}">
                 {{--                <p class="text-red-500 text-xs italic">Please fill out this field.</p>--}}
             </div>
             <div class="w-full md:w-1/2 px-3">
