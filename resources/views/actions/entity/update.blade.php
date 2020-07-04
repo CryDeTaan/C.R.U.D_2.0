@@ -48,7 +48,7 @@
 
         {{-- Controller Code Block --}}
         <div class="p-1 border rounded-md">
-            <pre><code class="text-xs bg-gray-200 php"><x-controllers.eneity.update/></code></pre>
+            <pre><code class="text-xs bg-gray-200 php"><x-controllers.entity.update/></code></pre>
         </div>
 
         {{-- Model Description --}}

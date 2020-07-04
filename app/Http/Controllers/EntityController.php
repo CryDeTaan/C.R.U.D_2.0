@@ -123,7 +123,7 @@ class EntityController extends Controller
             this demo application. In normal destroy circumstances,
             the resource will just be deleted as expected.
         */
-        if(Entity::all() > 1) {
+        if(count(Entity::all()) > 1) {
             $entity->delete();
         }
 

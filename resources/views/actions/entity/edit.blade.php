@@ -28,7 +28,7 @@
 
         {{-- Resource Table --}}
         <x-entity-table
-            :resources="App\Entity::all()"
+            :entities="App\Entity::all()"
             edit="/edit"
         ></x-entity-table>
 
