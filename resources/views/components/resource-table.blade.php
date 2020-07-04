@@ -12,9 +12,8 @@
             <tr>
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Field</th>
-                @if($resources[0]['user'])
-                    <th class="px-4 py-2">Resource Owner ID</th>
-                @endif
+                <th class="px-4 py-2">Resource Owner</th>
+                <th class="px-4 py-2">Resource Contributor</th>
             </tr>
             </thead>
             <tbody>
@@ -23,9 +22,12 @@
                     onclick="document.location = '/resources/{{ $resource->id }}{{ $edit ?? '' }}?actionOn={{ request()->actionOn }}';">
                     <td class="border px-4 py-2">{{ $resource->name }}</td>
                     <td class="border px-4 py-2">{{ $resource->field }}</td>
-                    @if($resource['user'])
                     <td class="border px-4 py-2">{{ $resource->user->name }}</td>
-                    @endif
+                    <td class="border px-4 py-2">
+                        @foreach($resource->users as $resource_contributor)
+                            {{ $resource_contributor->name }}
+                        @endforeach
+                    </td>
                 </tr>
             @endforeach
             </tbody>
