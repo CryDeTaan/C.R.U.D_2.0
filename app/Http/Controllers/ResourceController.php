@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Resource;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -11,7 +12,7 @@ class ResourceController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-//        $this->authorizeResource(Resource::class, 'resource');
+        $this->authorizeResource(Resource::class, 'resource');
     }
 
     /**
@@ -46,14 +47,19 @@ class ResourceController extends Controller
     public function store(Request $request)
     {
         $validatedAttributes = request()->validate([
-            'name'      => ['required', 'string', 'max:255'],
-            'field'     => ['required', 'string', 'max:255'],
+            'name'                  => ['required', 'string', 'max:255'],
+            'field'                 => ['required', 'string', 'max:255'],
+            'resource_contributor'  => ['exists:users,id'],
         ]);
+
+        $resource_contributor = User::find($validatedAttributes['resource_contributor']);
+        $this->authorize('assignResourceContributor', [Resource::class, $resource_contributor]);
 
         $resource = Resource::create([
             'name'      => $validatedAttributes['name'],
             'field'     => $validatedAttributes['field'],
-            'user_id'   => auth()->id()
+            'user_id'   => auth()->id(),
+            'entity_id' => auth()->user()->entity_id
         ]);
 
         return view('actions.resource.store', compact('resource'));
