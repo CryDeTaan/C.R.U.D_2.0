@@ -119,10 +119,10 @@
         </p>
             <ol class="list-decimal mb-4 text-xs pl-10">
                 <li>
-                    User -> <a class="text-blue-500" href="#">Roles</a>: A User may be assigned many Roles
+                    User -> <a class="text-blue-500" href="/roles">Roles</a>: A User may be assigned many Roles
                 </li>
                 <li>
-                    Role -> <a class="text-blue-500" href="#">Abilities</a>: A Role may have many Abilities.
+                    Role -> <a class="text-blue-500" href="/abilities">Abilities</a>: A Role may have many Abilities.
                 </li>
             </ol>
         <p>

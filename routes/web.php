@@ -20,6 +20,14 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/abilities', function () {
+    return view('abilities');
+});
+
+Route::get('/roles', function () {
+    return view('roles');
+});
+
 /*
  * Faking a login Route
  */
