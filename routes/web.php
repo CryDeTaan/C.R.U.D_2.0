@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/*
+ * Lets always have a logged in session
+ */
+if (!auth()->check())
+{
+    auth()->loginUsingId(1);
+}
+
 Auth::routes();
 
 Route::get('/', function () {
