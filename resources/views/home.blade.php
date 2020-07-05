@@ -88,14 +88,16 @@
         </p>
         <p>
             To 'enable' this, the authorizeResource method in the should be added to the resourceful controller's
-            constructor; <code class="myCode">$this->authorizeResource(Resource::class, 'resource');</code>
+            constructor; <code class="myCode">$this->authorizeResource(User::class, 'user');</code>. The
+            <code class="myCode">authorizeResource</code> method accepts the model's class name as its first argument,
+            and the name of the route / request parameter that will contain the model's ID as its second argument.
         </p>
         <p>
             To have the required method signatures and type hints both the controller and the policy should be created
             using the <code class="myCode">--model</code> flag. <br>For more information on Authorizing Resource
             Controllers please see <a target="_blank" class="text-blue-500"
-                          href="https://laravel.com/docs/7.x/authorization#via-controller-helpers">Authorizing Resource
-                Controllers</a> section from the Laravel Authorization Documentation.
+                                      href="https://laravel.com/docs/7.x/authorization#via-controller-helpers">
+                Authorizing Resource Controllers</a> section from the Laravel Authorization Documentation.
         </p>
         {{-- Controller Constructor Code Block --}}
         <div class="p-1 border rounded-md mb-2">
@@ -117,14 +119,14 @@
         <p>
             There are two <code class="myCode">Many-to-Many</code> relationships at play here:
         </p>
-            <ol class="list-decimal mb-4 text-xs pl-10">
-                <li>
-                    User -> <a class="text-blue-500" href="/roles">Roles</a>: A User may be assigned many Roles
-                </li>
-                <li>
-                    Role -> <a class="text-blue-500" href="/abilities">Abilities</a>: A Role may have many Abilities.
-                </li>
-            </ol>
+        <ol class="list-decimal mb-4 text-xs pl-10">
+            <li>
+                User -> <a class="text-blue-500" href="/roles">Roles</a>: A User may be assigned many Roles
+            </li>
+            <li>
+                Role -> <a class="text-blue-500" href="/abilities">Abilities</a>: A Role may have many Abilities.
+            </li>
+        </ol>
         <p>
             To get to a user's abilities, I map over each role to get the abilities.
         </p>
