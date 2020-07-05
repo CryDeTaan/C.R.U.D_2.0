@@ -10,12 +10,14 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can {{ $action }} models.
      *
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function {{ $action }}(User $user)
     {
-        return $user->abilities()->contains('create_user');
+        return $user->abilities()->contains('{{ $action }}_user');
     }
+
+}
