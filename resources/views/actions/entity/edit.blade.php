@@ -43,7 +43,7 @@
         <x-entity-form
             action="/entities/{{ $entity->id }}?actionOn={{ request()->actionOn }}"
             method="PUT"
-            :resource="$entity"
+            :entity="$entity"
             button="Update"
         ></x-entity-form>
 
