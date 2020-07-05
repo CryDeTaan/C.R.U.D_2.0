@@ -10,12 +10,12 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can {{ $action }} models.
+     * Determine whether the user can {{ $message }}.
      *
      * @param  \App\User  $user
      * @return mixed
      */
-    public function {{ $action }}(User $user)
+    public function {{ $method }}(User $user)
     {
         return $user->abilities()->contains('{{ $action }}_user');
     }

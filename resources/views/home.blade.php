@@ -110,7 +110,11 @@
         </p>
         {{-- Policy Code Block --}}
         <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.generic action="create"/></code></pre>
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.generic
+                        message="create models"
+                        method="create"
+                        action="create"
+                    /></code></pre>
         </div>
         <p>
             At this point it should be noted that the User Model has a <code class="myCode">$user->abilities()</code>
