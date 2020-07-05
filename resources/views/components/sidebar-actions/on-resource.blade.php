@@ -42,9 +42,15 @@
                                 'text-gray-500'
                             }}
                     ">
+                @if(auth()->check())
                 <a href="/{{ Str::of($name)->lower()->plural() }}/{{ App\Resource::where('user_id', auth()->user()->id)->first()->id ?? 1 }}/edit?actionOn={{ Str::of($name)->lower() }}">
                     Update
                 </a>
+                @else
+                    <a href="/{{ Str::of($name)->lower()->plural() }}/1/edit?actionOn={{ Str::of($name)->lower() }}">
+                        Update
+                    </a>
+                @endif
             </div>
         </li>
         <li>
