@@ -70,7 +70,7 @@ class ResourcePolicy
     public function update(User $user, Resource $resource)
     {
         return
-            $user->abilities()->contains('create_resource') &&
+            $user->abilities()->contains('update_resource') &&
             $resource->users()->get()->contains('id',$user->id);
     }
 
