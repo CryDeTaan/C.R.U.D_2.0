@@ -15,7 +15,7 @@
 
         {{-- Resource Table Description --}}
         <div class="text-xl mb-4 mt-12">
-            <span class="-ml-6 text-gray-700">#</span> {{ slug_to_title(request()->actionOn) }}s
+            <span class="-ml-6 text-gray-700">#</span> {{ Str::of(slug_to_title(request()->actionOn))->plural() }}
         </div>
         <p>
             Below is a list of the {{ slug_to_title(request()->actionOn) }}s. As with the other action pages, I'll

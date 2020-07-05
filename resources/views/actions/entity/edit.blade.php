@@ -16,7 +16,7 @@
         {{-- Resource Table Description --}}
         <div class="text-xl mb-4 mt-12">
             <span class="-ml-6 text-gray-700">#</span>
-            {{ slug_to_title(request()->actionOn) }}s
+            {{ Str::of(slug_to_title(request()->actionOn))->plural() }}
         </div>
         <p>
             Below is a list of {{ slug_to_title(request()->actionOn) }}s and selecting one will update the form below
