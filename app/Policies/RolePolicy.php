@@ -11,7 +11,7 @@ class RolePolicy
     use HandlesAuthorization;
 
     /**
-     * Determine if the user can add role post can be updated by the user.
+     * Determine if the user can action on role.
      *
      * @param  \App\User  $user
      * @param  \App\Role  $role
