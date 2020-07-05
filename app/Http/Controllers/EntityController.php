@@ -10,6 +10,7 @@ class EntityController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->authorizeResource(Entity::class, 'entity');
     }
 
     /**
@@ -103,6 +104,12 @@ class EntityController extends Controller
      */
     public function delete()
     {
+        /*
+        * Bit of a hack to trigger the resourceful EntityPolicy because this
+        * delete() function is not really part of the C.R.U.D actions.
+        */
+        $this->authorize('delete', [Entity::class, Entity::first()]);
+
         $entities = Entity::all();
 
         return view('actions.entity.delete', compact('entities'));
