@@ -30,7 +30,9 @@ class ResourcePolicy
      */
     public function view(User $user, Resource $resource)
     {
-        return $user->abilities()->contains('read_resource');
+        return
+            $user->abilities()->contains('read_resource') &&
+            $resource->users()->get()->contains('id',$user->id);
     }
 
     /**
@@ -81,7 +83,9 @@ class ResourcePolicy
      */
     public function delete(User $user, Resource $resource)
     {
-        return $user->abilities()->contains('delete_resource');
+        return
+            $user->abilities()->contains('delete_resource') &&
+            $resource->users()->get()->contains('id',$user->id);
     }
 
     /**

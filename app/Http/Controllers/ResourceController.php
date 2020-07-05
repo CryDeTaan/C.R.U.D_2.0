@@ -120,7 +120,7 @@ class ResourceController extends Controller
          * Bit of a hack to trigger the resourceful UserPolicy because this
          * delete() function is not really part of the C.R.U.D actions.
          */
-        $this->authorize('delete', [Resource::class, auth()->user()->resources->first()]);
+        $this->authorize('delete', [Resource::class, Resource::first()]);
 
         $resources = Resource::where('user_id', auth()->id())->get();
 
