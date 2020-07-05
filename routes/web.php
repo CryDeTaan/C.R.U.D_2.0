@@ -13,13 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*
- * Lets always have a logged in session
- */
-if (!auth()->check())
-{
-    auth()->loginUsingId(1);
-}
 
 Auth::routes();
 
