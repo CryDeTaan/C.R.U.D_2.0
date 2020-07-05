@@ -34,6 +34,23 @@
                     /></code></pre>
         </div>
 
+        {{-- Policy Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
+        <p>
+            To perform this action the authenticated user should have the <code class="myCode">read_resource</code>
+            Ability and is authorised by the <code class="myCode">view</code> Policy method as follow:
+        </p>
+
+        {{-- Policy Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
+                        className="Entity"
+                        message="read the model"
+                        method="view"
+                        ability="read_entity"
+                    /></code></pre>
+        </div>
+
         {{-- Controller Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
