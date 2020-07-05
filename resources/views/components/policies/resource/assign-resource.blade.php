@@ -10,14 +10,15 @@ class ResourcePolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the Resource Contributor can be assigned to model.
      *
      * @param  \App\User  $user
+     * @param  \App\User  $resource_contributor
      * @return mixed
      */
-    public function create(User $user)
+    public function assignResourceContributor(User $user, User $resource_contributor)
     {
-        return $user->abilities()->contains('create_resource');
+        return $user->entity_id === $resource_contributor->entity_id;
     }
 
 }

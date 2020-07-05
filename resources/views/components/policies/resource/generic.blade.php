@@ -15,9 +15,10 @@ class {{ $className }}Policy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function {{ $method }}(User $user{{ $className ? ", $className $" . Str::of($className)->lower() : '' }})
+    public function {{ $method }}(User $user{{ isset($modelIncluded) ? ", $className $$modelIncluded" : '' }})
     {
-        return $user->abilities()->contains('{{ $action }}_user');
+        return {{ isset($secondCheck) ? "\t" : '' }}$user->abilities()->contains('{{ $ability }}') {{ isset($secondCheck) ? " && \n\t\t" .
+               '$resource->users()->get()->contains(\'id\',$user->id)' : '' }};
     }
 
 }

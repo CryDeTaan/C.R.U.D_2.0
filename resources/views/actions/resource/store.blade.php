@@ -35,6 +35,39 @@
                     ></x-route></code></pre>
         </div>
 
+        {{-- Policy Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
+        <p>
+            To perform this action the authenticated user should have the <code class="myCode">create_resource</code>
+            Ability and is authorised by the <code class="myCode">create</code> Policy method as follow:
+        </p>
+
+        {{-- Policy Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.resource.generic
+                        className="Resource"
+                        message="creat models"
+                        method="create"
+                        ability="create_resource"
+                    /></code></pre>
+        </div>
+
+        {{-- Role Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Assign to Entity</div>
+        <p>
+            It is important to make sure that when a Resource Contributor is assigned to a Resource that the resource
+            and the Resource Contributor are both associated to the same Entity.
+        </p>
+        <p>
+            To achieve that the <code class="myCode">assignResourceContributor</code> policy outlined below will
+            validate this action.
+        </p>
+
+        {{-- Role Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.resource.assign-resource/></code></pre>
+        </div>
+
         {{-- Controller Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
