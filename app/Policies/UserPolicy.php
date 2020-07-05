@@ -29,7 +29,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        return $user->abilities()->contains('create_user');
+        return $user->abilities()->contains('read_user');
     }
 
     /**
