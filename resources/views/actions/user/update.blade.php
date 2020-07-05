@@ -68,7 +68,7 @@
         <div class="p-1 border rounded-md mb-2">
             <pre><code class="text-xs bg-gray-200 php"><x-policies.user.role/></code></pre>
         </div>
-        
+
         {{-- Controller Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>

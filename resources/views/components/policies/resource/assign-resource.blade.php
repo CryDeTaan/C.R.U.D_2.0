@@ -2,22 +2,22 @@
 
 namespace App\Policies;
 
-use App\User;
+use App\Resource;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
+class ResourcePolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can {{ $message }}.
+     * Determine whether the user can create models.
      *
      * @param  \App\User  $user
      * @return mixed
      */
-    public function {{ $method }}(User $user)
+    public function create(User $user)
     {
-        return $user->abilities()->contains('{{ $action }}_user');
+        return $user->abilities()->contains('create_resource');
     }
 
 }
