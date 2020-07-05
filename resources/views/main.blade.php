@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="flex">
-        <div class="h-screen sticky top-0 pl-64 pr-12 bg-gray-700 text-gray-200">
+        <div class="h-screen sticky top-0 overflow-y-auto pl-64 pr-12 bg-gray-700 text-gray-200">
             {{-- Fixed Side Bar --}}
             <x-sidebar/>
         </div>
