@@ -43,7 +43,7 @@
 
         {{-- Policy Code Block --}}
         <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.resource.generic
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
                         className="Resource"
                         modelIncluded="resource"
                         message="view the model"
