@@ -135,7 +135,16 @@ class ResourceController extends Controller
      */
     public function destroy(Resource $resource)
     {
-        $resource->delete();
+        /*
+            I just want to make sure that the Resource with ID 1 cannot
+            be delete, so that this demo app remains working. Deleting
+            the last resource will be detrimental to the function of
+            this demo application. In normal destroy circumstances,
+            the resource will just be deleted as expected.
+        */
+        if($resource->id !== 1) {
+            $resource->delete();
+        }
 
         return view('actions.resource.destroy');
     }
