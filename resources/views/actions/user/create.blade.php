@@ -4,7 +4,8 @@
     <div>
         <!-- I begin to speak only when I am certain what I will say is not better left unsaid - Cato the Younger -->
         <div class="text-2xl mb-6 mt-4">
-            Create.R.U.D {{ slug_to_title(request()->actionOn) }} - View</div>
+            Create.R.U.D {{ slug_to_title(request()->actionOn) }} - View
+        </div>
         <p>
             The <code class="myCode">C</code> in C.R.U.D. is for creating a resource, and it is generally a two step
             process. First you need to return a view, like this one you are viewing now, where a form is provided with
@@ -57,6 +58,22 @@
                         action="get"
                         method="create"
                     ></x-route></code></pre>
+        </div>
+
+        {{-- Policy Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
+        <p>
+            To perform this action the authenticated user should have the <code class="myCode">create</code> Ability and
+            is authorised by the <code class="myCode">create</code> Policy method as follow:
+        </p>
+
+        {{-- Policy Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.generic
+                        message="create models"
+                        method="create"
+                        action="create"
+                    /></code></pre>
         </div>
 
         {{-- Controller Description --}}

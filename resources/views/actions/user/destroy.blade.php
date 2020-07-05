@@ -26,6 +26,23 @@
                 class="myCode">routes/web.php</code> file:
         </p>
 
+        {{-- Policy Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
+        <p>
+            To perform this action the authenticated user should have the <code class="myCode">delete</code> Ability and
+            is authorised by the <code class="myCode">delete</code> Policy method as follow:
+        </p>
+
+        {{-- Policy Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.generic
+                        message="delete the model"
+                        method="delete"
+                        action="delete"
+                    /></code></pre>
+        </div>
+
+
         {{-- Controller Code Block --}}
         <div class="p-1 border rounded-md">
             <pre><code class="php text-xs"><x-route
