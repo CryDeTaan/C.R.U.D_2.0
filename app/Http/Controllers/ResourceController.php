@@ -6,6 +6,7 @@ use App\Resource;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Policies\ResourceContributorPolicy;
 
 class ResourceController extends Controller
 {
@@ -54,7 +55,7 @@ class ResourceController extends Controller
         ]);
 
         $resource_contributor = User::find($validatedAttributes['resource_contributor']);
-        $this->authorize('assignResourceContributor', [Resource::class, $resource_contributor]);
+        $this->authorize('assign', $resource_contributor);
 
         $resource = Resource::create([
             'name'      => $validatedAttributes['name'],
