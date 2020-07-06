@@ -25,6 +25,11 @@ class Resource extends Model
         return $this->belongsTo(user::class);
     }
 
+    /**
+     * A resource may be assigned to many users.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function users()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
