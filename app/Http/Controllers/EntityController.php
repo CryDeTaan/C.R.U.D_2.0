@@ -124,13 +124,13 @@ class EntityController extends Controller
     public function destroy(Entity $entity)
     {
         /*
-            I just want to make sure that the last entity cannot be
-            delete, so that this demo app remains working. Deleting
+            I just want to make sure that the 'built-in' entity cannot
+            be delete, so that this demo app remains working. Deleting
             the last resource will be detrimental to the function of
             this demo application. In normal destroy circumstances,
             the resource will just be deleted as expected.
         */
-        if(count(Entity::all()) > 1) {
+        if(!$entity->id === 1) {
             $entity->delete();
         }
 

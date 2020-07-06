@@ -118,17 +118,16 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         /*
-            I just want to make sure that the last resource cannot be
-            delete, so that this demo app remains working. Deleting
-            the last resource will be detrimental to the function of
+            I just want to make sure that the 'built-in' users
+            cannot be delete, so that this demo app remains working.
+            Deleting them will be detrimental to the function of
             this demo application. In normal destroy circumstances,
             the resource will just be deleted as expected.
         */
         $role = get_role(request()->actionOn);
         $this->authorize('accessToRole', $role);
 
-        $users = $role->users;
-        if(count($users) > 1) {
+        if($user->id > 5) {
             $user->delete();
         }
 
