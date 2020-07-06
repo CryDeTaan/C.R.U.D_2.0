@@ -8,19 +8,17 @@
         </p>
         <p>
             These verbs basically represent the actions taken on the data. But a C.R.U.D application, so to speak, also
-            needs additional areas to function. But this actually adds some additional confusion, so I am not sure if I
-            should mention that. Maybe I'll add some more explanation in the controller section, but in the mean time
-            please have a look at Laravel's documentation on <a
-                target="_blank"
-                class="text-blue-500"
-                href="https://laravel.com/docs/master/controllers#resource-controllers"
-            >Resource Controllers</a>.
+            needs additional areas to function. But this can actually make developing a simple C.R.U.D application very
+            complicated for a new comer starting out their web developer journey.
+        </p>
+        <p>
+            I am going to try and keep it as simple as possible, while trying to hit all the important areas, including
+            Role Based Access Control.
         </p>
         <p>
             In this example I try to use generic terms like <strong>Platform</strong> and <strong>Entity</strong>. <br>
             However these can be replaced with something like <strong>&lt;Insert Blogging Platform Name
-                here&gt;</strong> and
-            <strong>&lt;Insert Publication Name here&gt;</strong>.
+                here&gt;</strong> and <strong>&lt;Insert Publication Name here&gt;</strong>.
         </p>
         <p>
             Publications can have Admins, who manages Editors who in turn manages contributors of resources, which in
@@ -29,9 +27,50 @@
         <p>
             Try to think <a target="_blank" class="text-blue-500" href="https://medium.com/">Medium.com</a> here. ;p
         </p>
-        <p class="mb-0">
-            Resources in this example includes resources for two parts of the platform:
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 font-weight-light text-gray-700">#</span> Overview and
+            Structure
+        </div>
+        <p>
+            Alright, so to try and work with the idea of a blogging or publication platform like Medium but using
+            general terms will require a quick definition of the different resource types which I am going to use, but
+            first a note:
         </p>
+        <div class="text-l my-4">Resource</div>
+        <p>
+            The word Resource can be widely used for which an action is performed on, a user of a web application could
+            essentially be considered a resource. But it is important to note that resource in the example / explanatory
+            application, a resource is referred to or defined as a the final 'product' of platform. And in the case of a
+            blogging or publication platform like Medium that will generally be the article or blog post.
+            So with that, the first definition is that a resource in this case should be seen as a Article or blog post.
+            Here is a somewhat random
+            <a target="_blank" class="text-blue-500"
+               href="https://medium.com/@TheWineDream/wine-101-the-art-of-blending-wine-9c473cd24e62">resource /
+                article</a>
+            I chose from Medium.com.
+        </p>
+        <div class="text-l my-4">Platform Admins and Platform Contributors</div>
+        <p>
+            For the remaining definitions, I think we can start at the top, top being the Platform. And this is simple,
+            the platform is Medium.com. What does a Platform need though? Well, for this example at least, I want it to
+            have Platform Admins and Platform Contributors as far as Users are considered, but it also needs Entities.
+            But before I get to Entities, let me list these mentioned Users.
+        </p>
+        <p>
+            Platform Admins and Platform Contributors are essentially the same, apart from the permissions they may
+            have. Platform Admins can additionally Create and Delete Entities which the Platform Contributors cannot.
+            But for the rest, both have the ability to Read and Update Entities, and Create, Read, Update, and Delete
+            Entity Admins(which I will get to).
+        </p>
+        <div class="text-l my-4">Entities</div>
+        <p>
+            Entities could be related to a publication on Medium.com for example.
+            A <a target="_blank" class="text-blue-500" href="https://medium.com/the-wine-dream">Entity / Publication</a>
+            on Medium.com would act independently from the platform in the articles they publish, the Entity /
+            Publication may also want resource / article Owners and Contributors which should generally be created by an
+            Entity Admin as there should be no reason for a Platform Admin, in this example and Admin of Medium.com, to
+            create resource / article Owners and Contributors. So this is where an Entity Admin comes into play.
+        </p>
+        <div class="text-l my-4">Entity Admins</div>
         <ol class="list-decimal mb-4 text-xs pl-10">
             <li>
                 Platform resources; admins, contributors, and then the entities. The entities are really what the
