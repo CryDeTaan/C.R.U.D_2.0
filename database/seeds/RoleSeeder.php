@@ -19,11 +19,6 @@ class RoleSeeder extends Seeder
         $role = Role::create([
             'name' => 'platform-admin',
         ]);
-        $role->allowTo('create_platform');
-        $role->allowTo('read_platform');
-        $role->allowTo('update_platform');
-        $role->allowTo('delete_platform');
-
         $role->allowTo('create_entity');
         $role->allowTo('read_entity');
         $role->allowTo('update_entity');
@@ -40,10 +35,8 @@ class RoleSeeder extends Seeder
         $role = Role::create([
             'name' => 'platform-contributor',
         ]);
-        $role->allowTo('create_entity');
         $role->allowTo('read_entity');
         $role->allowTo('update_entity');
-        $role->allowTo('delete_entity');
 
         $role->allowTo('create_user');
         $role->allowTo('read_user');
