@@ -68,11 +68,14 @@
         <p>
             The <code class="myCode">index</code> method in the <code class="myCode">ResourceController</code> will
             handel this request. And although the controller is for all resources, I want to control which resources are
-            returned based on the entity, and in this case I only want to return the resources for the _________ Entity.
+            returned based on the entity, and in this case I only want to return the resources for the
+            {{ auth()->user()->entity->name }} entity, as the currently signed in user belongs to this entity.
         </p>
         <p>
-            So to achieve that, we need to find all resources for the entity and only display them.
-            More needs to be said here..........................
+            Because of the <code class="myCode">Many-to-Many</code> relationship between Resources and a User (as can be
+            seen in the # Model section below), I can easily retrieve all the user's resources using an Eloquent dynamic
+            property <code class="myCode">user->resources()</code> as denoted below in the
+            <code class="myCode">index()</code> controller method.
         </p>
 
         {{-- Controller Code Block --}}
@@ -87,7 +90,11 @@
             <code class="myCode">return $this->belongsTo(user::class);</code> relationship definition.
             This becomes important when retrieving the related record using Eloquent's dynamic properties, i.e.
             <code class="myCode">$resource = Resource::find(1)->user;</code>. This is what allows me to access the user
-            of a given Resource.
+            of a given Resource as the Resource Owner.
+        </p>
+        <p>
+            Resources can have many Users and are Authorised certain actions on the resource based on the User's role.
+            Then a Resource belongs to a User which indicates the Resource Owner.
         </p>
 
         {{-- Model Code Block --}}
