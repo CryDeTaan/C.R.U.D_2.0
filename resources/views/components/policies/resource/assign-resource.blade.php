@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Resource;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ResourcePolicy
+class ResourceContributorPolicy
 {
     use HandlesAuthorization;
 
@@ -16,7 +16,7 @@ class ResourcePolicy
      * @param  \App\User  $resource_contributor
      * @return mixed
      */
-    public function assignResourceContributor(User $user, User $resource_contributor)
+    public function assign(User $user, User $resource_contributor)
     {
         return $user->entity_id === $resource_contributor->entity_id;
     }

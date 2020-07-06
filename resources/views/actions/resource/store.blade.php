@@ -52,20 +52,32 @@
                     /></code></pre>
         </div>
 
-        {{-- Role Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Assign to Entity</div>
+        {{-- Assign Resource Contributor Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Assign Resource Contributor to Entity
+        </div>
         <p>
             It is important to make sure that when a Resource Contributor is assigned to a Resource that the resource
             and the Resource Contributor are both associated to the same Entity.
         </p>
         <p>
-            To achieve that the <code class="myCode">assignResourceContributor</code> policy outlined below will
-            validate this action.
+            To achieve that the <code class="myCode">assign</code> Policy method outlined below will validate this
+            action.
         </p>
 
-        {{-- Role Code Block --}}
+        {{-- Assign Resource Contributor Code Block --}}
         <div class="p-1 border rounded-md mb-2">
             <pre><code class="text-xs bg-gray-200 php"><x-policies.resource.assign-resource/></code></pre>
+        </div>
+
+        {{-- Gate Description --}}
+        <p>
+            Because this Policy is not directly related to a Model, it should be defined as a
+            <code class="myCode">Gate</code> in the <code class="myCode">App\Providers\AuthServiceProvider</code> class.
+        </p>
+
+        {{-- Gate Code block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.resource.gate/></code></pre>
         </div>
 
         {{-- Controller Description --}}
