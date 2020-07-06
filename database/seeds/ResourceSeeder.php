@@ -13,7 +13,7 @@ class ResourceSeeder extends Seeder
     public function run()
     {
         $resource = Resource::create([
-            'name' => 'Entity',
+            'name' => 'Resource',
             'field' => 'Some Text',
             'user_id'   => 4,
             'entity_id' => 1
