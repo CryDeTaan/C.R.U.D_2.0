@@ -183,31 +183,24 @@
         </div>
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
-            The controller responsible for the selected C.R.U.D. action, in this case the <code class="myCode">EntityController</code>
-            will call the <code class="myCode">show</code> method. You will notice that the show method expects a
-            parameter, which is passed as the route <code class="myCode">{entity}</code> parameter, if you recall from
-            the route section above.
+            The controller responsible for the selected C.R.U.D. action, in this case the
+            <code class="myCode">EntityController</code> will call the <code class="myCode">index</code> method. This
+            particular example is simple, basically gets all the Entities using Laravel's
+            <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/eloquent#retrieving-models">Eloquent
+                ORM</a>
         </p>
         <p>
-            The way I specify the controller's parameter is something called Route Model Binding which
-            provides a convenient way to automatically inject a model instances directly into the controller.
+            In the example Controller's <code class="myCode">constructor</code> a specify a auth middleware. This will
+            require a valid authenticated user session before accessing any of the methods within the Controller.
         </p>
-        <p>
-            Since the $entity <code class="myCode">variable</code> is type-hinted as the <code
-                class="myCode">App\Entity</code> Eloquent model and the variable name matches the <code class="myCode">{entity}</code>
-            URI segment, Laravel will automatically inject the model instance that has an ID matching the
-            corresponding value from the request URI. The instance can then be accessed by its variable,
-            <code class="myCode">$entity</code> in this case. As an example <code class="myCode">$entity->name;</code>
-            will return the name of the entity.
-        </p>
-        <div class="p-1 border rounded-md">
-            <pre><code class="text-xs bg-gray-200 php">@include('data.controller')</code></pre>
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-home.controller/></code></pre>
         </div>
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
         <p>
-            In Laravel the Eloquent ORM is a simple ActiveRecord implementation for working with your database. Each
-            database table has a corresponding "Model" which is used to interact with that table. Models allow you to
-            query for data in your tables, as well as insert new records into the table.
+            In Laravel the Eloquent ORM is a simple ActiveRecord implementation for working with the applications
+            database. Each database table has a corresponding "Model" which is used to interact with that table. Models
+            allow the ability to query data in tables, as well as work with and manipulate the records into the tables.
         </p>
         <p>
             Additionally, the Eloquent ORM also provides relationships as Database tables are often related to one
@@ -215,7 +208,8 @@
             the entity.
         </p>
         <p>
-            In this scenario, I make use of two Eloquent ORM relationships.
+            So to make use of the Eloquent ORM relationships in this scenario I outlined above, a relationships
+            definition may look something like this.
         </p>
         <ol class="list-decimal mb-4 text-xs pl-10">
             <li>
@@ -226,15 +220,17 @@
             </li>
         </ol>
         <p>
-            As I are currently working with the Entity model, I am specifying the has many relationship.
+            As I have been using Entity in the examples so far, I will continue with the Entity Model, but note that
+            although I mention <code class="myCode">App\User</code> above it is fairly similar, apart from the method
+            contains <code class="myCode">return $this->belongsTo(Entity::class);</code>.
         </p>
         <p>
-            This means that when we have an instance of the Entity model we can access all the users assigned to this
-            entity by simply retrieving the related record using Eloquent's dynamic properties. Dynamic properties allow
-            you to access relationship methods as if they were properties defined on the model: <code class="myCode">$entity->users;</code>
+            In any case, defining the relationships, an instance of the Entity model allows the use of dynamic
+            properties to access the related model as if the property is defined on the model. For example, to access
+            all the users who belongs to an Entity is as simple as using <code class="myCode">$entity->users;</code>
         </p>
-        <div class="p-1 border rounded-md">
-            <pre><code class="text-xs bg-gray-200 php">@include('data.model')</code></pre>
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-home.model/></code></pre>
         </div>
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>

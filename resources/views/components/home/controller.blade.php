@@ -12,9 +12,10 @@ class EntityAdminController extends Controller
         $this->middleware('auth');
     }
 
-    public function show(Entity $entity)
+    public function index()
     {
-        return view('/entities/show',
-        compact($entity));
+        $entities = Entity::all();
+
+        return view('actions.entity.read', compact('entities'));
     }
 }
