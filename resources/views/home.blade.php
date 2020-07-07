@@ -234,24 +234,25 @@
         </div>
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
-            The final part in the life cycle of this app is the view. The controller and model retrieve and prepare the
-            data that will be sent to the view, if any. The view is essentially the presentation layer or logic which is
-            separate from that of the controller / application logic or layer.
+            The final part in the Model View Controller life cycle is the View. The controller and model retrieve and
+            prepare the data that will be sent to the view, if any. The view is essentially the presentation layer or
+            logic which is separate from that of the controller / application logic or layer.
         </p>
         <p>
-            In this example I make use of the Laravel templating engine, called blade, by specifying global
+            In this example I make use of the Laravel templating engine, called Blade, by specifying global
             <code class="myCode">view</code> helper with two parameters.
-            <code class="myCode">return view('/entities/show', compact($entity));</code>
+            <code class="myCode">return view('actions.entity.read', compact('entities'));</code>
         </p>
         <ol class="list-decimal mb-4 text-xs pl-10">
             <li>
-                The target view; in this case <code class="myCode">/entity/show</code>. All views are stored at
+                The target view; in this case <code class="myCode">actions.entity.read</code>. All views are stored at
                 <code class="myCode">resources/views/</code> which means this view lives at
-                <code class="myCode">/resources/views/entity/show.blade.php</code>. The .blade.php extension is
-                important for the templating engine to function.
+                <code class="myCode">/resources/views/entity/read.blade.php</code>. The .blade.php extension is
+                important for the templating engine to function and blade templates can be access either by
+                <code class="myCode">/</code> or <code class="myCode">.</code> notation.
             </li>
             <li>
-                The data object, in this case, the prepared entity object.
+                The data object, in this case, the prepared <code class="myCode">entities</code> object in json format.
             </li>
         </ol>
         <p>
@@ -259,8 +260,9 @@
             <code class="myCode">/resource/views/about.blade.php</code> view :)
         </p>
         <p>
-            One of the neat features of the blade templating engine is the second points, as with in the view I now have
-            access to the object, and as a matter of fact, multiple objects can be sent to the view if you so choose to.
+            One of the neat features of the blade templating engine is the second point, the data object. This allows me
+            to access the object in the view, and as a matter of fact, multiple objects can be sent to the view if you
+            so choose.
         </p>
         <p>
             The data object below will be sent to the view for rendering which is essentially a JSON payload and can be
@@ -268,20 +270,20 @@
             render the entity name in the HTML which will be returned during the response part of the request life
             cycle.
         </p>
-        <div class="p-1 border rounded-md">
-            <pre><code class="text-xs bg-gray-200 php">@include('data.data')</code></pre>
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-home.view/></code></pre>
         </div>
         <p class="mt-6">
-            It it is important to note that you are not limited to using the Laravel Blade templating engine, the
+            It it is important to note that I am not limited to using the Laravel Blade templating engine, the
             Laravel Application can act as a API 'service' which means data can be returned as a JSON payload as well.
         </p>
         {{-- RBAC Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 font-weight-light text-gray-700">#</span> Role Based Access
             Control
             <p>
-                Role based access control is achieved through Policies. Fortunately, Laravel has 'resourceful' policies
-                for
-                actions on models when resourceful controllers are used.
+                Moving away from the Model View Controller architecture to discuss some other components starting with
+                Role Based Access control which is achieved through Policies. Fortunately, Laravel has 'resourceful'
+                policies for actions on models when resourceful controllers are used.
             </p>
             <p>
                 To 'enable' this, the authorizeResource method in the should be added to the resourceful controller's
