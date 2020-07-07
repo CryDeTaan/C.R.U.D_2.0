@@ -183,12 +183,25 @@
         </div>
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
-            The controller responsible for the selected C.R.U.D. action, in this case the
+            I generally use, well not just me; most, controllers to group related requests handling logic into a single
+            class. So much so that the controller responsible for the all the C.R.U.D. action on a specific resource.
+            This pattern is followed so much in the community that Laravel has Resource Controllers. When adding a
+            Controller use the <code class="myCode">--resource</code> flag to automatically add all the C.R.U.D.
+            actions as a skeleton.
+        </p>
+        <p>
+            The table below stipulates all the Actions in the C.R.U.D design pattern with the relevant Verb, URI, the
+            Controller with the method
+        </p>
+        <x-crud-table/>
+        <p>
+            The C.R.U.D. action in this example, Read aka Index, will be handled by the
             <code class="myCode">EntityController</code> will call the <code class="myCode">index</code> method. This
             particular example is simple, basically gets all the Entities using Laravel's
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/eloquent#retrieving-models">Eloquent
                 ORM</a>
         </p>
+
         <p>
             In the example Controller's <code class="myCode">constructor</code> a specify a auth middleware. This will
             require a valid authenticated user session before accessing any of the methods within the Controller.
@@ -283,43 +296,42 @@
             <p>
                 Moving away from the Model View Controller architecture to discuss some other components starting with
                 Role Based Access control which is achieved through Policies. Fortunately, Laravel has 'resourceful'
-                policies for actions on models when resourceful controllers are used.
+                policies for actions on models when resourceful controllers are used, which in my case I am.
             </p>
             <p>
                 To 'enable' this, the authorizeResource method in the should be added to the resourceful controller's
-                constructor; <code class="myCode">$this->authorizeResource(User::class, 'user');</code>. The
+                constructor; <code class="myCode">$this->authorizeResource(Entity::class, 'Entity');</code>. The
                 <code class="myCode">authorizeResource</code> method accepts the model's class name as its first
-                argument,
-                and the name of the route / request parameter that will contain the model's ID as its second argument.
+                argument, and the name of the route / request parameter that will contain the model's ID as its second
+                argument.
             </p>
             <p>
                 To have the required method signatures and type hints both the controller and the policy should be
-                created
-                using the <code class="myCode">--model</code> flag. <br>For more information on Authorizing Resource
-                Controllers please see <a target="_blank" class="text-blue-500"
-                                          href="https://laravel.com/docs/7.x/authorization#via-controller-helpers">
+                created using the <code class="myCode">--model</code> flag. <br>For more information on Authorizing
+                Resource Controllers please see<a target="_blank" class="text-blue-500"
+                                                  href="https://laravel.com/docs/7.x/authorization#via-controller-helpers">
                     Authorizing Resource Controllers</a> section from the Laravel Authorization Documentation.
             </p>
             {{-- Controller Constructor Code Block --}}
             <div class="p-1 border rounded-md mb-2">
-                <pre><code class="text-xs bg-gray-200 php"><x-controllers.user.constructor/></code></pre>
+                <pre><code class="text-xs bg-gray-200 php"><x-controllers.entity.constructor/></code></pre>
             </div>
             <p>
-                Having the constructor defined will for example use the create method in the
-                <code class="myCode">App\Policies\UserPolicy</code> automatically when the create or store method in the
-                User Controller are called as they are both considered part of the Create.R.U.D action.
+                Having the constructor defined will, for example, automatically use the viewAny method in the
+                <code class="myCode">App\Policies\EntityPolicy</code> when the index method in the Entity Controller is
+                called as viewAny matched the index or C.Read.U.D action.
             </p>
             {{-- Policy Code Block --}}
             <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.generic
-                        message="create models"
-                        method="create"
-                        action="create"
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
+                        className="Entity"
+                        message="read models"
+                        method="viewAny"
+                        ability="read_entity"
                     /></code></pre>
             </div>
             <p>
-                At this point it should be noted that the User Model has a <code
-                    class="myCode">$user->abilities()</code>
+                At this point it should be noted that the User Model has a <code class="myCode">$user->abilities()</code>
                 property which is used to make sure the user attempting the action has the required ability.
             </p>
             <p>
@@ -336,7 +348,7 @@
             <p>
                 To get to a user's abilities, I map over each role to get the abilities.
             </p>
-            {{-- Policy Code Block --}}
+            {{-- Model/Role Code Block --}}
             <div class="p-1 border rounded-md mb-2">
                 <pre><code class="text-xs bg-gray-200 php"><x-models.user.roles/></code></pre>
             </div>
