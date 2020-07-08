@@ -6,9 +6,9 @@
         <div class="text-2xl mb-6 mt-4">C.Read.U.D {{ slug_to_title(request()->actionOn) }}</div>
 
         <p>
-            As mentioned in the previous page the <code class="myCode">R</code> in C.R.U.D. is for Reading resources.
-            In this case though, I am only reading a single User. And for that the logic to get a single resource is
-            slightly different as outlined below.
+            As mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
+            <code class="myCode">R</code> in C.R.U.D. is for Reading resources. In this case though, I am only reading a
+            single User. And for that the logic to get a single resource is slightly different as outlined below.
         </p>
 
         {{-- Route Description --}}
@@ -37,7 +37,7 @@
         {{-- Policy Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
-            To perform this action the authenticated user should have the <code class="myCode">read</code> Ability and
+            To perform this action the authenticated user should have the <code class="myCode">read_user</code> Ability and
             is authorised by the <code class="myCode">view</code> Policy method as follow:
         </p>
 
@@ -52,27 +52,15 @@
 
         {{-- Role Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Role</div>
-        <p>
-            Because all the different user type actions are performed using the same User Controller and Model, I had
-            to make sure that the action performed on the user type is allowed based on the authenticated user's role.
-        </p>
-        <p>
-            To achieve that the Role policy was created with the and defined as below. Take note of the requested role,
-            <code class="myCode">{{ slug_to_title(request()->actionOn) }}</code>, and which
-            <code class="myCode">$user->roles->contains('name','{role}')</code> is required to perform the action.
-        </p>
-
-        {{-- Role Code Block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.role/></code></pre>
-        </div>
+        <x-policies.user.role-section/>
 
         {{-- Controller Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
             As mentioned above, the <code class="myCode">show</code> method in the
             <code class="myCode">{{ slug_to_controller(request()->actionOn) }}Controller</code>
-            will receive the ID of the requested resource and obtain an instance of it using Route Model Binding as can
+            will receive the ID of the requested resource and obtain an instance of it using Route Model Binding which
+            provides a convenient way to automatically inject a model instances directly into the controller. This can
             be seen by the way the function is declared, <code class="myCode">public function show(User $user)</code>.
         </p>
 
@@ -86,7 +74,7 @@
         <p>
             There is really nothing special required in the Model to return a requested resource using Route Model
             Binding. But perhaps its a good time to mention the <code class="myCode">$hidden</code> property available
-            in a model. This property allows me to limit what is returned in a response of a given resource. In the case
+            on a model. This property allows me to limit what is returned in a response of a given resource. In the case
             of a User, I definitely don't want to EVER return the password field of a User resource within the response.
         </p>
         <p>
@@ -108,7 +96,7 @@
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
-            Based on the controller's return statement(<code class="myCode">return view('actions.users/show',
+            Based on the controller's return statement(<code class="myCode">return view('actions.users.show',
                 compact('users'));</code>) the <code class="myCode">/resources/views/actions/users/show.blade.php</code>
             view will render the HTML of this page.
         </p>
