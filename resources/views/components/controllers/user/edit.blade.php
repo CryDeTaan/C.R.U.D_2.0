@@ -6,9 +6,17 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function edit(User $user)
+    public function __construct()
     {
-        return view('actions.users.edit', compact('user'));
+        $this->middleware('auth');
+        $this->authorizeResource(User::class, 'user');
     }
 
+    public function edit(User $user)
+    {
+        $role = get_role(request()->actionOn);
+        $this->authorize('accessToRole', $role);
+
+        return view('actions.user.edit', compact('user'));
+    }
 }
