@@ -7,11 +7,10 @@
             Create.R.U.D {{ slug_to_title(request()->actionOn) }} - View
         </div>
         <p>
-            The <code class="myCode">C</code> in C.R.U.D. is for creating a resource, and it is generally a two step
-            process. First you need to return a view, like this one you are viewing now, where a form is provided with
-            the necessary fields.
-            These form fields are data properties sent with a POST request which is the second step in creating a
-            resource.
+            The <code class="myCode">C</code> in C.R.U.D. is for creating a resource, in this case a User, and it is
+            generally a two step process. First you need to return a view, like this one you are viewing now, where a
+            form is provided with the necessary fields. These form fields are data properties sent with a POST request
+            which is the second step in creating a resource.
         </p>
         <p>
             Although the # Form section below is seemingly the most important part for creating a new resource,
@@ -25,9 +24,10 @@
             new resource:
         </p>
         <p>
-            To create a new Usr resource, for this application at least, I need to specify a name, password, and a
-            role. As this resource is a {{ slug_to_title(request()->actionOn) }}, the
-            role of {{ request()->actionOn }} will also be added as part of the form data when submitted.
+            To create a new User resource, for this application at least, I need to specify a name, password, and
+            depending on the role also an Entity. As this resource is a {{ slug_to_title(request()->actionOn) }}, the
+            role of {{ request()->actionOn }} will also be added as part of the form data when
+            submitted{{ request()->actionOn === 'platform-contributor' ? ', and no Entity is set for a platform-contributor.' : '.' }}
         </p>
 
         {{-- Form Component --}}
@@ -41,13 +41,12 @@
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            This page was reached by visiting the following URL using the
-            <code class="myCode">{{ request()->method() }}</code> method:
-            <code class="myCode">{{ request()->url() }}</code>.
+            This page was reached by visiting the <code class="myCode">{{ request()->method() }}</code> URL using the
+            <code class="myCode">{{ request()->url() }}</code> method.
         </p>
         <p>
-            The process of returning this view start by
-            matching the request to a definition in the <code class="myCode">routes/web.php</code> as follow:
+            The process of returning this view start by matching the request to a definition in the
+            <code class="myCode">routes/web.php</code> as follow:
         </p>
 
         {{-- Route Code Block --}}
@@ -63,8 +62,8 @@
         {{-- Policy Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
-            To perform this action the authenticated user should have the <code class="myCode">create</code> Ability and
-            is authorised by the <code class="myCode">create</code> Policy method as follow:
+            To perform this action the authenticated user should have the <code class="myCode">create_user</code>
+            Ability and is authorised by the <code class="myCode">create</code> Policy method outlined below:
         </p>
 
         {{-- Policy Code Block --}}
@@ -83,9 +82,10 @@
             to make sure that the action performed on the user type is allowed based on the authenticated user's role.
         </p>
         <p>
-            To achieve that the Role policy was created with the and defined as below. Take note of the requested role,
-            <code class="myCode">{{ slug_to_title(request()->actionOn) }}</code>, and which
-            <code class="myCode">$user->roles->contains('name','{role}')</code> is required to perform the action.
+            To achieve this, a Role Policy was created and defined as below. Take note of the requested role,
+            <code class="myCode">{{ request()->actionOn }}</code>, and which
+            <code class="myCode">$user->roles->contains('name','{role}')</code> rule will return true. A user's role
+            property(<code class="myCode">$user->roles</code>) should contain the role required to perform the action.
         </p>
 
         {{-- Role Code Block --}}
@@ -100,7 +100,12 @@
             this request. Because we want to create a user, the only purpose this controller provides is to return a
             view. I could just as well have returned a view from within a closure in
             <code class="myCode">routes/web.php</code>. But its still preferred to keep it all the logic consistent and
-            and I do that in the controller.
+            I do that in the controller.
+        </p>
+        <p>
+            The <code class="myCode">__constructor</code> contains the Auth middleware to validate the user is valid and
+            also the <code class="myCode">authorizeResource</code> declaration which enables the Resourceful Policy on
+            this controller
         </p>
 
         {{-- Controller Code Block --}}
