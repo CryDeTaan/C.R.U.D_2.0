@@ -7,10 +7,15 @@
             C.Read.U.D {{ slug_to_title(request()->actionOn) }}</div>
 
         <p>
-            The <code class="myCode">R</code> in C.R.U.D. is for Reading resources. In my mind at least there are two
-            options when it comes to reading a resource, 1. reading all resources and, 2. reading a single resource.
-            In this page I am listing all the resource of the specific type, and selecting a resource from below will
-            take us to a specific resource.
+            The <code class="myCode">R</code> in C.R.U.D. is for Reading User resources. In my mind at least, there are
+            two options when it comes to reading a resource, 1. reading all resources or, 2. reading a single resource.
+            In this page I am listing all the resource of the specific type, and selecting a resource from the table
+            below will take us to a specific resource.
+        </p>
+        <p>
+            I am covering both the options mentioned above so it should also then clear up that although both are
+            essentially the Read part of C.R.U.D, they logic is slightly different and will be seen in the Route,
+            Controller, Model, and View descriptions which follows.
         </p>
 
         {{-- Resource Table Description --}}
@@ -30,8 +35,9 @@
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            Most of the actions on a user can be performed in then UsersController, it sometimes helps to break this out
-            when specific logic is required. So at this point I thought it's a good idea to do just that.
+            In order to distinguish between the different user types, I am making use of a GET Request Query Parameter
+            <code class="myCode">actionOn</code>, and its value,<code class="myCode">{{ request()->actionOn }}</code>,
+            is essentially the User type I am targeting on the specific action.
         </p>
         <p>
             To receive a view containing a list of {{ slug_to_title(request()->actionOn) }}s the
@@ -68,20 +74,7 @@
 
         {{-- Role Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Role</div>
-        <p>
-            Because all the different user type actions are performed using the same User Controller and Model, I had
-            to make sure that the action performed on the user type is allowed based on the authenticated user's role.
-        </p>
-        <p>
-            To achieve that the Role policy was created with the and defined as below. Take note of the requested role,
-            <code class="myCode">{{ slug_to_title(request()->actionOn) }}</code>, and which
-            <code class="myCode">$user->roles->contains('name','{role}')</code> is required to perform the action.
-        </p>
-
-        {{-- Role Code Block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.role/></code></pre>
-        </div>
+        <x-policies.user.role-section/>
 
         {{-- Controller Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
@@ -90,13 +83,12 @@
             <code class="myCode">{{ slug_to_controller(request()->actionOn) }}Controller</code>
             will handel this request. And although the resources in this request are still of type User, I want to
             control which user resources are returned, and in this case I only want to return
-            {{ slug_to_title(request()->actionOn) }}s. Now, because of this, I need to include the App\Role class and
-            not App\User like for the other actions.
+            {{ slug_to_title(request()->actionOn) }}s.
         </p>
         <p>
-            Even tough I created the <code class="myCode">$user</code> object in two steps, this can totally be done in
-            a single line, I could have
-            inline'd it in the return statement, but the way I did it provides some clarity on what is happening.
+            Now, because of this, I need to include the App\Role class and
+            then make use of the Dynamic Property on the Model to retrieve all the users for the give role. Also notice
+            that I am making use of <code class="myCode">request()->actionOn</code> to get the User type from the URL.
         </p>
 
         {{-- Controller Code Block --}}
@@ -108,9 +100,11 @@
         {{-- Model Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
         <p>
+            Even though all the logic is about creating a User, its important to mention the
+            <code class="myCode">Role</code> Model in this case rather than the <code class="myCode">User</code> Model.
             In order to return the Users associated with a give role, the model has to be configured with a
             <code class="myCode">belongsToMany()</code> relationship. This is what allows me to access the users of a
-            given role.
+            given role using the Dynamic property <code class="myCode">$role->users()</code>.
         </p>
 
         {{-- Model Code Block --}}
@@ -126,7 +120,7 @@
             view will render the HTML of this page.
         </p>
         <p>
-            The <code class="myCode">$users</code> object will contain only the users with the
+            The <code class="myCode">$users</code> object will contain only the users which have the
             {{ request()->actionOn }} role and can be seen below. This object is also used to "build" the table
             at the start of the page using the Laravel Blade Control Structure;
             <code class="myCode">&#64;foreach ($users as $user)</code>

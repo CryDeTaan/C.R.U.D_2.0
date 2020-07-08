@@ -16,7 +16,7 @@
                 @if(isset($user->entity))
                     <td class="border px-4 py-2">{{ $user->entity->name }}</td>
                 @else
-                    <td class="border px-4 py-2">-</td>
+                    <td class="border px-4 py-2">N/A</td>
                 @endif
                 <td class="border px-4 py-2">{{ $user->roles->first()->name }}</td>
             </tr>
