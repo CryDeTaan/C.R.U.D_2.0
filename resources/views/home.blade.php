@@ -3,6 +3,8 @@
 @section('body')
     <div>
         <div class="text-2xl mb-8 mt-4">C.R.U.D me like I am high</div>
+
+        {{-- Intro --}}
         <p>
             The idea here is to show how a C.R.U.D (Create, Read, Update, Delete) Laravel app works.
         </p>
@@ -27,6 +29,8 @@
         <p>
             Try to think <a target="_blank" class="text-blue-500" href="https://medium.com/">Medium.com</a> here. ;p
         </p>
+
+        {{-- Overview and Structure --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 font-weight-light text-gray-700">#</span> Overview and
             Structure
         </div>
@@ -35,6 +39,8 @@
             general terms will require a quick definition of the different resource types which I am going to use, but
             first a note:
         </p>
+
+        {{-- Resource Overview --}}
         <div class="text-l my-4">Resource</div>
         <p>
             The word Resource can be widely used for which an action is performed on, a user of a web application could
@@ -48,6 +54,8 @@
                 article</a>
             I chose from Medium.com.
         </p>
+
+        {{-- >Platform Admins and Contributors Overview --}}
         <div class="text-l my-4">Platform Admins and Platform Contributors</div>
         <p>
             For the remaining definitions, I think we can start at the top, top being the Platform. And this is simple,
@@ -61,6 +69,8 @@
             But for the rest, both have the ability to Read and Update Entities, and Create, Read, Update, and Delete
             Entity Admins(which I will get to).
         </p>
+
+        {{-- Entities Overview --}}
         <div class="text-l my-4">Entities</div>
         <p>
             Entities could be related to a publication on Medium.com for example.
@@ -70,23 +80,31 @@
             Entity Admin as there should be no reason for a Platform Admin, in this example and Admin of Medium.com, to
             create resource / article Owners and Contributors. So this is where an Entity Admin comes into play.
         </p>
+
+        {{-- Entity Admins Overview --}}
         <div class="text-l my-4">Entity Admins</div>
         <p>
             The Entity Admins role will have ability to add Resource Owners and Resource Contributors for the Entity
             they manage. Just a reminder, a resource in this example app is nothing more than an article or blog post.
         </p>
+
+        {{-- Resource Owner Overview --}}
         <div class="text-l my-4">Resource Owners</div>
         <p>
             Resource Owner as the name suggests owns the resource, i.e. article or blog post. They have the ability to
             Create, Read, Update, and Delete a resource. They also have the ability to assign Resource Contributors to
             the Resources they own.
         </p>
+
+        {{-- Resource Contributor Overview --}}
         <div class="text-l my-4">Resource Contributors</div>
         <p>
             Resource Contributors can only contribute to resources they have been assigned to through the Read and
             Update abilities.
         </p>
-        <div class="text-l my-4">To sum up</div>
+        
+        {{-- Overview Summary --}}
+        <div class="text-l my-4">Overview Summary</div>
         <ol class="list-decimal mb-4 text-xs pl-10">
             <li>
                 Platform: Platform Admins, Platform Contributors, and Entities.
@@ -96,12 +114,14 @@
             </li>
         </ol>
         <p>
-
             The roles are implemented in such a way that just because a user is a Platform Admin it doesn't allow them
             to contribute to the Resources as well, like a Resource Contributor. No, a Platform Admin, administers the
             platform. I hope that makes sense.
         </p>
-        <div class="text-l my-4">Looking at it as a story</div>
+
+
+        {{-- Setting the scene --}}
+        <div class="text-l my-4">Setting the Scene using a story</div>
         <p>
             So, let me try create a scenario. I create a publication platform where companies can subscribe to.
             The companies are considered the Entities on this publications platform. Once a company subscribes,
@@ -122,6 +142,9 @@
             not be accessible from other Entity Resources, i.e. Entity Admins, Resource Owners or Contributors.
             In addition, Platform Admins and Contributors should not be able to actually access the Entity's Resources.
         </p>
+
+
+        {{-- Impersonating and How to use --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 font-weight-light text-gray-700">#</span> Impersonating and
             How to use
         </div>
@@ -140,9 +163,14 @@
             resource. For example, Impersonating the Platform Admin will allow the ability to add an Entity but will not
             be allowed to add a Resource Contributor.
         </p>
+
+        {{-- User Code Block --}}
         <div class="p-1 border rounded-md mb-2">
             <pre><code class="text-xs bg-gray-200 php"><x-home.user/></code></pre>
         </div>
+
+
+        {{-- MVC Overview --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 font-weight-light text-gray-700">#</span> Model View
             Control ++
         </div>
@@ -159,6 +187,8 @@
             only way of doing something :)
         </p>
 
+
+        {{-- MVC - Route --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
             As far a developer using the Laravel framework is concerned it all start here at the
@@ -178,9 +208,14 @@
             HTTP method. Finally, te second argument specifies the controller and the function to call. In this case the
             <code class="myCode">index</code> method within the <code class="myCode">EntityController</code> controller.
         </p>
+
+        {{-- MVC - Route Code Block --}}
         <div class="p-1 border rounded-md mb-2">
             <pre><code class="text-xs bg-gray-200 php"><x-home.route/></code></pre>
         </div>
+
+
+        {{-- MVC - Controller --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
             I generally use, well not just me; most, controllers to group related requests handling logic into a single
@@ -193,6 +228,8 @@
             The table below stipulates all the Actions in the C.R.U.D design pattern with the relevant Verb, URI, the
             Controller with the method
         </p>
+
+        {{-- Resource Controller Table --}}
         <x-crud-table/>
         <p>
             The C.R.U.D. action in this example, Read aka Index, will be handled by the
@@ -201,14 +238,18 @@
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/eloquent#retrieving-models">Eloquent
                 ORM</a>
         </p>
-
         <p>
             In the example Controller's <code class="myCode">constructor</code> a specify a auth middleware. This will
             require a valid authenticated user session before accessing any of the methods within the Controller.
         </p>
+
+        {{-- MVC - Controller Code Block --}}
         <div class="p-1 border rounded-md mb-2">
             <pre><code class="text-xs bg-gray-200 php"><x-home.controller/></code></pre>
         </div>
+
+
+        {{-- MVC - Model --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
         <p>
             In Laravel the Eloquent ORM is a simple ActiveRecord implementation for working with the applications
@@ -242,9 +283,14 @@
             properties to access the related model as if the property is defined on the model. For example, to access
             all the users who belongs to an Entity is as simple as using <code class="myCode">$entity->users;</code>
         </p>
+
+        {{-- MVC - Model Code Block --}}
         <div class="p-1 border rounded-md mb-2">
             <pre><code class="text-xs bg-gray-200 php"><x-home.model/></code></pre>
         </div>
+
+
+        {{-- MVC - View --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
             The final part in the Model View Controller life cycle is the View. The controller and model retrieve and
@@ -283,6 +329,8 @@
             render the entity name in the HTML which will be returned during the response part of the request life
             cycle.
         </p>
+
+        {{-- MVC - Controller View Block --}}
         <div class="p-1 border rounded-md mb-2">
             <pre><code class="text-xs bg-gray-200 php"><x-home.view/></code></pre>
         </div>
@@ -290,6 +338,8 @@
             It it is important to note that I am not limited to using the Laravel Blade templating engine, the
             Laravel Application can act as a API 'service' which means data can be returned as a JSON payload as well.
         </p>
+
+
         {{-- RBAC Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 font-weight-light text-gray-700">#</span> Role Based Access
             Control
@@ -312,6 +362,7 @@
                                                   href="https://laravel.com/docs/7.x/authorization#via-controller-helpers">
                     Authorizing Resource Controllers</a> section from the Laravel Authorization Documentation.
             </p>
+
             {{-- Controller Constructor Code Block --}}
             <div class="p-1 border rounded-md mb-2">
                 <pre><code class="text-xs bg-gray-200 php"><x-controllers.entity.constructor/></code></pre>
@@ -321,6 +372,7 @@
                 <code class="myCode">App\Policies\EntityPolicy</code> when the index method in the Entity Controller is
                 called as viewAny matched the index or C.Read.U.D action.
             </p>
+
             {{-- Policy Code Block --}}
             <div class="p-1 border rounded-md mb-2">
             <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
@@ -348,6 +400,7 @@
             <p>
                 To get to a user's abilities, I map over each role to get the abilities.
             </p>
+
             {{-- Model/Role Code Block --}}
             <div class="p-1 border rounded-md mb-2">
                 <pre><code class="text-xs bg-gray-200 php"><x-models.user.roles/></code></pre>
