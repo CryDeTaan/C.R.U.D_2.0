@@ -230,7 +230,7 @@
         </p>
 
         {{-- Resource Controller Table --}}
-        <x-crud-table/>
+        <x-home.crud-table/>
         <p>
             The C.R.U.D. action in this example, Read aka Index, will be handled by the
             <code class="myCode">EntityController</code> will call the <code class="myCode">index</code> method. This
@@ -467,7 +467,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Conclusion</div>
         <p>
             With that, more detail on each of the components; Route, Controller, Model, Policy, and View, can be seen by
-            navigating all the actions. Remember, not all Impersonations will have access to all the actions. 
+            navigating all the actions. Remember, not all Impersonations will have access to all the actions.
         </p>
 
     </div>
