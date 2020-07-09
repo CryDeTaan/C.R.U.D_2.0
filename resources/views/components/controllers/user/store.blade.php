@@ -8,12 +8,15 @@ class UserController extends Controller
 {
     public function store()
     {
+        $role = get_role(request()->actionOn);
+        $this->authorize('accessToRole', $role);
+
         $validatedAttributes = request()->validate([
             'name'      => ['required', 'string', 'max:255'],
             'email'     => ['required', 'string', 'email', 'max:255'],
             'password'  => ['required', 'string', 'min:8', 'confirmed'],
-            'entity'    => ['required','exists:entities,name'],
             'role'      => ['required','exists:roles,name']
+            'entity'    => ['exists:entities,name'],
         ]);
 
         $user = User::create($validatedAttributes);

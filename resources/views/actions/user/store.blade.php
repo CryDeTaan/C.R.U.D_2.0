@@ -4,24 +4,47 @@
     <div>
         <!-- I begin to speak only when I am certain what I will say is not better left unsaid - Cato the Younger -->
         <div class="text-2xl mb-6 mt-4">
-            Create.R.U.D {{ slug_to_title(request()->actionOn) }} - Store</div>
+            Create.R.U.D {{ slug_to_title(request()->actionOn) }} - Store
+        </div>
+
+        {{-- Overview --}}
         <p>
-        <p>
-            As I mentioned in the previous page the <code class="myCode">C</code> in C.R.U.D. for creating a resource
-            is a two step process so to speak. First the view with a form of sorts to send, and second the process of
-            storing the values from the form. That is where we are now.
+            As I mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
+            <code class="myCode">C</code> in C.R.U.D. is for creating a User resource which is a two step process so to
+            speak. First the view with a form of sorts to send, and second the process of storing the values from the
+            form. That is where we are now.
         </p>
         <p>
             A resource is stored by sending a POST request with a data payload containing the required information in
-            order to create the resource.
+            order to create the User resource. This json below was sent as the POST data to create the User resource.
         </p>
+
+        {{-- Data payload received --}}
+        <div class="p-1 border rounded-md">
+            <pre><code class="text-xs bg-gray-200 php">{{
+                        @json_encode(request()->except(['_method', 'actionOn']), JSON_PRETTY_PRINT)
+                        }}</code></pre>
+        </div>
+
+        <p class="mt-4">
+            Notice the <code class="myCode">_token</code> value in the POST data, this is a hidden
+            <code class="myCode">cross-site request forgery</code> token which Laravel automatically generates and
+            verify that the authenticated user is the one actually making the requests to the application.
+            Anytime I define an HTML form I include a hidden CSRF token field using the
+            <code class="myCode">&#64;csrf</code> Blade directive so that the CSRF protection middleware can validate
+            the request. <br> More information available in the Laravel Documentation
+            <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/csrf">here</a>.
+        </p>
+
 
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            Accessed <code class="myCode">{{ request()->url() }}</code> using the
-            <code class="myCode">{{ request()->method() }}</code> method, ergo the defined route for this request in
-            <code class="myCode">routes/web.php</code> is as follow:
+            The data payload is sent to <code class="myCode">{{ request()->url() }}</code> using the
+            <code class="myCode">{{ request()->method() }}</code> method. When the application receives a
+            <code class="myCode">{{ request()->method() }}</code> request on the <code class="myCode">/user/</code> URI,
+            the application knows the store method in the UserController will handel this request. The route definition
+            for this request in <code class="myCode">routes/web.php</code> is as follow:
         </p>
 
         {{-- Route Code Block --}}
@@ -37,8 +60,8 @@
         {{-- Policy Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
-            To perform this action the authenticated user should have the <code class="myCode">create</code> Ability and
-            is authorised by the <code class="myCode">create</code> Policy method as follow:
+            To perform this action the authenticated user should have the <code class="myCode">create_user</code>
+            Ability and is authorised by the <code class="myCode">create</code> Policy method as follow:
         </p>
 
         {{-- Policy Code Block --}}
@@ -52,20 +75,7 @@
 
         {{-- Role Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Role</div>
-        <p>
-            Because all the different user type actions are performed using the same User Controller and Model, I had
-            to make sure that the action performed on the user type is allowed based on the authenticated user's role.
-        </p>
-        <p>
-            To achieve that the Role policy was created with the and defined as below. Take note of the requested role,
-            <code class="myCode">{{ slug_to_title(request()->actionOn) }}</code>, and which
-            <code class="myCode">$user->roles->contains('name','{role}')</code> is required to perform the action.
-        </p>
-
-        {{-- Role Code Block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.role/></code></pre>
-        </div>
+        <x-policies.user.role-section/>
 
         {{-- Controller Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
@@ -83,23 +93,25 @@
         {{-- Model Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
         <p>
-            When creating a new User several things happen in the Model to keep the controller lean. First, we need to
+            When creating a new User several things happen in the Model to keep the Controller lean. First, we need to
             specify exactly which field can be added, this is done by specifying
             <code class="myCode">protected $fillable = ['name', ...];</code> in the model. Doing this, will prevent
             mass-assignment vulnerabilities. More information about mass assignment can be found in Laravel's
             <a class="text-blue-500" target="_blank" href="https://laravel.com/docs/master/eloquent#mass-assignment">
-                Mass Assignment</a> Documentation;
+                Mass Assignment</a> Documentation.
         </p>
         <p>
             Secondly, I specify a mutator <code class="myCode">setPasswordAttribute($value)</code> on the User Model so
             that the password attribute will automatically be hashed regardless of where the password attribute is
-            accessed. More information about mutators can be found Laravel's <a class="text-blue-500" target="_blank"
-               href="https://laravel.com/docs/master/eloquent-mutators#defining-a-mutator">Mutators</a> Documentation;
+            accessed. More information about mutators can be found Laravel's
+            <a class="text-blue-500" target="_blank"
+               href="https://laravel.com/docs/master/eloquent-mutators#defining-a-mutator">Mutators</a> Documentation.
         </p>
         <p>
-            You'll also notice that in the controller I make user of two <code class="myCode">assignX($value)</code>
-            functions in the model, and the reason should be clear when looking at how easy that is to use in a
-            controller. But it is important to note.
+            You'll also notice that in the Controller above I make user of two functions
+            <code class="myCode">assignRole($role)</code> and <code class="myCode">assignEntity(entity)</code>.
+            These are defined in the model, and the reason should be clear when looking at how easy it makes it
+            to use in a controller. But it is important to note.
         </p>
         <p>
             Lastly, the reason why the above mentioned works so well is because of the needed relationships. The User
@@ -108,8 +120,8 @@
             <code class="myCode">belongsTo()</code> functions.
         </p>
         <p>
-            With relationships its sometimes to automatically load the relationship, this is achieved by defining a
-            <code class="myCode">$with</code> property on the model:
+            With relationships, its sometimes useful to automatically load the relationship, this is achieved by
+            defining a <code class="myCode">$with</code> property on the model:
         </p>
 
         {{-- Model Code Block --}}
@@ -120,8 +132,8 @@
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
-            Generally, after a resource is created or store, the controller will return to a view to essentially show
-            the users because, logically I, 1. want to verify that it was created, and 2. by viewing it.
+            Generally, after a resource is created or stored, the controller will return to a view to essentially show
+            the resource because, logically I, 1. want to verify that it was created, and 2. by viewing it.
         </p>
         <p>
             Based on the controller's return statement the

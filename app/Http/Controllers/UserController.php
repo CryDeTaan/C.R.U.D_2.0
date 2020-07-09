@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function store()
     {
-        // https://github.com/laravel/ideas/issues/1933
+
         $role = get_role(request()->actionOn);
         $this->authorize('accessToRole', $role);
 

@@ -20,6 +20,13 @@ class User extends Authenticatable
     ];
 
 
+    /**
+    * The relationships that should always be loaded.
+    *
+    * @var array
+    */
+    protected $with = ['entity', 'roles'];
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
@@ -46,14 +53,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Entity::class);
     }
-
-
-    /**
-    * The relationships that should always be loaded.
-    *
-    * @var array
-    */
-    protected $with = ['entity', 'roles'];
 
 
     /**
