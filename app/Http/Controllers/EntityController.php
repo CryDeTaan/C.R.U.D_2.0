@@ -50,8 +50,7 @@ class EntityController extends Controller
 
         $entity = Entity::create([
             'name'      => $validatedAttributes['name'],
-            'field'     => $validatedAttributes['field'],
-            'user_id'   => auth()->id()
+            'field'     => $validatedAttributes['field']
         ]);
 
         return view('actions.entity.store', compact('entity'));
