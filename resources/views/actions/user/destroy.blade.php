@@ -41,6 +41,7 @@
             The <code class="myCode">destroy</code> method in the
             <code class="myCode">{{ slug_to_controller(request()->actionOn) }}Controller</code> obtains the instance
             through Route Model Binding, and then simply calls the <code class="myCode">destroy()</code> method.
+        </p>
         <p>
             As far as deleting a resource goes, that's about it, there are times where I may want to cascade
             onDelete, in other words delete any foreign key constraints associated with the record.
