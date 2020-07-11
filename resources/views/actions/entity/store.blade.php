@@ -8,21 +8,41 @@
         </div>
         <p>
         <p>
-            As I mentioned in the previous page the <code class="myCode">C</code> in C.R.U.D. for creating a resource
-            is a two step process so to speak. First the view with a form of sorts to send, and second the process of
-            storing the values from the form to the database. That is where we are now.
+            As I mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
+            <code class="myCode">C</code> in C.R.U.D. for creating a resource is a two step process so to speak. First
+            the view with a form of sorts to send, and second the process of storing the values from the form to the
+            database. That is where we are now.
         </p>
         <p>
-            An Entity resource is stored by sending a POST request with a data payload containing the required
-            information in order to create the entity.
+            A resource is stored by sending a POST request with a data payload containing the required information in
+            order to create the User resource. This json below was sent as the POST data to create the Entity resource.
+        </p>
+
+        {{-- Data payload received --}}
+        <div class="p-1 border rounded-md">
+            <pre><code class="text-xs bg-gray-200 php">{{
+                        @json_encode(request()->except(['_method', 'actionOn']), JSON_PRETTY_PRINT)
+                        }}</code></pre>
+        </div>
+
+        <p class="mt-4">
+            Notice the <code class="myCode">_token</code> value in the POST data, this is a hidden anti
+            <code class="myCode">cross-site request forgery</code> token which Laravel automatically generates and
+            verify that the authenticated user is the one actually making the requests to the application.
+            Anytime I define an HTML form I include a hidden CSRF token field using the
+            <code class="myCode">&#64;csrf</code> Blade directive so that the CSRF protection middleware can validate
+            the request. <br> More information available in the Laravel Documentation
+            <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/csrf">here</a>.
         </p>
 
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            Accessed <code class="myCode">{{ request()->url() }}</code> using the
-            <code class="myCode">{{ request()->method() }}</code> method, ergo the defined route for this request in
-            <code class="myCode">routes/web.php</code> is as follow:
+            The data payload is sent by a <code class="myCode">{{ request()->method() }}</code> request to
+            <code class="myCode">{{ request()->url() }}</code>. When the application receives a
+            <code class="myCode">{{ request()->method() }}</code> request on the <code class="myCode">/entities/</code>
+            URI, the application knows the store method in the EntityController will handel this request. The route
+            definition for this request in <code class="myCode">routes/web.php</code> is as follow:
         </p>
 
         {{-- Route Code Block --}}
@@ -33,23 +53,6 @@
                         action="post"
                         method="store"
                     ></x-route></code></pre>
-        </div>
-
-        {{-- Policy Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
-        <p>
-            To perform this action the authenticated user should have the <code class="myCode">create_resource</code>
-            Ability and is authorised by the <code class="myCode">create</code> Policy method as follow:
-        </p>
-
-        {{-- Policy Code Block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
-                        className="Entity"
-                        message="creat models"
-                        method="create"
-                        ability="create_entity"
-                    /></code></pre>
         </div>
 
         {{-- Controller Description --}}
@@ -83,6 +86,23 @@
         {{-- Model Code Block --}}
         <div class="p-1 border rounded-md">
             <pre><code class="text-xs bg-gray-200 php"><x-models.entity.store/></code></pre>
+        </div>
+
+        {{-- Policy Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
+        <p>
+            To perform this action the authenticated user should have the <code class="myCode">create_resource</code>
+            Ability and is authorised by the <code class="myCode">create</code> Policy method as follow:
+        </p>
+
+        {{-- Policy Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
+                        className="Entity"
+                        message="creat models"
+                        method="create"
+                        ability="create_entity"
+                    /></code></pre>
         </div>
 
         {{-- View Description --}}
