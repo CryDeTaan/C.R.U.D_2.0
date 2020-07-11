@@ -8,6 +8,14 @@ if (!function_exists('slug_to_title')) {
     }
 }
 
+if (!function_exists('slug_to_titles')) {
+
+    function slug_to_titles($slug)
+    {
+        return Str::of($slug)->replace('-', ' ')->plural()->title();
+    }
+}
+
 if (!function_exists('slug_to_controller')) {
 
     function slug_to_controller($slug)
