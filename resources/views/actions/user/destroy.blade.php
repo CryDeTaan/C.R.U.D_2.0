@@ -7,44 +7,22 @@
             C.R.U.Destroy {{ slug_to_title(request()->actionOn) }}</div>
 
         <p>
-            The <code class="myCode">D</code> in C.R.U.D. is for Destroying a User resources. To destroy a resource is
-            actually a funny thing which happens. Even though the user will only see a delete button on the front end,
-            this button will acts as a form which will send, no data really, to
-            <code class="myCode">{{ request()->url() }}</code> using the <code class="myCode">DELETE</code> method.
+            The <code class="myCode">D</code> in C.R.U.D. is for Destroying a User resources. To destroy a resource a
+            form was used to spoof a <code class="myCode">DELETE</code> request to
+            <code class="myCode">{{ request()->url() }}</code> was made.
         </p>
-        <p>
-            Similar to the update action, HTML forms can't make DELETE requests, a hidden _method field(<code
-                class="myCode">&#64;method</code>) to spoof the required HTTP verbs is included in the form. In
-            addition, similar to when creating/storing a resource, an anti cross-site request forgery _token(<code
-                class="myCode">&#64;csrf</code>) is also required to be sent as part of the form.
-            <br> More information available in the Laravel Documentation for
-            <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/csrf">CSRF Protection</a> and
-            <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/blade#method-field">Method
-                Field</a>.
-        </p>
-
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 html"><x-destroy-form.user/></code></pre>
-        </div>
-
 
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            As mentioned above, the Similar to the <code class="myCode">DELETE</code> action is spoofed in the form
-            using the <code class="myCode">&#64;method('DELETE')</code> Blade directive. This creates a hidden input
-            field for the form:<br> <code class="myCode">&lt;input name="_method" value="DELETE"&gt;</code>
-        </p>
-        <p>
-            The action on the form, <code class="myCode">action="/users/{id}"</code>, will essential trigger the process
-            of destroying the resource with the following route definition in the
+            The above mentioned form's action was <code class="myCode">action="/users/{id}"</code>, which essentially
+            triggers the process of destroying the resource with the following route definition in the
             <code class="myCode">routes/web.php</code> file:
         </p>
         <p>
-            Lastly, similarly to the Update action, take note the definition includes
-            a <code class="myCode">{parameter}</code> which is passed to the controller so that the controller can
-            easily obtain an instance of the user resource through Laravel's Route Model Binding. This is the instance
-            which will be destroyed.
+            Take note the definition includes a <code class="myCode">{parameter}</code> which is passed to the
+            controller so that the controller can easily obtain an instance of the user resource through Laravel's Route
+            Model Binding. This is the instance which will be destroyed.
         </p>
 
         {{-- Route Code Block --}}
