@@ -8,6 +8,9 @@ class UserController extends Controller
 {
     public function update(User $user)
     {
+        $role = get_role(request()->actionOn);
+        $this->authorize('accessToRole', $role);
+
         $validatedAttributes = request()->validate([
             'name'      => ['string', 'max:255'],
             'email'     => ['string', 'email', 'max:255'],
@@ -19,7 +22,6 @@ class UserController extends Controller
         $user->update($validatedAttributes);
 
         $user->assignRole($validatedAttributes['role']);
-
         if (request()->has('entity')) {
             $user->assignEntity($validatedAttributes['entity']);
         }

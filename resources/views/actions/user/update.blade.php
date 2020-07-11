@@ -6,16 +6,26 @@
         <div class="text-2xl mb-6 mt-4">
             C.R.Update.D {{ slug_to_title(request()->actionOn) }} - Update
         </div>
+
+        {{-- Overview --}}
         <p>
-        <p>
-            As I mentioned in the previous page the <code class="myCode">U</code> in C.R.U.D. for updating a resource
-            is a two step process so to speak. First the view with a form of sorts to send, and second the process of
-            updating the values from the form. That is where we are now, updating the resource.
+            As I mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
+            <code class="myCode">U</code> in C.R.U.D. for updating a User resource is a two step process so to speak.
+            First the view with a form of sorts to send, and second the process of updating the values from the form.
+            That is where we are now, updating the resource.
         </p>
         <p>
-            A resource is updated by sending a PUT request with a data payload containing the required information in
-            order to update the resource.
+            A resource is stored by sending a <code class="myCode">{{ request()->method() }}</code> request with a data
+            payload containing the required information in order to update the User resource. This JSON below was sent
+            as the data payload to update the User resource.
         </p>
+
+        {{-- Data payload received --}}
+        <div class="p-1 border rounded-md">
+            <pre><code class="text-xs bg-gray-200 php">{{
+                        @json_encode(request()->except(['_method', 'actionOn']), JSON_PRETTY_PRINT)
+                        }}</code></pre>
+        </div>
 
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
@@ -23,7 +33,12 @@
             Requesting the <code class="myCode">{{ request()->url() }}</code> url using the
             <code class="myCode">{{ request()->method() }}</code> method with a data payload included will start of the
             process of updating a resource. The route in the <code class="myCode">routes/web.php</code> is defined as
-            follow:
+            below.
+        </p>
+        <p>
+            Take note the definition includes a <code class="myCode">{parameter}</code> which is passed to the
+            controller so that the controller can easily obtain an instance of the user resource through Laravel's Route
+            Model Binding. This is the instance which will be updated.
         </p>
 
         {{-- Route Code Block --}}
@@ -54,20 +69,7 @@
 
         {{-- Role Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Role</div>
-        <p>
-            Because all the different user type actions are performed using the same User Controller and Model, I had
-            to make sure that the action performed on the user type is allowed based on the authenticated user's role.
-        </p>
-        <p>
-            To achieve that the Role policy was created with the and defined as below. Take note of the requested role,
-            <code class="myCode">{{ slug_to_title(request()->actionOn) }}</code>, and which
-            <code class="myCode">$user->roles->contains('name','{role}')</code> is required to perform the action.
-        </p>
-
-        {{-- Role Code Block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.role/></code></pre>
-        </div>
+        <x-policies.user.role-section/>
 
         {{-- Controller Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
@@ -86,7 +88,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
         <p>
             A lot of what is said when creating a resource is also relevant when updating a resource. So it may feel
-            like I am repeating myself, but its because I am.
+            like I am repeating myself, but its because I am, it is important.
         </p>
         <p>
             So, firstly, when ever a resource is touched in the database its we need to specify which fields are mass
@@ -103,9 +105,10 @@
                href="https://laravel.com/docs/master/eloquent-mutators#defining-a-mutator">Mutators</a> Documentation.
         </p>
         <p>
-            You'll also notice that in the controller I make user of two <code class="myCode">assignX($value)</code>
-            functions in the model, and the reason should be clear when looking at how easy that is to use in a
-            controller. But it is important to note.
+            You'll also notice that in the Controller above I make user of two functions
+            <code class="myCode">assignRole($role)</code> and <code class="myCode">assignEntity(entity)</code>.
+            These are defined in the model, and the reason should be clear when looking at how easy it makes it
+            to use in a controller. But it is important to note.
         </p>
         <p>
             Lastly, the reason why the above mentioned works so well is because of the needed relationships. The User
@@ -113,6 +116,7 @@
             outlined in the model below as well in the <code class="myCode">belongsToMany()</code> and
             <code class="myCode">belongsTo()</code> functions.
         </p>
+
         <p>
             With relationships its sometimes to automatically load the relationship, this is achieved by defining a
             <code class="myCode">$with</code> property on the model:
@@ -131,8 +135,8 @@
         </p>
         <p>
             Based on the controller's return statement the
-            <code class="myCode">/resources/views/actions/users/update.blade.php</code> view will render the HTML of this
-            page you are currently viewing. The <code class="myCode">$user</code> object will also be included, and
+            <code class="myCode">/resources/views/actions/users/update.blade.php</code> view will render the HTML of
+            this page you are currently viewing. The <code class="myCode">$user</code> object will also be included, and
             contains the following:
         </p>
 
