@@ -9,8 +9,7 @@
         <p>
             The <code class="myCode">C</code> in C.R.U.D. is for creating a resource, and it is generally a two step
             process. First you need to return a view, like this one you are viewing now, where a form is provided with
-            the necessary fields.
-            These form fields are data properties sent with a POST request which is the second step in creating a
+            the necessary fields. These form fields are data properties sent with a POST request which is the second step in creating a
             resource.
         </p>
         <p>
@@ -39,9 +38,8 @@
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            This page was reached by visiting the following URL using the
-            <code class="myCode">{{ request()->method() }}</code> method:
-            <code class="myCode">{{ request()->url() }}</code>.
+            This page was reached with a <code class="myCode">{{ request()->url() }}</code> request to the
+            <code class="myCode">{{ request()->method() }}</code> URL.
         </p>
         <p>
             The process of returning this view start by matching the request to a definition in the
@@ -56,6 +54,21 @@
                         action="get"
                         method="create"
                     ></x-route></code></pre>
+        </div>
+
+        {{-- Controller Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
+        <p>
+            The <code class="myCode">create</code> method in the <code class="myCode">ResourceController</code> will
+            handel this request. Because we want to create a resource, the only purpose this controller provides is to
+            return a view. I could just as well have returned a view from within a closure in
+            <code class="myCode">routes/web.php</code>. But I still preferred to keep it all the logic consistent and
+            and I do that in the controller.
+        </p>
+
+        {{-- Controller Code Block --}}
+        <div class="p-1 border rounded-md">
+            <pre><code class="text-xs bg-gray-200 php"><x-controllers.resource.create/></code></pre>
         </div>
 
         {{-- Policy Description --}}
@@ -73,21 +86,6 @@
                         method="create"
                         ability="create_resource"
                     /></code></pre>
-        </div>
-
-        {{-- Controller Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
-        <p>
-            The <code class="myCode">create</code> method in the <code class="myCode">ResourceController</code> will
-            handel this request. Because we want to create a resource, the only purpose this controller provides is to
-            return a view. I could just as well have returned a view from within a closure in
-            <code class="myCode">routes/web.php</code>. But I still preferred to keep it all the logic consistent and
-            and I do that in the controller.
-        </p>
-
-        {{-- Controller Code Block --}}
-        <div class="p-1 border rounded-md">
-            <pre><code class="text-xs bg-gray-200 php"><x-controllers.resource.create/></code></pre>
         </div>
 
         {{-- View Description --}}
