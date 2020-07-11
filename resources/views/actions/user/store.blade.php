@@ -42,7 +42,7 @@
         <p>
             The data payload is sent to <code class="myCode">{{ request()->url() }}</code> using the
             <code class="myCode">{{ request()->method() }}</code> method. When the application receives a
-            <code class="myCode">{{ request()->method() }}</code> request on the <code class="myCode">/user/</code> URI,
+            <code class="myCode">{{ request()->method() }}</code> request on the <code class="myCode">/users/</code> URI,
             the application knows the store method in the UserController will handel this request. The route definition
             for this request in <code class="myCode">routes/web.php</code> is as follow:
         </p>
