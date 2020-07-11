@@ -51,25 +51,6 @@
                     ></x-route></code></pre>
         </div>
 
-        {{-- Policy Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
-        <p>
-            To perform this action the authenticated user should have the <code class="myCode">update</code> Ability and
-            is authorised by the <code class="myCode">update</code> Policy method as follow:
-        </p>
-
-        {{-- Policy Code Block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.generic
-                        message="update the model"
-                        method="update"
-                        action="update"
-                    /></code></pre>
-        </div>
-
-        {{-- Role Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Role</div>
-        <x-policies.user.role-section/>
 
         {{-- Controller Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
@@ -126,6 +107,26 @@
         <div class="p-1 border rounded-md">
             <pre><code class="text-xs bg-gray-200 php"><x-models.user.store/></code></pre>
         </div>
+
+        {{-- Policy Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
+        <p>
+            To perform this action the authenticated user should have the <code class="myCode">update</code> Ability and
+            is authorised by the <code class="myCode">update</code> Policy method as follow:
+        </p>
+
+        {{-- Policy Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.user.generic
+                        message="update the model"
+                        method="update"
+                        action="update"
+                    /></code></pre>
+        </div>
+
+        {{-- Role Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Role</div>
+        <x-policies.user.role-section/>
 
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>

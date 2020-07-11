@@ -35,6 +35,26 @@
                     ></x-route></code></pre>
         </div>
 
+        {{-- Controller Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
+        <p>
+            The <code class="myCode">destroy</code> method in the
+            <code class="myCode">{{ slug_to_controller(request()->actionOn) }}Controller</code> obtains the instance
+            through Route Model Binding, and then simply calls the <code class="myCode">destroy()</code> method.
+        <p>
+            As far as deleting a resource goes, that's about it, there are times where I may want to cascade
+            onDelete, in other words delete any foreign key constraints associated with the record.
+        </p>
+        <p>
+            For the purposes of this demo app, I will not make use of this at this time.
+        </p>
+
+        {{-- Controller Code Block --}}
+        <div class="p-1 border rounded-md">
+            <pre><code class="text-xs bg-gray-200 php"><x-controllers.user.destroy/></code></pre>
+        </div>
+
+
         {{-- Policy Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
@@ -55,25 +75,6 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Role</div>
         <x-policies.user.role-section/>
 
-        {{-- Controller Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
-        <p>
-            The <code class="myCode">destroy</code> method in the
-            <code class="myCode">{{ slug_to_controller(request()->actionOn) }}Controller</code> obtains the instance
-            through Route Model Binding, and then simply calls the <code class="myCode">destroy()</code> method.
-        <p>
-            As far as deleting a resource goes, that's about it, there are times where I may want to cascade
-            onDelete, in other words delete any foreign key constraints associated with the record.
-        </p>
-        <p>
-            For the purposes of this demo app, I will not make use of this at this time.
-        </p>
-        </p>
-
-        {{-- Controller Code Block --}}
-        <div class="p-1 border rounded-md">
-            <pre><code class="text-xs bg-gray-200 php"><x-controllers.user.destroy/></code></pre>
-        </div>
 
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
