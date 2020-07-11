@@ -8,21 +8,41 @@
         </div>
         <p>
         <p>
-            As I mentioned in the previous page the <code class="myCode">C</code> in C.R.U.D. for creating a resource
-            is a two step process so to speak. First the view with a form of sorts to send, and second the process of
-            storing the values from the form to the database. That is where we are now.
+            As I mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
+            <code class="myCode">C</code> in C.R.U.D. for creating a resource is a two step process so to speak. First
+            the view with a form of sorts to send, and second the process of storing the values from the form to the
+            database. That is where we are now.
         </p>
         <p>
             A resource is stored by sending a POST request with a data payload containing the required information in
-            order to create the resource.
+            order to create the resource. This JSON object below was sent as the POST data to create the Resource.
+        </p>
+
+        {{-- Data payload received --}}
+        <div class="p-1 border rounded-md">
+            <pre><code class="text-xs bg-gray-200 php">{{
+                        @json_encode(request()->except(['_method', 'actionOn']), JSON_PRETTY_PRINT)
+                        }}</code></pre>
+        </div>
+
+        <p class="mt-4">
+            Notice the <code class="myCode">_token</code> value in the POST data, this is a hidden anti
+            <code class="myCode">cross-site request forgery</code> token which Laravel automatically generates and
+            verify that the authenticated user is the one actually making the requests to the application.
+            Anytime I define an HTML form I include a hidden CSRF token field using the
+            <code class="myCode">&#64;csrf</code> Blade directive so that the CSRF protection middleware can validate
+            the request. <br> More information available in the Laravel Documentation
+            <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/csrf">here</a>.
         </p>
 
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            Accessed <code class="myCode">{{ request()->url() }}</code> using the
-            <code class="myCode">{{ request()->method() }}</code> method, ergo the defined route for this request in
-            <code class="myCode">routes/web.php</code> is as follow:
+            The data payload is sent using a <code class="myCode">{{ request()->method() }}</code> request to
+            <code class="myCode">{{ request()->url() }}</code>. When the application receives a
+            <code class="myCode">{{ request()->method() }}</code> request on the <code class="myCode">/entities/</code>
+            URI, the application knows the store method in the EntityController will handel this request. The route
+            definition for this request in <code class="myCode">routes/web.php</code> is as follow:
         </p>
 
         {{-- Route Code Block --}}
@@ -35,50 +55,6 @@
                     ></x-route></code></pre>
         </div>
 
-        {{-- Policy Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
-        <p>
-            To perform this action the authenticated user should have the <code class="myCode">create_resource</code>
-            Ability and is authorised by the <code class="myCode">create</code> Policy method as follow:
-        </p>
-
-        {{-- Policy Code Block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
-                        className="Resource"
-                        message="creat models"
-                        method="create"
-                        ability="create_resource"
-                    /></code></pre>
-        </div>
-
-        {{-- Assign Resource Contributor Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Assign Resource Contributor to Entity
-        </div>
-        <p>
-            It is important to make sure that when a Resource Contributor is assigned to a Resource that the resource
-            and the Resource Contributor are both associated to the same Entity.
-        </p>
-        <p>
-            To achieve that the <code class="myCode">assign</code> Policy method outlined below will validate this
-            action.
-        </p>
-
-        {{-- Assign Resource Contributor Code Block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.resource.assign-resource/></code></pre>
-        </div>
-
-        {{-- Gate Description --}}
-        <p>
-            Because this Policy is not directly related to a Model, it should be defined as a
-            <code class="myCode">Gate</code> in the <code class="myCode">App\Providers\AuthServiceProvider</code> class.
-        </p>
-
-        {{-- Gate Code block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.resource.gate/></code></pre>
-        </div>
 
         {{-- Controller Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
@@ -104,13 +80,61 @@
                 Mass Assignment</a> Documentation;
         </p>
         <p>
-            Also, the Resource will have a relationships, <code class="myCode">belongsTo()</code>, with a Resource Owner
-            which is specified in the Model.
+            Also, the Resource will have two <code class="myCode">belongsTo()</code> relationships, 1. with a Resource
+            Owner, and 2. with an Entity which is specified in the Model, as well as a
+            <code class="myCode">belongsToMany()</code> relationships with Resource Contributors.
         </p>
 
         {{-- Model Code Block --}}
         <div class="p-1 border rounded-md">
             <pre><code class="text-xs bg-gray-200 php"><x-models.resource.store/></code></pre>
+        </div>
+
+
+        {{-- Policy Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
+        <p>
+            To perform this action the authenticated user should have the <code class="myCode">create_resource</code>
+            Ability and is authorised by the <code class="myCode">create</code> Policy method as follow:
+        </p>
+
+        {{-- Policy Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
+                        className="Resource"
+                        message="creat models"
+                        method="create"
+                        ability="create_resource"
+                    /></code></pre>
+        </div>
+
+        {{-- Assign Resource Contributor Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Assign Resource Contributor to Entity
+        </div>
+        <p>
+            As can be seen in the controller a Resource Contributor is assigned to the Resource and it is important to
+            make sure that when a Resource Contributor is assigned to a Resource that the resource and the Resource
+            Contributor are both associated to the same Entity.
+        </p>
+        <p>
+            To achieve that the <code class="myCode">assign</code> Policy method outlined below will validate this
+            action.
+        </p>
+
+        {{-- Assign Resource Contributor Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.resource.assign-resource/></code></pre>
+        </div>
+
+        {{-- Gate Description --}}
+        <p>
+            Because this Policy is not directly related to a Model, it could be defined as a
+            <code class="myCode">Gate</code> in the <code class="myCode">App\Providers\AuthServiceProvider</code> class.
+        </p>
+
+        {{-- Gate Code block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.resource.gate/></code></pre>
         </div>
 
         {{-- View Description --}}

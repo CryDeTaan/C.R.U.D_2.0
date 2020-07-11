@@ -13,7 +13,7 @@ class Resource extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'field', 'user_id'
+    'name', 'field', 'user_id', 'entity_id'
     ];
 
     /**
@@ -24,6 +24,26 @@ class Resource extends Model
     public function user()
     {
         return $this->belongsTo(user::class);
+    }
+
+    /**
+     * A Resource will belong to a Resource Owner(User).
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function entity()
+    {
+    return $this->belongsTo(entity::class);
+    }
+
+    /**
+     * A resource may be assigned to many users.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 
 }

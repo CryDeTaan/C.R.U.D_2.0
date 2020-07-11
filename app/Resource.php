@@ -26,6 +26,16 @@ class Resource extends Model
     }
 
     /**
+     * A Resource will belong to an Entity.
+     *
+     * @return  \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function entity()
+    {
+        return $this->belongsTo(entity::class);
+    }
+
+    /**
      * A resource may be assigned to many users.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
