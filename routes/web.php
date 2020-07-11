@@ -28,6 +28,10 @@ Route::get('/roles', function () {
     return view('roles');
 });
 
+Route::get('/helper', function () {
+    return view('helper');
+});
+
 /*
  * Faking a login Route
  */
