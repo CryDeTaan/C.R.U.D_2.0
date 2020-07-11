@@ -1,11 +1,4 @@
-&lt;?php
-
-namespace App\Http\Controllers;
-
-use App\User;
-
-class UserController extends Controller
-{
+<x-controllers.user.main>
     public function edit(User $user)
     {
         $role = get_role(request()->actionOn);
@@ -14,5 +7,4 @@ class UserController extends Controller
         $user->delete();
         return view('actions.users.destroy');
     }
-
-}
+</x-controllers.user.main>

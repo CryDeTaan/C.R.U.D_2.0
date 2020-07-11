@@ -1,21 +1,6 @@
-&lt;?php
-
-namespace App\Http\Controllers;
-
-use App\User;
-use App\Role;
-
-class UserController extends Controller
-{
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->authorizeResource(User::class, 'user');
-    }
-
+<x-controllers.user.main>
     public function index()
     {
-
         $role = Role::whereName(request()->actionOn)->first();
         $this->authorize('accessToRole', $role);
 
@@ -23,4 +8,4 @@ class UserController extends Controller
 
         return view('actions.users.read', compact('users'));
     }
-}
+</x-controllers.user.main>

@@ -105,9 +105,7 @@
         </p>
 
         {{-- Controller Code Block --}}
-        <div class="p-1 border rounded-md">
-            <pre><code class="text-xs bg-gray-200 php"><x-controllers.user.edit/></code></pre>
-        </div>
+        <x-controllers.user.edit/>
 
         {{-- Policy Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>

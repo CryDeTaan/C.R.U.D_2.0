@@ -50,9 +50,7 @@
         </p>
 
         {{-- Controller Code Block --}}
-        <div class="p-1 border rounded-md">
-            <pre><code class="text-xs bg-gray-200 php"><x-controllers.user.destroy/></code></pre>
-        </div>
+        <x-controllers.user.destroy/>
 
 
         {{-- Policy Description --}}
