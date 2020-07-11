@@ -45,7 +45,7 @@
         </p>
 
         {{-- Controller Code Block --}}
-        ><x-controllers.user.show/>
+        <x-controllers.user.show/>
 
         {{-- Model Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
