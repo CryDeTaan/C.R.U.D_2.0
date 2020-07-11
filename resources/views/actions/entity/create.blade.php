@@ -25,7 +25,7 @@
         </p>
         <p>
             To create a new entity, for this application at least, I need to specify a name and/or what ever fields
-            are required for the type of resource. Th form below acts as an example of a resource from.
+            are required for the type of resource. The form below acts as an example of a resource from.
         </p>
 
         {{-- Form Component --}}
@@ -38,9 +38,8 @@
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            This page was reached by visiting the following URL using the
-            <code class="myCode">{{ request()->method() }}</code> method:
-            <code class="myCode">{{ request()->url() }}</code>.
+            This page was reached with a <code class="myCode">{{ request()->url() }}</code> request to the
+            <code class="myCode">{{ request()->method() }}</code> URL.
         </p>
         <p>
             The process of returning this view start by matching the request to a definition in the
@@ -55,6 +54,22 @@
                         action="get"
                         method="create"
                     ></x-route></code></pre>
+        </div>
+
+
+        {{-- Controller Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
+        <p>
+            The <code class="myCode">create</code> method in the <code class="myCode">EntityController</code> will
+            handel this request. Because we want to create an Entity, the only purpose this method provides is to
+            return a view. I could just as well have returned a view from within a closure in
+            <code class="myCode">routes/web.php</code>. But I still preferred to keep it all the logic consistent and
+            and I do that in the controller.
+        </p>
+
+        {{-- Controller Code Block --}}
+        <div class="p-1 border rounded-md">
+            <pre><code class="text-xs bg-gray-200 php"><x-controllers.entity.create/></code></pre>
         </div>
 
         {{-- Policy Description --}}
@@ -72,21 +87,6 @@
                         method="create"
                         ability="create_entity"
                     /></code></pre>
-        </div>
-
-        {{-- Controller Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
-        <p>
-            The <code class="myCode">create</code> method in the <code class="myCode">EntityController</code> will
-            handel this request. Because we want to create a Entity, the only purpose this method provides is to
-            return a view. I could just as well have returned a view from within a closure in
-            <code class="myCode">routes/web.php</code>. But I still preferred to keep it all the logic consistent and
-            and I do that in the controller.
-        </p>
-
-        {{-- Controller Code Block --}}
-        <div class="p-1 border rounded-md">
-            <pre><code class="text-xs bg-gray-200 php"><x-controllers.entity.create/></code></pre>
         </div>
 
         {{-- View Description --}}
