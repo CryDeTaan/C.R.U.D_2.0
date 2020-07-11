@@ -6,7 +6,8 @@
         <div class="text-2xl mb-6 mt-4">
             C.R.Update.D {{ slug_to_title(request()->actionOn) }} - Update
         </div>
-        <p>
+
+        {{-- Overview --}}
         <p>
             As I mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
             <code class="myCode">U</code> in C.R.U.D. for updating a resource and is generally a two step process.
@@ -14,15 +15,23 @@
             That is where we are now, updating the resource.
         </p>
         <p>
-            A resource is updated by sending a PUT request with a data payload containing the required information in
-            order to update the resource, which is an Entity in this case.
+            A resource is updated by sending a <code class="myCode">{{ request()->method() }}</code> request with a data
+            payload containing the required information in order to update the Entity resource. This JSON object below
+            was sent as the data payload to update the Entity resource.
         </p>
+
+        {{-- Data payload received --}}
+        <div class="p-1 border rounded-md">
+            <pre><code class="text-xs bg-gray-200 php">{{
+                        @json_encode(request()->except(['_method', 'actionOn']), JSON_PRETTY_PRINT)
+                        }}</code></pre>
+        </div>
 
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            Requesting the <code class="myCode">{{ request()->url() }}</code> url using the
-            <code class="myCode">{{ request()->method() }}</code> method with a data payload included will start of the
+            This page was reached with a <code class="myCode">{{ request()->url() }}</code> request to the
+            <code class="myCode">{{ request()->method() }}</code> URL with a data payload included which will start the
             process of updating a resource. The route in the <code class="myCode">routes/web.php</code> is defined as
             follow:
         </p>
@@ -37,30 +46,12 @@
                     /></code></pre>
         </div>
 
-        {{-- Policy Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
-        <p>
-            To perform this action the authenticated user should have the <code class="myCode">update_resource</code>
-            Ability and is authorised by the <code class="myCode">update</code> Policy method as follow:
-        </p>
-
-        {{-- Policy Code Block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
-                        className="Entity"
-                        message="update models"
-                        method="update"
-                        ability="update_entity"
-                    /></code></pre>
-        </div>
-
         {{-- Controller Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
             The <code class="myCode">update</code> method in the <code class="myCode">EntityController</code> will
             handel this request. Similar to the store method when creating a resource, it is also important to perform
-            validation on the update method as well for any and all data received which will be processed by the
-            application.
+            validation on the update method on any and all data received which will be processed by the application.
         </p>
 
         {{-- Controller Code Block --}}
@@ -82,14 +73,32 @@
                 Mass Assignment</a> Documentation;
         </p>
         <p>
-            Also, the Entity inherently requires some relationships to be useful at the end of the day and have been
-            outlined in the model below as well. See <code class="myCode">public function users()</code> which
-            defines the relationship
+            Also outlined in the <a class="text-blue-500" href="/entities">Read</a> Entities page,
+            a <code class="myCode">belongsTo()</code> relationship allows me to retrieve the users for a give
+            Entity using the dynamic property, <code class="myCode">$entity->users</code>. This relationships
+            is defined below in the <code class="myCode">public function users()</code> section below.
         </p>
 
         {{-- Model Code Block --}}
         <div class="p-1 border rounded-md">
             <pre><code class="text-xs bg-gray-200 php"><x-models.entity.show/></code></pre>
+        </div>
+
+        {{-- Policy Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
+        <p>
+            To perform this action the authenticated user should have the <code class="myCode">update_entity</code>
+            Ability and is authorised by the <code class="myCode">update</code> Policy method as follow:
+        </p>
+
+        {{-- Policy Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
+                        className="Entity"
+                        message="update models"
+                        method="update"
+                        ability="update_entity"
+                    /></code></pre>
         </div>
 
         {{-- View Description --}}
