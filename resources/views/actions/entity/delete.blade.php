@@ -7,7 +7,7 @@
             C.R.U.Delete {{ slug_to_title(request()->actionOn) }}</div>
 
         <p>
-            The <code class="myCode">D</code> in C.R.U.D. is for Deleting a entity. Generally there isn't a view for
+            The <code class="myCode">D</code> in C.R.U.D. is for Deleting an Entity. Generally there isn't a view for
             deleting a resource like this, more often than not the delete action will be triggered close to where the
             Update action lives. For that reason I am not going to go in to detail how we got to this view, just know
             that there is usually a delete button for a entity which will trigger the delete action in a edit page
@@ -16,13 +16,38 @@
             {{ slug_to_title(request()->actionOn) }}s.
         </p>
 
+        <p>
+            But to destroy a resource a funny thing actually needs to happen. And that is that even though the user will
+            most likely only see a delete button on the front end, this button will acts as a form which will send, no
+            data really, to
+            <code class="myCode">{{ url('/entities/{id}?actionOn=') . request()->actionOn }}</code> as a
+            <code class="myCode">DELETE</code> request.
+        </p>
+        <p>
+            Similar to the update action, HTML forms can't make DELETE requests, a hidden _method field(<code
+                class="myCode">&#64;method</code>) to spoof the required HTTP verbs is included in the form. In
+            addition, similar to when creating/storing a resource, an anti cross-site request forgery _token(<code
+                class="myCode">&#64;csrf</code>) is also required to be sent as part of the form.
+            This creates two hidden input field for the form:<br>
+            1. <code class="myCode">&lt;input type="hidden" name="_method" value="PUT"&gt;</code>, and <br>
+            2. <code class="myCode">&lt;input type="hidden" name="_token" value="{{ csrf_token() }}"&gt;</code>
+
+        </p>
+        <p>
+            <br> More information available in the Laravel Documentation for
+            <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/csrf">CSRF Protection</a> and
+            <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/blade#method-field">Method
+                Field</a>.
+        </p>
+
         {{-- Resource Table Description --}}
         <div class="text-xl mb-4 mt-12">
             <span class="-ml-6 text-gray-700">#</span> Entities
         </div>
         <p>
-            Below is a list of the {{ slug_to_title(request()->actionOn) }}s. Selecting one of the entities below will
-            trigger the delete action.
+            Below is a list of the {{ slug_to_titles(request()->actionOn) }}. Selecting one of the resources below will
+            trigger the delete action as explained above, the row acts as a button and each row is really a wrapped in a
+            form.
         </p>
 
         {{-- Resource Table --}}
