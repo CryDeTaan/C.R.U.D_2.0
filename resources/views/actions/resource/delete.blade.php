@@ -13,16 +13,44 @@
             that there is usually a delete button for a resource which will trigger the delete action in a profile page
             or list of resources like the
             <a class="text-blue-500" href="/resources?actionOn={{ request()->actionOn }}">Read</a> action for
-            {{ slug_to_title(request()->actionOn) }}s.
+            {{ slug_to_titles(request()->actionOn) }}.
         </p>
+        <p>
+            But to destroy a resource a funny thing actually needs to happen. And that is that even though the user will
+            most likely only see a delete button on the front end, this button will acts as a form which will send, no
+            data really, to
+            <code class="myCode">{{ url('/entities/{id}?actionOn=') . request()->actionOn }}</code> as a
+            <code class="myCode">DELETE</code> request.
+        </p>
+        <p>
+            Similar to the update action, HTML forms can't make DELETE requests, a hidden _method field(<code
+                class="myCode">&#64;method</code>) to spoof the required HTTP verbs is included in the form. In
+            addition, similar to when creating/storing a resource, an anti cross-site request forgery _token(<code
+                class="myCode">&#64;csrf</code>) is also required to be sent as part of the form.
+            This creates two hidden input field for the form:<br>
+            1. <code class="myCode">&lt;input type="hidden" name="_method" value="PUT"&gt;</code>, and <br>
+            2. <code class="myCode">&lt;input type="hidden" name="_token" value="{{ csrf_token() }}"&gt;</code>
+
+        </p>
+        <p>
+            <br> More information available in the Laravel Documentation for
+            <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/csrf">CSRF Protection</a> and
+            <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/blade#method-field">Method
+                Field</a>.
+        </p>
+
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 html"><x-destroy-form.user/></code></pre>
+        </div>
 
         {{-- Resource Table Description --}}
         <div class="text-xl mb-4 mt-12">
             <span class="-ml-6 text-gray-700">#</span> {{ slug_to_title(request()->actionOn) }}s
         </div>
         <p>
-            Below is a list of the {{ slug_to_title(request()->actionOn) }}s. Selecting one of the resources below will
-            trigger the delete action.
+            Below is a list of the {{ slug_to_titles(request()->actionOn) }}. Selecting one of the resources below will
+            trigger the delete action as explained above, the row acts as a button and each row is really a wrapped in a
+            form.
         </p>
 
         {{-- Resource Table --}}
