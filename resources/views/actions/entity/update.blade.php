@@ -35,6 +35,11 @@
             process of updating a resource. The route in the <code class="myCode">routes/web.php</code> is defined as
             follow:
         </p>
+        <p>
+            Take note the definition includes a <code class="myCode">{parameter}</code> which is passed to the
+            controller so that the controller can easily obtain an instance of the user resource through Laravel's Route
+            Model Binding. This is the instance which will be updated.
+        </p>
 
         {{-- Route Code Block --}}
         <div class="p-1 border rounded-md">
