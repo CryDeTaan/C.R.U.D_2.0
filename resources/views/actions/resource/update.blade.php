@@ -14,17 +14,30 @@
             That is where we are now, updating the resource.
         </p>
         <p>
-            A resource is updated by sending a PUT request with a data payload containing the required information in
-            order to update the resource.
+            A resource is updated by sending a <code class="myCode">{{ request()->method() }}</code> request with a data
+            payload containing the required information in order to update the Entity resource. This JSON object below
+            was sent as the data payload to update the Entity resource.
         </p>
+
+        {{-- Data payload received --}}
+        <div class="p-1 border rounded-md">
+            <pre><code class="text-xs bg-gray-200 php">{{
+                        @json_encode(request()->except(['_method', 'actionOn']), JSON_PRETTY_PRINT)
+                        }}</code></pre>
+        </div>
 
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            Requesting the <code class="myCode">{{ request()->url() }}</code> url using the
-            <code class="myCode">{{ request()->method() }}</code> method with a data payload included will start of the
+            This page was reached with a <code class="myCode">{{ request()->url() }}</code> request to the
+            <code class="myCode">{{ request()->method() }}</code> URL with a data payload included which will start the
             process of updating a resource. The route in the <code class="myCode">routes/web.php</code> is defined as
             follow:
+        </p>
+        <p>
+            Take note the definition includes a <code class="myCode">{parameter}</code> which is passed to the
+            controller so that the controller can easily obtain an instance of the user resource through Laravel's Route
+            Model Binding. This is the instance which will be updated.
         </p>
 
         {{-- Route Code Block --}}
@@ -34,25 +47,6 @@
                         controller="Resource"
                         action="put"
                         method="update"
-                    /></code></pre>
-        </div>
-
-        {{-- Policy Description --}}
-        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
-        <p>
-            To perform this action the authenticated user should have the <code class="myCode">update_resource</code>
-            Ability and is authorised by the <code class="myCode">update</code> Policy method as follow:
-        </p>
-
-        {{-- Policy Code Block --}}
-        <div class="p-1 border rounded-md mb-2">
-            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
-                        className="Resource"
-                        modelIncluded="resource"
-                        message="update the model"
-                        method="update"
-                        secondCheck="true"
-                        ability="update_resource"
                     /></code></pre>
         </div>
 
@@ -84,15 +78,37 @@
                 Mass Assignment</a> Documentation;
         </p>
         <p>
-            Also, the Resource inherently requires some relationships to be useful at the end of the day and have been
-            outlined in the model below as well. See <code class="myCode">public function user()</code> which
-            defines the relationship
+            Also outlined in the <a class="text-blue-500" href="/resources">Read</a> Resources page,
+            a <code class="myCode">belongsToMany()</code> relationship allows me to retrieve the users for a give
+            Resource using the dynamic property, <code class="myCode">$resource->users</code>. This relationships
+            is defined below in the <code class="myCode">public function users()</code> section below.
         </p>
 
         {{-- Model Code Block --}}
         <div class="p-1 border rounded-md">
             <pre><code class="text-xs bg-gray-200 php"><x-models.resource.show/></code></pre>
         </div>
+
+        {{-- Policy Description --}}
+        <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
+        <p>
+            To perform this action the authenticated user should have the <code class="myCode">update_resource</code>
+            Ability and should be one of the resource's contributors which is authorised by the
+            <code class="myCode">update</code> Policy method as follow:
+        </p>
+
+        {{-- Policy Code Block --}}
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 php"><x-policies.generic
+                        className="Resource"
+                        modelIncluded="resource"
+                        message="update the model"
+                        method="update"
+                        secondCheck="true"
+                        ability="update_resource"
+                    /></code></pre>
+        </div>
+
 
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
