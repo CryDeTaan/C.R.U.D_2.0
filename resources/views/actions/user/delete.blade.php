@@ -13,7 +13,7 @@
             that there is usually a delete button for a resource which will trigger the delete action in a profile page
             or list of resources like the
             <a class="text-blue-500" href="/users?actionOn={{ request()->actionOn }}">Read</a> action for
-            {{ slug_to_title(request()->actionOn) }}s.
+            {{ slug_to_titles(request()->actionOn) }}.
         </p>
 
         <p>
@@ -47,10 +47,10 @@
 
         {{-- Resource Table Description --}}
         <div class="text-xl mb-4 mt-12">
-            <span class="-ml-6 text-gray-700">#</span> {{ slug_to_title(request()->actionOn) }}s
+            <span class="-ml-6 text-gray-700">#</span> {{ slug_to_titles(request()->actionOn) }}
         </div>
         <p>
-            Below is a list of the {{ slug_to_title(request()->actionOn) }}s. Selecting one of the resources below will
+            Below is a list of the {{ slug_to_titles(request()->actionOn) }}. Selecting one of the resources below will
             trigger the delete action as explained above, the row acts as a button and each row is really a wrapped in a
             form.
         </p>

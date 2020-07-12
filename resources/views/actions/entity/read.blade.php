@@ -34,7 +34,7 @@
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            To receive a view containing a list of {{ slug_to_title(request()->actionOn) }}s a
+            To receive a view containing a list of {{ slug_to_titles(request()->actionOn) }} a
             <code class="myCode">{{ request()->method() }}</code> request was made to
             <code class="myCode">{{ request()->url() }}</code>, therefor the defined route for this request in
             <code class="myCode">routes/web.php</code> is as follow:

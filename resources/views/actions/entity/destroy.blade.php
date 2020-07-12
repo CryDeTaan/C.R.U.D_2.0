@@ -36,7 +36,7 @@
             The <code class="myCode">destroy</code> method in the
             <code class="myCode">{{ slug_to_controller(request()->actionOn) }}Controller</code> obtains the instance of
             the Entity through Route Model Binding, and then simply calls the destroy() method after which the view,
-            most probably to the list of {{ slug_to_title(request()->actionOn) }}s.
+            most probably to the list of {{ slug_to_titles(request()->actionOn) }}.
         </p>
         <p>
             As far as deleting a resource goes, that's about it, there are times where I may want to cascade

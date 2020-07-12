@@ -13,7 +13,7 @@
             that there is usually a delete button for a entity which will trigger the delete action in a edit page
             or list of resources like the
             <a class="text-blue-500" href="/entities?actionOn={{ request()->actionOn }}">Read</a> action for
-            {{ slug_to_title(request()->actionOn) }}s.
+            {{ slug_to_titles(request()->actionOn) }}.
         </p>
 
         <p>

@@ -20,12 +20,12 @@
 
         {{-- Resource Table Description --}}
         <div class="text-xl mb-4 mt-12">
-            <span class="-ml-6 text-gray-700">#</span> {{ slug_to_title(request()->actionOn) }}s
+            <span class="-ml-6 text-gray-700">#</span> {{ slug_to_titles(request()->actionOn) }}
         </div>
         <p>
-            Below is a list of the {{ slug_to_title(request()->actionOn) }}s. As with the
+            Below is a list of the {{ slug_to_titles(request()->actionOn) }}. As with the
             other action pages, I'll explain how the list
-            of {{ slug_to_title(request()->actionOn) }}s
+            of {{ slug_to_titles(request()->actionOn) }}
             were returned by explaining each area of importance in a bit more detail.
         </p>
 
@@ -40,7 +40,7 @@
             is essentially the User type I am targeting on the specific action.
         </p>
         <p>
-            To receive a view containing a list of {{ slug_to_title(request()->actionOn) }}s the
+            To receive a view containing a list of {{ slug_to_titles(request()->actionOn) }} the
             <code class="myCode">{{ request()->url() }}</code> URL was requested using the
             <code class="myCode">{{ request()->method() }}</code> method, therefor the defined route for this request in
             <code class="myCode">routes/web.php</code> is as follow:
@@ -64,7 +64,7 @@
             <code class="myCode">{{ slug_to_controller(request()->actionOn) }}Controller</code>
             will handel this request. And although the resources in this request are still of type User, I want to
             control which user resources are returned, and in this case I only want to return
-            {{ slug_to_title(request()->actionOn) }}s.
+            {{ slug_to_titles(request()->actionOn) }}.
         </p>
         <p>
             Now, because of this, I need to include the App\Role class and
