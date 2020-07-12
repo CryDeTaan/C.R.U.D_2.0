@@ -40,6 +40,10 @@
                 Field</a>.
         </p>
 
+        <div class="p-1 border rounded-md mb-2">
+            <pre><code class="text-xs bg-gray-200 html"><x-destroy-form.user/></code></pre>
+        </div>
+
         {{-- Resource Table Description --}}
         <div class="text-xl mb-4 mt-12">
             <span class="-ml-6 text-gray-700">#</span> Entities
