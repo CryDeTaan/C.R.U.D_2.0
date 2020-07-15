@@ -9,22 +9,23 @@
             The idea here is to show how a C.R.U.D (Create, Read, Update, Delete) Laravel app works.
         </p>
         <p>
-            These verbs basically represent the actions taken on the data. But a C.R.U.D application, so to speak, also
-            needs additional areas to function. But this can actually make developing a simple C.R.U.D application very
-            complicated for a new comer starting out their web developer journey.
+            These verbs represent the actions taken on the data, but a C.R.U.D application, so to speak, also needs
+            additional areas to be functional. This can actually make developing a simple C.R.U.D application very
+            complicated for a newcomer starting out their web development journey.
         </p>
         <p>
             I am going to try and keep it as simple as possible, while trying to hit all the important areas, including
             Role Based Access Control.
         </p>
         <p>
-            In this example I try to use generic terms like <strong>Platform</strong> and <strong>Entity</strong>. <br>
-            However these can be replaced with something like <strong>&lt;Insert Blogging Platform Name
+            For the sake of simplicity, I try to use generic terms such as <strong>Platform</strong> and
+            <strong>Entity</strong>. <br>
+            However, these can be replaced with something along the lines of <strong>&lt;Insert Blogging Platform Name
                 here&gt;</strong> and <strong>&lt;Insert Publication Name here&gt;</strong>.
         </p>
         <p>
-            Publications can have Admins, who manages Editors who in turn manages contributors of resources, which in
-            this example could be Articles or Blogs.
+            Publications can have Admins, who manage Editors who in turn manage contributors of resources, which in
+            this example could be Articles or Blog Posts.
         </p>
         <p>
             Try to think <a target="_blank" class="text-blue-500" href="https://medium.com/">Medium.com</a> here. ;p
@@ -36,19 +37,19 @@
         </div>
         <p>
             Alright, so to try and work with the idea of a blogging or publication platform like Medium but using
-            general terms will require a quick definition of the different resource types which I am going to use, but
-            first a note:
+            general terms will require a quick list of definitions of the different resource types which I am going to
+            use.
         </p>
 
         {{-- Resource Overview --}}
         <div class="text-l my-4">Resource</div>
         <p>
-            The word Resource can be widely used for which an action is performed on, a user of a web application could
-            essentially be considered a resource. But it is important to note that resource in the example / explanatory
-            application, a resource is referred to or defined as a the final 'product' of platform. And in the case of a
-            blogging or publication platform like Medium that will generally be the article or blog post.
-            So with that, the first definition is that a resource in this case should be seen as a Article or blog post.
-            Here is a somewhat random
+            The word Resource can be used to describe a collection of data on which an action is performed; a user of a
+            web application can essentially be considered a resource. But it is important to note that resource in this
+            example / explanatory application can be defined as the final 'product' of platform. In the case of a
+            blogging or publication platform, like Medium, the resource will generally be the article or blog post. So
+            with that in mind, the first definition follows: A resource, in this case, should be seen as an article or
+            blog post. Here is a somewhat random
             <a target="_blank" class="text-blue-500"
                href="https://medium.com/@TheWineDream/wine-101-the-art-of-blending-wine-9c473cd24e62">resource /
                 article</a>
@@ -58,40 +59,44 @@
         {{-- >Platform Admins and Contributors Overview --}}
         <div class="text-l my-4">Platform Admins and Platform Contributors</div>
         <p>
-            For the remaining definitions, I think we can start at the top, top being the Platform. And this is simple,
-            the platform is Medium.com. What does a Platform need though? Well, for this example at least, I want it to
-            have Platform Admins and Platform Contributors as far as Users are considered, but it also needs Entities.
-            But before I get to Entities, let me list these mentioned Users.
+            Platform: this is simple, the platform is the application or website where resources live and actions are
+            performed by users with different roles; it is essentially Medium.com. What does a Platform need though?
+            Well, for this example at least, I want it to have Platform Admins and Platform Contributors as far as Users
+            are concerned, but it also needs Entities. Before I get to Entities, let me defined the aforementioned User
+            roles.
         </p>
         <p>
-            Platform Admins and Platform Contributors are essentially the same, apart from the permissions they may
-            have. Platform Admins can additionally Create and Delete Entities which the Platform Contributors cannot.
-            But for the rest, both have the ability to Read and Update Entities, and Create, Read, Update, and Delete
-            Entity Admins(which I will get to).
+            <strong>Platform Admins</strong> and <strong>Platform Contributors</strong> are essentially the same, apart
+            from the permissions assigned to each. Both have the ability to Read and Update Entities, and Create, Read,
+            Update, and Delete Entity Admins (definition to follow below). In addition to these actions, Platform Admins
+            can also Create and Delete Entities which the Platform Contributors cannot.
         </p>
 
         {{-- Entities Overview --}}
         <div class="text-l my-4">Entities</div>
         <p>
-            Entities could be related to a publication on Medium.com for example.
-            A <a target="_blank" class="text-blue-500" href="https://medium.com/the-wine-dream">Entity / Publication</a>
-            on Medium.com would act independently from the platform in the articles they publish, the Entity /
+            Entities can be defined as a publication, similar to publications on Medium.com for example.
+            An <a target="_blank" class="text-blue-500" href="https://medium.com/the-wine-dream">Entity /
+                Publication</a>
+            on Medium.com would act independently from the platform in the articles that they publish, the Entity /
             Publication may also want resource / article Owners and Contributors which should generally be created by an
-            Entity Admin as there should be no reason for a Platform Admin, in this example and Admin of Medium.com, to
-            create resource / article Owners and Contributors. So this is where an Entity Admin comes into play.
+            Entity Admin as there should be no reason for a Platform Admin, in this example and in the case of
+            Medium.com, to create resource / article Owners and Contributors. So this is where an Entity Admin comes
+            into play.
         </p>
 
         {{-- Entity Admins Overview --}}
         <div class="text-l my-4">Entity Admins</div>
         <p>
-            The Entity Admins role will have ability to add Resource Owners and Resource Contributors for the Entity
-            they manage. Just a reminder, a resource in this example app is nothing more than an article or blog post.
+            The Entity Admin's role will have the ability to add Resource Owners and Resource Contributors for the
+            Entity that they manage. Just a reminder, a resource in this example app is nothing more than an article or
+            blog post.
         </p>
 
         {{-- Resource Owner Overview --}}
         <div class="text-l my-4">Resource Owners</div>
         <p>
-            Resource Owner as the name suggests owns the resource, i.e. article or blog post. They have the ability to
+            A Resource Owner as the name suggests owns the resource, i.e. article or blog post. They have the ability to
             Create, Read, Update, and Delete a resource. They also have the ability to assign Resource Contributors to
             the Resources they own.
         </p>
@@ -99,8 +104,8 @@
         {{-- Resource Contributor Overview --}}
         <div class="text-l my-4">Resource Contributors</div>
         <p>
-            Resource Contributors can only contribute to resources they have been assigned to through the Read and
-            Update abilities.
+            Resource Contributors can only contribute to resources they have been assigned to. For these resource they
+            have Read and Update abilities.
         </p>
 
         {{-- Overview Summary --}}
@@ -114,28 +119,28 @@
             </li>
         </ol>
         <p>
-            The roles are implemented in such a way that just because a user is a Platform Admin it doesn't allow them
-            to contribute to the Resources as well, like a Resource Contributor. No, a Platform Admin, administers the
-            platform. I hope that makes sense.
+            The roles are implemented in such a way that if a user is assigned the Platform Admin role this doesn't
+            allow them to contribute to a Resources as well; they don't have Resource Contributor role permissions. A
+            Platform Admin can only administer the platform.
         </p>
 
 
         {{-- Setting the scene --}}
         <div class="text-l my-4">Setting the Scene using a story</div>
         <p>
-            So, let me try create a scenario. I create a publication platform where companies can subscribe to.
-            The companies are considered the Entities on this publications platform. Once a company subscribes,
+            So, let me try and create a scenario. I create a publication platform to where companies can subscribe to.
+            The companies that are subscribed are considered the Entities on this platform. Once a company subscribes,
             a Platform Admin will create an Entity resource representing the company and an Entity Admin, who will
-            managed the resources to this Entity. And sure, it's not really necessary to have a Platform Admin add an
-            entity, but I am trying to explain multi tenant permissions.
+            managed the resources for this Entity. And sure, it's not really necessary to have a Platform Admin add an
+            entity, but I am trying to explain multi-tenant permissions.
         </p>
         <p>
             Once the Entity and Entity Admin are created, the Entity Admin can go on and create Resource Owners and
-            Contributors. Resources Owners in this scenario could be considered a Managing Editor for the publication.
+            Contributors. Resource Owners in this scenario could be considered a Managing Editor for the publication.
             The Resource Owner can then create a Resource, which essentially represents an article of sorts. The
-            Resource Owner can not only publish these mentioned articles, but also assign Resource Contributors, for
-            example an editor at the company making use of the platform. The editor may only be allowed to make changes
-            or additions to the articles, but need to be reviewed and published by the Resource Owner.
+            Resource Owner can not only publish these articles, but also assign Resource Contributors, for example an
+            editor at the company making use of the platform. The editor may only be allowed to make changes
+            or additions to the articles which need to be reviewed and published by the Resource Owner.
         </p>
         <p>
             The application must be built with the necessary permissions in mind. Meaning that Entity users should
@@ -149,19 +154,19 @@
             How to use
         </div>
         <p>
-            With the definition and scenario out of the way, let me quickly explain how to use this app. It is possible
-            to impersonate an user and then perform then actions on the different resources.
+            With the definitions and scenario out of the way, let me quickly explain how to use this app. It is possible
+            to impersonate a user and then perform their actions on the different resources.
         </p>
         <p>
-            Impersonate an user by selecting an 'Impersonations' option from the sidebar to the left. This will simulate
-            an authentication attempt and the authenticated user's information will returned and displayed. Below is an
-            example of how an authenticated user's object is returned, which can be accessed in the view.
+            Impersonating a user is done by selecting an 'Impersonations' option from the sidebar to the left. This will
+            simulate an authentication attempt and the authenticated user's information will be returned and displayed.
+            Below is an example of how an authenticated user's object is returned, which can be accessed in the view.
         </p>
         <p>
-            Once a User has been impersonated, it is possible to perform the action the selected user's role has
-            permission to perform. The action essentially dictates the which C.R.U.D. action to perform on a given
+            Once a User has been impersonated, it is possible to perform the action(s) the selected user's role has
+            permission to perform. The action essentially dictates which C.R.U.D. action to perform on a given
             resource. For example, Impersonating the Platform Admin will allow the ability to add an Entity but will not
-            be allowed to add a Resource Contributor.
+            allow for a Resource Contributor to be added.
         </p>
 
         {{-- User Code Block --}}
@@ -176,15 +181,16 @@
         </div>
         <p>
             In the following section I will try to explain the Model View Control Architecture and specifically how it
-            is translated into Laravel. I will also discuss some other areas needed to make this example application
-            function like Role-Based Access control, Policies and more.
+            is translated into Laravel. In the following section I will try to explain the Model View Control
+            Architecture and specifically how it is translated into Laravel. I will also discuss some other areas needed
+            to make this example application function; like Role-Based Access control, Policies and more.
         </p>
         <div class="text-l my-4">Note</div>
         <p>
             Keep in mind that the way I am using these Laravel directives is not necessarily the only or best option,
             its merely one of the options. For example, specifying a route can be done as a closure, or you can make
             use of Route Groups. So please assume that everything I am showing isn't necessarily the best or
-            only way of doing something :)
+            only way of doing something :) - there is always room for improvement.
         </p>
 
 
