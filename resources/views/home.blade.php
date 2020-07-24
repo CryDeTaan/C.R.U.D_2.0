@@ -197,18 +197,17 @@
         {{-- MVC - Route --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            As far a developer using the Laravel framework is concerned it all start here at the
+            As far as a developer using the Laravel framework is concerned, it all starts here at the
             <code class="myCode">routes/web.php</code> file. There is also <code class="myCode">routes/api.php</code>
-            and some other, but lets not worry about that for now. Obviously the Laravel frameworks takes care of a few
-            things for you when you visit a Laravel based Wep App but for now, just know that the route will start
+            and some others, but let's not worry about that for now. Obviously the Laravel framework takes care of a few
+            things for you when you visit a Laravel based Wep App, but for now just know that the route will start
             executing the logic of the application and is defined in <code class="myCode">routes/web.php</code>. This is
             the entry point to the application.
-
         </p>
         <p>
-            Lets use an example where by the Entity > Read action is selected on the Sidebar. This will instruct the
+            Let's use an example whereby the Entity > Read action is selected on the Sidebar. This will instruct the
             browser to navigate to <code class="myCode">http://crud_2.0.test/entities</code>, the request will
-            initiated a particular part of the application logic as the Route, <code class="myCode">entities</code>, is
+            initiate a particular part of the application logic as the Route, <code class="myCode">entities</code>, is
             requested. The route is registered in the <code class="myCode">routes/web.php</code> file. Further, as this
             request is a standard <code class="myCode">GET</code> request, the Route is also defined with the expected
             HTTP method. Finally, te second argument specifies the controller and the function to call. In this case the

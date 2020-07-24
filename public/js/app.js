@@ -115,8 +115,8 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/crydetaan/_Development/crud_2.0/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/crydetaan/_Development/crud_2.0/resources/css/main.css */"./resources/css/main.css");
+__webpack_require__(/*! /Users/aliciadewet/Development/C.R.U.D_2.0/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/aliciadewet/Development/C.R.U.D_2.0/resources/css/main.css */"./resources/css/main.css");
 
 
 /***/ })
