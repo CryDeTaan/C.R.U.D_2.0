@@ -223,28 +223,28 @@
         {{-- MVC - Controller --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
-            I generally use, well not just me; most, controllers to group related requests handling logic into a single
-            class. So much so that the controller responsible for the all the C.R.U.D. action on a specific resource.
-            This pattern is followed so much in the community that Laravel has Resource Controllers. When adding a
+            I generally, well not just me - most Laravel developers, use controllers to group related requests handling logic into a single
+            class. The controller essentially becomes responsible for the all the C.R.U.D. actions on a specific resource.
+            This pattern is followed so much in the community that Laravel provides Resource Controllers. When adding a
             Controller use the <code class="myCode">--resource</code> flag to automatically add all the C.R.U.D.
             actions as a skeleton.
         </p>
         <p>
-            The table below stipulates all the Actions in the C.R.U.D design pattern with the relevant Verb, URI, the
-            Controller with the method
+            The table below stipulates all the Actions in the C.R.U.D design pattern with the relevant Verb, URI, as well as the
+            Controller with the method.
         </p>
 
         {{-- Resource Controller Table --}}
         <x-home.crud-table/>
         <p>
-            The C.R.U.D. action in this example, Read aka Index, will be handled by the
-            <code class="myCode">EntityController</code> will call the <code class="myCode">index</code> method. This
-            particular example is simple, basically gets all the Entities using Laravel's
+            The C.R.U.D. action in this example, Read Index, will be handled by the
+            <code class="myCode">EntityController</code> which will call the <code class="myCode">index</code> method. This
+            particular example is simple, it basically gets all the Entities using Laravel's
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/eloquent#retrieving-models">Eloquent
                 ORM</a>
         </p>
         <p>
-            In the example Controller's <code class="myCode">constructor</code> a specify a auth middleware. This will
+            In the example Controller's <code class="myCode">constructor</code> I specify an auth middleware. This will
             require a valid authenticated user session before accessing any of the methods within the Controller.
         </p>
 
