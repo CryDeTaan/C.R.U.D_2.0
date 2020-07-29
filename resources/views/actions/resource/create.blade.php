@@ -7,25 +7,24 @@
             Create.R.U.D Resource - View
         </div>
         <p>
-            The <code class="myCode">C</code> in C.R.U.D. is for creating a resource, and it is generally a two step
-            process. First you need to return a view, like this one you are viewing now, where a form is provided with
-            the necessary fields. These form fields are data properties sent with a POST request which is the second step in creating a
-            resource.
+            The <code class="myCode">C</code> in C.R.U.D. is for creating a resource and it is generally
+            a two-step process. First you need to return a view, like the one you are viewing now, where a form is
+            provided with the necessary fields. These form fields are data properties sent with a POST request which is
+            the second step in creating a resource.
         </p>
         <p>
             Although the # Form section below is seemingly the most important part for creating a new resource,
-            the Route, Controller, and View sections below will explain how we got here.
+            the Route, Controller, and View sections below will explain how we got there.
         </p>
 
         {{-- Form Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Form</div>
         <p>
-            Because creating a new resource starts with a form, here is a form which contains the fields for creating a
-            new resource:
+            Since a new resource is created by completing a form, I have created one that contains the necessary fields to create one:
         </p>
         <p>
-            To create a new resource, for this application at least, I need to specify a name and/or what ever fields
-            are required for the type of resource. Th form below acts as an example of a resource from.
+            To create a new entity, for this application at least, I need to specify a name as well as the fields
+            required for the type of resource. The form below acts as an example of a resource form.
         </p>
 
         {{-- Form Component --}}
@@ -42,8 +41,8 @@
             <code class="myCode">{{ request()->method() }}</code> URL.
         </p>
         <p>
-            The process of returning this view start by matching the request to a definition in the
-            <code class="myCode">routes/web.php</code> as follow:
+            The process of returning this view starts by matching the request to a definition in the
+            <code class="myCode">routes/web.php</code> as follows:
         </p>
 
         {{-- Route Code Block --}}
@@ -60,10 +59,10 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
             The <code class="myCode">create</code> method in the <code class="myCode">ResourceController</code> will
-            handel this request. Because we want to create a resource, the only purpose this controller provides is to
-            return a view. I could just as well have returned a view from within a closure in
-            <code class="myCode">routes/web.php</code>. But I still preferred to keep it all the logic consistent and
-            and I do that in the controller.
+            handle this request. Because we want to create a resource, the only purpose that this controller provides is to return a
+            view. I could just as well have returned a view from within a closure in
+            <code class="myCode">routes/web.php</code>. But it is still preferred to keep the logic consistent and
+            I do that using the controller.
         </p>
 
         {{-- Controller Code Block --}}
@@ -75,7 +74,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
             To perform this action the authenticated user should have the <code class="myCode">create_resource</code>
-            Ability and is authorised by the <code class="myCode">create</code> Policy method as follow:
+            Ability and should be authorised by the <code class="myCode">create</code> Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}
@@ -96,7 +95,7 @@
         </p>
         <p>
             This <code class="myCode">create.blade.php</code> view contains all the HTML, elements and components which
-            renders this page you are currently reading.
+            render this page that you are currently reading.
         </p>
     </div>
 

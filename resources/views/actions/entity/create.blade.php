@@ -21,7 +21,7 @@
         {{-- Form Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Form</div>
         <p>
-            Since a new entity is created by completing a form, I have created one that contain the necessary fields to create a new entity:
+            Since a new entity is created by completing a form, I have created one that contains the necessary fields to create one:
         </p>
         <p>
             To create a new entity, for this application at least, I need to specify a name as well as the fields
@@ -63,8 +63,8 @@
             The <code class="myCode">create</code> method in the <code class="myCode">EntityController</code> will
             handle this request. Because we want to create an Entity, the only purpose this method has is to
             return a view. I could just as well have returned a view from within a closure in
-            <code class="myCode">routes/web.php</code>. But I still preferred to keep all the logic consistent and
-            and I do that by grouping everything in the controller.
+            <code class="myCode">routes/web.php</code>. But it is still preferred to keep the logic consistent and
+            I do that using the controller.
         </p>
 
         {{-- Controller Code Block --}}

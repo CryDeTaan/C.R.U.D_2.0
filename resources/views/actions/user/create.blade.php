@@ -20,7 +20,7 @@
         {{-- Form Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Form</div>
         <p>
-            Since a new entity is created by completing a form, I have created one that contain the necessary fields to create a new resource:
+            Since a new user is created by completing a form, I have created one that contains the necessary fields to create one:
         </p>
         <p>
             To create a new User resource, for this application at least, I need to specify a name, password, and
