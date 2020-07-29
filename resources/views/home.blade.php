@@ -350,12 +350,12 @@
             Role Based Access Control
         </div>
         <p>
-            Moving away from the Model View Controller architecture to discuss some other components starting with
+            We are now moving away from the Model View Controller architecture to discuss some other components; starting with
             Role Based Access control which is achieved through Policies. Fortunately, Laravel has 'resourceful'
-            policies for actions on models when resourceful controllers are used, which in my case I am.
+            policies for actions on models when resourceful controllers are used, which is what I am using in this case.
         </p>
         <p>
-            To 'enable' this, the authorizeResource method in the should be added to the resourceful controller's
+            To 'enable' this, the <code class="myCode">authorizeResource</code> method should be added to the resourceful controller's
             constructor; <code class="myCode">$this->authorizeResource(Entity::class, 'Entity');</code>. The
             <code class="myCode">authorizeResource</code> method accepts the model's class name as its first
             argument, and the name of the route / request parameter that will contain the model's ID as its second
@@ -364,7 +364,7 @@
         <p>
             To have the required method signatures and type hints both the controller and the policy should be
             created using the <code class="myCode">--model</code> flag. <br>For more information on Authorizing
-            Resource Controllers please see<a target="_blank" class="text-blue-500"
+            Resource Controllers please see the <a target="_blank" class="text-blue-500"
                                               href="https://laravel.com/docs/7.x/authorization#via-controller-helpers">
                 Authorizing Resource Controllers</a> section from the Laravel Authorization Documentation.
         </p>
