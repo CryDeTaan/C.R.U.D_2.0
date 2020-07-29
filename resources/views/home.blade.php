@@ -300,28 +300,28 @@
         <p>
             The final part in the Model View Controller life cycle is the View. The controller and model retrieve and
             prepare the data that will be sent to the view, if any. The view is essentially the presentation layer or
-            logic which is separate from that of the controller / application logic or layer.
+            logic which is separate from that of the controller/application logic or layer.
         </p>
         <p>
-            In this example I make use of the Laravel templating engine, called Blade, by specifying global
-            <code class="myCode">view</code> helper with two parameters.
+            In this example I make use of the Laravel templating engine, called Blade, by specifying a global
+            <code class="myCode">view</code> helper with two parameters:
             <code class="myCode">return view('actions.entity.read', compact('entities'));</code>
         </p>
         <ol class="list-decimal mb-4 text-xs pl-10">
             <li>
-                The target view; in this case <code class="myCode">actions.entity.read</code>. All views are stored at
+                The target view - in this case <code class="myCode">actions.entity.read</code>. All views are stored at
                 <code class="myCode">resources/views/</code> which means this view lives at
-                <code class="myCode">/resources/views/entity/read.blade.php</code>. The .blade.php extension is
-                important for the templating engine to function and blade templates can be access either by
+                <code class="myCode">/resources/views/entity/read.blade.php</code>. The <code class="myCode">.blade.php</code> extension is
+                important for the templating engine to function and blade templates can be accessed either by
                 <code class="myCode">/</code> or <code class="myCode">.</code> notation.
             </li>
             <li>
-                The data object, in this case, the prepared <code class="myCode">entities</code> object in json format.
+                The data object - in this case the prepared <code class="myCode">entities</code> object in json format.
             </li>
         </ol>
         <p>
             This page you are reading now, is the actual rendered HTML from the
-            <code class="myCode">/resource/views/about.blade.php</code> view :)
+            <code class="myCode">/resource/views/about.blade.php</code> view 😀
         </p>
         <p>
             One of the neat features of the blade templating engine is the second point, the data object. This allows me
@@ -329,8 +329,8 @@
             so choose.
         </p>
         <p>
-            The data object below will be sent to the view for rendering which is essentially a JSON payload and can be
-            accessed by the view. For example,<code class="myCode">&#123;&#123; $entity->name &#125;&#125;</code> will
+            The data object below will be sent to the view for rendering that which is essentially a JSON payload, and can be
+            accessed by the view. For example, <code class="myCode">&#123;&#123; $entity->name &#125;&#125;</code> will
             render the entity name in the HTML which will be returned during the response part of the request life
             cycle.
         </p>
@@ -341,7 +341,7 @@
         </div>
         <p class="mt-6">
             It it is important to note that I am not limited to using the Laravel Blade templating engine, the
-            Laravel Application can act as a API 'service' which means data can be returned as a JSON payload as well.
+            Laravel Application can act as a API 'service' which means that data can be returned as a JSON payload as well.
         </p>
 
 
