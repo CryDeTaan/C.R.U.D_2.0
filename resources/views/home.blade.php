@@ -257,17 +257,17 @@
         {{-- MVC - Model --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
         <p>
-            In Laravel the Eloquent ORM is a simple ActiveRecord implementation for working with the applications
+            In Laravel the Eloquent ORM is a simple ActiveRecord implementation for working with the application's
             database. Each database table has a corresponding "Model" which is used to interact with that table. Models
-            allow the ability to query data in tables, as well as work with and manipulate the records into the tables.
+            allow for the ability to query data in tables, as well as work with and manipulate the records in the tables.
         </p>
         <p>
             Additionally, the Eloquent ORM also provides relationships as Database tables are often related to one
-            another. In my example scenario, an entity has resources owners and contributors, essentially... users of
+            another. In my example scenario, an entity has resource owners and contributors, essentially... users of
             the entity.
         </p>
         <p>
-            So to make use of the Eloquent ORM relationships in this scenario I outlined above, a relationships
+            To make use of the Eloquent ORM relationships in this scenario I outlined above, a relationship's
             definition may look something like this.
         </p>
         <ol class="list-decimal mb-4 text-xs pl-10">
@@ -281,12 +281,12 @@
         <p>
             As I have been using Entity in the examples so far, I will continue with the Entity Model, but note that
             although I mention <code class="myCode">App\User</code> above it is fairly similar, apart from the method
-            contains <code class="myCode">return $this->belongsTo(Entity::class);</code>.
+            containing <code class="myCode">return $this->belongsTo(Entity::class);</code>.
         </p>
         <p>
-            In any case, defining the relationships, an instance of the Entity model allows the use of dynamic
+            In any case, defining the relationships on an instance of the Entity model allows the use of dynamic
             properties to access the related model as if the property is defined on the model. For example, to access
-            all the users who belongs to an Entity is as simple as using <code class="myCode">$entity->users;</code>
+            all the users that belongs to an Entity is as simple as using <code class="myCode">$entity->users;</code>
         </p>
 
         {{-- MVC - Model Code Block --}}
