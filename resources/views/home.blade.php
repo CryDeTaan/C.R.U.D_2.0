@@ -422,18 +422,17 @@
         </p>
         <p>
             I do, however, want to point out a few things which are required for relationships to function which in turn
-            allows me
-            make use of Roles and Abilities or assign a User to a Resource.
+            allows me make use of Roles and Abilities or assign a User to a Resource.
         </p>
 
         {{-- Roles Migration --}}
         <div class="text-l my-4">Roles Migration</div>
         <p>
             Firstly the roles migration, as can be seen from the code block below, creates two tables containing Roles
-            and Abilities. Then two pivots are creates, the first is the <code class="myCode">ability_role</code> pivot,
-            which enables the Many-to-Many relationship between Abilities and Roles. And secondly, the
+            and Abilities. Then two pivots are created, the first is the <code class="myCode">ability_role</code> pivot,
+            which enables the Many-to-Many relationship between Abilities and Roles. Secondly, the
             <code class="myCode">role_user</code> pivot which enables the Many-to-Many relationship between Roles and
-            User.
+            User is created.
         </p>
 
         {{-- Roles Migration Code Block --}}
@@ -447,9 +446,9 @@
             Secondly the resource migration which also has a pivot table, <code class="myCode">resource_user</code>, but
             something else to notice is the <code class="myCode">user_id</code> and
             <code class="myCode">entity_id</code> fields on the Resource Table. These are required for the
-            <code class="myCode">belongsTo()</code> and <code class="myCode">hadMany()</code> relationships between a
+            <code class="myCode">belongsTo()</code> and <code class="myCode">hasMany()</code> relationships between a
             Resource and a User and a Resource and an Entity. When
-            <a target="_blank" class="text-blue-500" href="/resources?actionOn=resource">viewing</a> Resources, the
+            <a target="_blank" class="text-blue-500" href="/resources?actionOn=resource">viewing</a> Resources. The
             Model section will give an overview of how these are used.<br>
             (Note: Be sure to impersonate the Resource Owner or Resource Contributor to view Resources)
         </p>
@@ -463,16 +462,16 @@
         <div class="text-l my-4">Users Migration</div>
         <p>
             Even though there is not much more to say here, I do want to mention that the User model also has a
-            <code class="myCode">belongsTo()</code> relationship with the Entity Model(<code
-                class="myCode">hasMany()</code>. And this is achieved by adding, same as the previously mentioned
-            migrations a foreign ID field <code class="myCode">$table->foreignId('entity_id')</code>
+            <code class="myCode">belongsTo()</code> relationship with the Entity Model <code
+                class="myCode">hasMany()</code>. This is achieved by adding a foreign ID field <code class="myCode">$table->foreignId('entity_id')</code> in the same way as the previously mentioned
+            migrations.
         </p>
 
         {{-- Conclusion --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Conclusion</div>
         <p>
-            With that, more detail on each of the components; Route, Controller, Model, Policy, and View, can be seen by
-            navigating all the actions. Remember, not all Impersonations will have access to all the actions.
+            With that, more detail on each of the components (Route, Controller, Model, Policy, and View) can be seen by
+            navigating through the actions in the sidebar. Remember, not all Impersonations will have access to all the actions.
         </p>
 
     </div>
