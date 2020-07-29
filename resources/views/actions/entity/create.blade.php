@@ -15,7 +15,7 @@
         </p>
         <p>
             Although the # Form section below is seemingly the most important part for creating a new Entity, the Route,
-            Controller, and View sections below will explain how we got here.
+            Controller, and View sections below will explain how we got there.
         </p>
 
         {{-- Form Description --}}
