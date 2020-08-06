@@ -53,12 +53,12 @@
                 class="myCode">&#64;method('PUT')</code>) Blade directive to spoof the required HTTP verbs is included
             in the form. In addition, similar to when creating/storing a resource, an anti cross-site request forgery
             _token(<code class="myCode">&#64;csrf</code>) Blade directive is also required to be sent as part of the
-            form. This creates two hidden input field for the form:<br>
+            form. This creates two hidden input fields on the form:<br>
             1. <code class="myCode">&lt;input type="hidden" name="_method" value="PUT"&gt;</code>, and <br>
             2. <code class="myCode">&lt;input type="hidden" name="_token" value="{{ csrf_token() }}"&gt;</code>
         </p>
         <p>
-            <br> More information available from the Laravel Documentation for
+            <br> More information about this is available from the Laravel Documentation for
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/csrf">CSRF Protection</a> and
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/blade#method-field">Method
                 Fields</a>.
