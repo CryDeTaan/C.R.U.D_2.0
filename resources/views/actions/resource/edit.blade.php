@@ -71,9 +71,9 @@
             <code class="myCode">{{ request()->url() }}</code>.
         </p>
         <p>
-            Take note of the <code class="myCode">{parameter}</code> sent through, similar to showing an Entity
+            Take note of the <code class="myCode">{parameter}</code> that is sent through. Similarly to showing an Entity
             resource, the parameter in the URI will be used by the controller to obtain the requested resource using
-            Laravel's Route Model Binding. The process of returning this view start by matching the request to a
+            Laravel's Route Model Binding. The process of returning this view starts by matching the request to a
             definition in the <code class="myCode">routes/web.php</code> as outlined below:
         </p>
 
@@ -91,7 +91,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
             The <code class="myCode">edit</code> method in the <code class="myCode">ResourceController</code> will
-            handel this request and, again, we will need a form with the requested user object to be updated. Keep in
+            handle this request and, again, we will need a form with the requested user object to be updated. Keep in
             mind that it is not really necessary to include the object, but it does improve the user experience.
         </p>
         <p>
