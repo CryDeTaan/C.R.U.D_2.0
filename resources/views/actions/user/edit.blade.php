@@ -36,9 +36,9 @@
         {{-- Form Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Form</div>
         <p>
-            As mentioned in the overview, to update a User resource, I start with providing a form of sorts
-            which contains the fields as well as the current values for the resource to be updated.
-            For simplicity sake I included the password field as well, but some people have a different view or form
+            As mentioned in the overview, to update a User resource, I start by providing a form of sorts
+            that contains the fields as well as the current values for the resource to be updated.
+            For simplicity's sake I included the password field as well, but some people have a different view or form
             for updating passwords.
         </p>
 
