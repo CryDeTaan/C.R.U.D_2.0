@@ -7,9 +7,9 @@
             C.R.Update.D {{ slug_to_title(request()->actionOn) }} - View
         </div>
         <p>
-            The <code class="myCode">U</code> in C.R.U.D. is for updating User resources. Similarly to how I read
-            resource, so is updating a resources that it is a two part process. First a view to with a form of sorts,
-            more often than not, already complete with the resource to be changes. And then secondly, the the form will
+            The <code class="myCode">U</code> in C.R.U.D. is for updating User resources. Updating a resource is a two-part process,
+            which is similar to how I read a resource. First, a view with a form of sorts which has been,
+            more often than not, already completed with the details of the resource to be changed. Then secondly, the the form will
             be sent as as a PUT request which will update the resource.
         </p>
 
