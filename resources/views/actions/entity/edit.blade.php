@@ -110,7 +110,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
             To perform this action the authenticated user should have the <code class="myCode">update_entity</code>
-            Ability and is authorised by the <code class="myCode">update</code> Policy method as follow:
+            Ability and should be authorised by the <code class="myCode">update</code> Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}

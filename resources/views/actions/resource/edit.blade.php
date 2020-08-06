@@ -111,7 +111,7 @@
         <p>
             To perform this action the authenticated user should have the <code class="myCode">update_resource</code>
             Ability and should be one of the resource's contributors which is authorised by the
-            <code class="myCode">update</code> Policy method as follow:
+            <code class="myCode">update</code> Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}
