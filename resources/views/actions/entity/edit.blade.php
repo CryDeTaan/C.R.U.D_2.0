@@ -15,14 +15,15 @@
 
         {{-- Resource Table Description --}}
         <div class="text-xl mb-4 mt-12">
-            <span class="-ml-6 text-gray-700">#</span> {{ slug_to_titles(request()->actionOn) }}
+            <span class="-ml-6 text-gray-700">#</span>
+            {{ slug_to_titles(request()->actionOn) }}
         </div>
         <p>
-            Below is a list of {{ slug_to_titles(request()->actionOn) }} and selecting one will update the form below
-            which will be used to update the Entity. A Table is not generally included in the Edit view, but I did it to
-            make it a bit easier to select a resource to update. Where as the
+            Below is a list of {{ slug_to_titles(request()->actionOn) }}. Selecting one will update the form below
+            which will be used to update the Entity. A table is not generally included in the Edit view, but I did it to
+            make it a bit easier to select a resource to update. Note that the
             <a class="text-blue-500" href="/entities/1">Read</a> action will only show a resource. However, this is
-            sometimes combined so that when viewing a resource, there may be a edit button, and that edit button is what
+            sometimes combined so that when viewing a resource, there may be an edit button, and that edit button is what
             will return this view, the view to Edit, which contains a form, like I have below.
         </p>
 
