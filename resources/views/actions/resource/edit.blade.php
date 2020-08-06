@@ -136,9 +136,9 @@
             view which will render the HTML of this page.
         </p>
         <p>
-            The important thing about the Edit view is that it contains a form, generally pre-populate with the
-            requested object so that the user can change/update the necessary fields. Then by triggering the update
-            action, in this case a button, the data from the form will be sent to the update route, which will be
+            The important thing about the Edit view is that it contains a form, generally pre-populated with the
+            requested object data so that the user can change/update the necessary fields. Then, by triggering the update
+            action, in this case by clicking a button, the data from the form will be sent to the update route, which will be
             explained by submitting the form above.
         </p>
         <p>
