@@ -15,7 +15,7 @@
         <p>
             I am covering both of these options mentioned above so it should also then clear up that although both are
             essentially the Read part of C.R.U.D, their logic is slightly different as will be seen in the Route,
-            Controller, Model, and View descriptions which follows.
+            Controller, Model, and View descriptions that follow.
         </p>
 
         {{-- Resource Table Description --}}
