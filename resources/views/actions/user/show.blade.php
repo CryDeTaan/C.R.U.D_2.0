@@ -6,9 +6,9 @@
         <div class="text-2xl mb-6 mt-4">C.Read.U.D {{ slug_to_title(request()->actionOn) }}</div>
 
         <p>
-            As mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
+            As mentioned on the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
             <code class="myCode">R</code> in C.R.U.D. is for Reading resources. In this case though, I am only reading a
-            single User. And for that the logic to get a single resource is slightly different as outlined below.
+            single User. The logic to get a single resource is slightly different; outlined below.
         </p>
 
         {{-- Route Description --}}
@@ -40,8 +40,8 @@
             As mentioned above, the <code class="myCode">show</code> method in the
             <code class="myCode">{{ slug_to_controller(request()->actionOn) }}Controller</code>
             will receive the ID of the requested resource and obtain an instance of it using Route Model Binding which
-            provides a convenient way to automatically inject a model instances directly into the controller. This can
-            be seen by the way the function is declared, <code class="myCode">public function show(User $user)</code>.
+            provides a convenient way to automatically inject a model instance directly into the controller. This can
+            be seen by the way the function is declared; <code class="myCode">public function show(User $user)</code>.
         </p>
 
         {{-- Controller Code Block --}}
@@ -52,18 +52,18 @@
         <p>
             There is really nothing special required in the Model to return a requested resource using Route Model
             Binding. But perhaps its a good time to mention the <code class="myCode">$hidden</code> property available
-            on a model. This property allows me to limit what is returned in a response of a given resource. In the case
+            on a model. This property allows me to limit what is returned in response to a given resource. In the case
             of a User, I definitely don't want to EVER return the password field of a User resource within the response.
         </p>
         <p>
-            Furthermore, its possible to eager load certain "child" resources for a give resource in the model by using
+            Furthermore, it's possible to eagerly load certain "child" resources for a given resource in the model by using
             the <code class="myCode">$with</code> property. Using this property will always load the relationship of
             resources on the model instance. In this case, I want to include the Entity as well as the Roles whenever I
             request a User resource.
         </p>
         <p>
-            So to prevent any field from being included in a response and to include resource relationships use these
-            properties as follow:
+            So, to prevent any field from being included in a response and to include resource relationships use these
+            properties as follows:
         </p>
 
         {{-- Model Code Block --}}
@@ -74,8 +74,8 @@
         {{-- Policy Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
-            To perform this action the authenticated user should have the <code class="myCode">read_user</code> Ability and
-            is authorised by the <code class="myCode">view</code> Policy method as follow:
+            To perform this action the authenticated user should have the <code class="myCode">read_user</code> ability and
+            should be authorised by the <code class="myCode">view</code> Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}
@@ -94,7 +94,7 @@
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
-            Based on the controller's return statement(<code class="myCode">return view('actions.users.show',
+            Based on the controller's return statement (<code class="myCode">return view('actions.users.show',
                 compact('users'));</code>) the <code class="myCode">/resources/views/actions/users/show.blade.php</code>
             view will render the HTML of this page.
         </p>
