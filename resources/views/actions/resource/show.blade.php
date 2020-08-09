@@ -6,11 +6,11 @@
         <div class="text-2xl mb-6 mt-4">C.Read.U.D {{ slug_to_title(request()->actionOn) }}</div>
 
         <p>
-            As mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
+            As mentioned on the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
             <code class="myCode">R</code> in C.R.U.D. is for Reading resources. In this case though, I am only reading a
             single Resource. Meaning, Reading a resource is either reading all resources or a single resource, like in
-            this case i am reading a single resource. Albeit the same, the process/logic to get a single resource is
-            slightly different as outlined below.
+            this case I am reading a single resource. Albeit the same, the process/logic to get a single resource is
+            slightly different, as outlined below.
         </p>
 
         {{-- Route Description --}}
@@ -39,10 +39,10 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
             As mentioned above, the <code class="myCode">show</code> method in the
-            <code class="myCode">{{ slug_to_controller(request()->actionOn) }}Controller</code>
+            <code class="myCode">{{ slug_to_controller(request()->actionOn) }} Controller</code>
             will receive the ID of the requested resource and obtain an instance of it using Route Model Binding which
-            provides a convenient way to automatically inject a model instances directly into the controller. This can
-            be seen in the way the <code class="myCode">public function show(Resource $resource)</code>.
+            provides a convenient way to automatically inject a model instance directly into the controller. This can
+            be seen in the way the <code class="myCode">public function show(Resource $resource)</code> is shown.
         </p>
 
         {{-- Controller Code Block --}}
@@ -80,8 +80,8 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
             To perform this action the authenticated user should have the <code class="myCode">read_resource</code>
-            Ability and should be one of the resource's contributors which is authorised by the <code class="myCode">view</code>
-            Policy method as follow:
+            ability and should be one of the resource's contributors which is authorised by the <code class="myCode">view</code>
+            Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}
@@ -106,7 +106,7 @@
         </p>
         <p>
             The <code class="myCode">$resource</code> object will contain the requested Resource based on the ID passed
-            as the parameter in the URI, but doesn't contain the user property as was the case with
+            as the parameter in the URI, but doesn't contain the user property as was the case with the
             <a class="text-blue-500" href="{{ url()->previous() }}">Read</a> action previously.
         </p>
 
