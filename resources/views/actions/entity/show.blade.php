@@ -6,11 +6,11 @@
         <div class="text-2xl mb-6 mt-4">C.Read.U.D {{ slug_to_title(request()->actionOn) }}</div>
 
         <p>
-            As mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
+            As mentioned on the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
             <code class="myCode">R</code> in C.R.U.D. is for Reading an Entity. In this case though, I am only reading a
             single Entity. Meaning, Reading a resource is either reading all resources or a single resource, like in
-            this case i am reading a single resource. Albeit the same, the process/logic to get a single resource is
-            slightly different as outlined below.
+            this case where I am reading a single resource. Albeit the same, the process/logic to get a single resource is
+            slightly different as you will see outlined below.
         </p>
 
         {{-- Route Description --}}
@@ -21,7 +21,7 @@
             <code class="myCode">{{ request()->url() }}</code>. What is important to note here is that the
             route in the <code class="myCode">routes/web.php</code> is defined to include a
             <code class="myCode">{parameter}</code>. This will pass the parameter to the controller, in this case the ID
-            of the Entity. With this the controller can easily obtain an instance of the resource through something
+            of the Entity. With this parameter the controller can easily obtain an instance of the resource through something
             Laravel calls Route Model Binding.
         </p>
 
@@ -40,8 +40,8 @@
         <p>
             As mentioned above, the <code class="myCode">show</code> method in the
             <code class="myCode">{{ slug_to_controller(request()->actionOn) }}Controller</code>
-            will receive the ID of the requested resource and obtain an instance of it using Route Model Binding  which
-            provides a convenient way to automatically inject a model instances directly into the controller. This can
+            will receive the ID of the requested resource and obtain an instance of it using Route Model Binding which
+            provides a convenient way to automatically inject a model instance directly into the controller. This can
             be seen in the way the <code class="myCode">public function show(Entity $entity)</code> is declared.
         </p>
 
@@ -54,9 +54,9 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
         <p>
             There is really nothing special required in the Model to return a requested resource using Route Model
-            Binding. But remember the model has a dynamic Eloquent properties,
+            Binding. But remember that the model has dynamic Eloquent properties,
             <code class="myCode">return $this->hasMany(User::class);</code> and although I am not using it in this
-            view, should I change my mind it is as easy as <code class="myCode">$entity>users;</code>.
+            view, should I change my mind it is as easy as adding <code class="myCode">$entity>users;</code>.
         </p>
 
         {{-- Model Code Block --}}
@@ -68,7 +68,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
             To perform this action the authenticated user should have the <code class="myCode">read_entity</code>
-            Ability and is authorised by the <code class="myCode">view</code> Policy method as follow:
+            ability and should be authorised by the <code class="myCode">view</code> Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}
@@ -84,14 +84,14 @@
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
-            Based on the controller's return statement(<code class="myCode">return view('actions.entity.show',
+            Based on the controller's return statement (<code class="myCode">return view('actions.entity.show',
                 compact('entity'));</code>) the <code
                 class="myCode">/resources/views/actions/entity/show.blade.php</code>
             view will render the HTML of this page.
         </p>
         <p>
             The <code class="myCode">$entity</code> object will contain the requested Entity based on the ID passed
-            as the parameter in the URI, but doesn't contain all the Entities as was the case with
+            as the parameter in the URI, but it doesn't contain all the Entities as was the case with
             <a class="text-blue-500" href="{{ url()->previous() }}">Read</a> action previously.
         </p>
 
