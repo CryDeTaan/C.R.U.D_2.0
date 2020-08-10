@@ -8,9 +8,9 @@
         </div>
         <p>
         <p>
-            As I mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
-            <code class="myCode">C</code> in C.R.U.D. for creating a resource is a two step process so to speak. First
-            the view with a form of sorts to send, and second the process of storing the values from the form to the
+            As I mentioned on the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
+            <code class="myCode">C</code> in C.R.U.D. is for creating a resource. This is essentially a two-step process. First
+            the view with a form to be sent, and secondly the process of storing the values from the form to the
             database. That is where we are now.
         </p>
         <p>
@@ -28,10 +28,10 @@
         <p class="mt-4">
             Notice the <code class="myCode">_token</code> value in the POST data, this is a hidden anti
             <code class="myCode">cross-site request forgery</code> token which Laravel automatically generates and
-            verify that the authenticated user is the one actually making the requests to the application.
+            verifies that the authenticated user is the one actually making the requests to the application.
             Anytime I define an HTML form I include a hidden CSRF token field using the
             <code class="myCode">&#64;csrf</code> Blade directive so that the CSRF protection middleware can validate
-            the request. <br> More information available in the Laravel Documentation
+            the request. <br> More information is available in the Laravel Documentation
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/csrf">here</a>.
         </p>
 
@@ -41,8 +41,8 @@
             The data payload is sent using a <code class="myCode">{{ request()->method() }}</code> request to
             <code class="myCode">{{ request()->url() }}</code>. When the application receives a
             <code class="myCode">{{ request()->method() }}</code> request on the <code class="myCode">/entities/</code>
-            URI, the application knows the store method in the EntityController will handel this request. The route
-            definition for this request in <code class="myCode">routes/web.php</code> is as follow:
+            URI, the application knows the store method in the EntityController will handle this request. The route
+            definition for this request in <code class="myCode">routes/web.php</code> is as follows:
         </p>
 
         {{-- Route Code Block --}}
@@ -60,7 +60,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
             The <code class="myCode">store</code> method in the <code class="myCode">ResourceController</code> will
-            handel this request. It is important to perform validation on any and all data received and processed by the
+            handle this request. It is important to perform validation on any and all data received and processed by the
             application.
         </p>
 
@@ -73,16 +73,16 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
         <p>
             When creating a new Resource several things happen in the Model to keep the controller lean. First, we need
-            to specify exactly which field can be added, this is done by specifying
-            <code class="myCode">protected $fillable = ['name', ...];</code> in the model. Doing this, will prevent
+            to specify exactly which fields can be added, this is done by specifying
+            <code class="myCode">protected $fillable = ['name', ...];</code> in the model. Doing this will prevent
             mass-assignment vulnerabilities. More information about mass assignment can be found in Laravel's
             <a class="text-blue-500" target="_blank" href="https://laravel.com/docs/master/eloquent#mass-assignment">
-                Mass Assignment</a> Documentation;
+                Mass Assignment</a> Documentation.
         </p>
         <p>
             Also, the Resource will have two <code class="myCode">belongsTo()</code> relationships, 1. with a Resource
             Owner, and 2. with an Entity which is specified in the Model, as well as a
-            <code class="myCode">belongsToMany()</code> relationships with Resource Contributors.
+            <code class="myCode">belongsToMany()</code> relationship with Resource Contributors.
         </p>
 
         {{-- Model Code Block --}}
@@ -95,7 +95,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
             To perform this action the authenticated user should have the <code class="myCode">create_resource</code>
-            Ability and is authorised by the <code class="myCode">create</code> Policy method as follow:
+            ability and should be authorised by the <code class="myCode">create</code> Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}
@@ -112,12 +112,12 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Assign Resource Contributor to Entity
         </div>
         <p>
-            As can be seen in the controller a Resource Contributor is assigned to the Resource and it is important to
-            make sure that when a Resource Contributor is assigned to a Resource that the resource and the Resource
+            As can be seen in the controller, a Resource Contributor is assigned to the Resource and it is important to
+            make sure that when a Resource Contributor is assigned to a Resource, the resource and the Resource
             Contributor are both associated to the same Entity.
         </p>
         <p>
-            To achieve that the <code class="myCode">assign</code> Policy method outlined below will validate this
+            To achieve this the <code class="myCode">assign</code> Policy method outlined below will validate this
             action.
         </p>
 
@@ -140,13 +140,13 @@
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
-            Generally, after a resource is created or stored, the controller will return to a view to essentially show
-            the resource because, logically I, 1. want to verify that it was created, and 2. by viewing it.
+            Generally, after a resource is created or stored, the controller will return to a view that essentially shows
+            the resource because, logically I, 1. want to verify that the resource was created and 2. want to view the newly created resource.
         </p>
         <p>
             Based on the controller's return statement the
             <code class="myCode">/resources/views/actions/resource/store.blade.php</code> view will render the HTML of
-            this page you are currently viewing. The <code class="myCode">$user</code> object will also be included, and
+            the page you are currently viewing. The <code class="myCode">$user</code> object will also be included, and
             contains the following:
         </p>
 

@@ -15,7 +15,7 @@
         </p>
         <p>
             A resource is stored by sending a POST request with a data payload containing the required information in
-            order to create the User resource. The json below was sent as the POST data to create the Entity resource.
+            order to create the User resource. The JSON below was sent as the POST data to create the Entity resource.
         </p>
 
         {{-- Data payload received --}}
