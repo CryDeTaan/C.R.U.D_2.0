@@ -9,10 +9,10 @@
 
         {{-- Overview --}}
         <p>
-            As I mentioned in the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
-            <code class="myCode">U</code> in C.R.U.D. for updating a User resource is a two step process so to speak.
-            First the view with a form of sorts to send, and second the process of updating the values from the form.
-            That is where we are now, updating the resource.
+            As I mentioned on the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
+            <code class="myCode">U</code> in C.R.U.D. is for updating a User resource which essentially is a two-step process.
+            The first step is to load a view with a form of sorts that the user can send, and secondly the process of updating the values from the form.
+            That is where we are now; updating the resource.
         </p>
         <p>
             A resource is stored by sending a <code class="myCode">{{ request()->method() }}</code> request with a data
@@ -66,8 +66,8 @@
         {{-- Model Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
         <p>
-            A lot of what is said when creating a resource is also relevant when updating a resource. So it may feel
-            like I am repeating myself, but its because I am, it is important.
+            A lot of what is said when creating an Entity resource is also relevant when updating a resource. So it may
+            feel like I am repeating myself, and that is because I am it is important. :)
         </p>
         <p>
             So, firstly, when ever a resource is touched in the database its we need to specify which fields are mass
