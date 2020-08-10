@@ -9,13 +9,13 @@
         <p>
         <p>
             As I mentioned on the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page the
-            <code class="myCode">U</code> in C.R.U.D. is for updating a resource and this is generally a two-step process.
+            <code class="myCode">U</code> in C.R.U.D. is for updating a resource and this is essentially a two-step process.
             The first step is to load a view with a form of sorts that the user can send, and secondly the process of updating the values from the form.
             That is where we are now; updating the resource.
         </p>
         <p>
             A resource is updated by sending a <code class="myCode">{{ request()->method() }}</code> request with a data
-            payload containing the required information in order to update the Entity resource. This JSON object below
+            payload containing the required information in order to update the resource. This JSON object below
             was sent as the data payload to update the Entity resource.
         </p>
 
