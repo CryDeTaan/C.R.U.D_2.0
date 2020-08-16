@@ -197,18 +197,17 @@
         {{-- MVC - Route --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            As far a developer using the Laravel framework is concerned it all start here at the
+            As far as a developer using the Laravel framework is concerned, it all starts here at the
             <code class="myCode">routes/web.php</code> file. There is also <code class="myCode">routes/api.php</code>
-            and some other, but lets not worry about that for now. Obviously the Laravel frameworks takes care of a few
-            things for you when you visit a Laravel based Wep App but for now, just know that the route will start
+            and some others, but let's not worry about that for now. Obviously the Laravel framework takes care of a few
+            things for you when you visit a Laravel based Wep App, but for now just know that the route will start
             executing the logic of the application and is defined in <code class="myCode">routes/web.php</code>. This is
             the entry point to the application.
-
         </p>
         <p>
-            Lets use an example where by the Entity > Read action is selected on the Sidebar. This will instruct the
+            Let's use an example whereby the Entity > Read action is selected on the Sidebar. This will instruct the
             browser to navigate to <code class="myCode">http://crud_2.0.test/entities</code>, the request will
-            initiated a particular part of the application logic as the Route, <code class="myCode">entities</code>, is
+            initiate a particular part of the application logic as the Route, <code class="myCode">entities</code>, is
             requested. The route is registered in the <code class="myCode">routes/web.php</code> file. Further, as this
             request is a standard <code class="myCode">GET</code> request, the Route is also defined with the expected
             HTTP method. Finally, te second argument specifies the controller and the function to call. In this case the
@@ -224,28 +223,28 @@
         {{-- MVC - Controller --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
-            I generally use, well not just me; most, controllers to group related requests handling logic into a single
-            class. So much so that the controller responsible for the all the C.R.U.D. action on a specific resource.
-            This pattern is followed so much in the community that Laravel has Resource Controllers. When adding a
+            I generally, well not just me - most Laravel developers, use controllers to group related requests handling logic into a single
+            class. The controller essentially becomes responsible for the all the C.R.U.D. actions on a specific resource.
+            This pattern is followed so much in the community that Laravel provides Resource Controllers. When adding a
             Controller use the <code class="myCode">--resource</code> flag to automatically add all the C.R.U.D.
             actions as a skeleton.
         </p>
         <p>
-            The table below stipulates all the Actions in the C.R.U.D design pattern with the relevant Verb, URI, the
-            Controller with the method
+            The table below stipulates all the Actions in the C.R.U.D design pattern with the relevant Verb, URI, as well as the
+            Controller with the method.
         </p>
 
         {{-- Resource Controller Table --}}
         <x-home.crud-table/>
         <p>
-            The C.R.U.D. action in this example, Read aka Index, will be handled by the
-            <code class="myCode">EntityController</code> will call the <code class="myCode">index</code> method. This
-            particular example is simple, basically gets all the Entities using Laravel's
+            The C.R.U.D. action in this example, Read Index, will be handled by the
+            <code class="myCode">EntityController</code> which will call the <code class="myCode">index</code> method. This
+            particular example is simple, it basically gets all the Entities using Laravel's
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/eloquent#retrieving-models">Eloquent
                 ORM</a>
         </p>
         <p>
-            In the example Controller's <code class="myCode">constructor</code> a specify a auth middleware. This will
+            In the example Controller's <code class="myCode">constructor</code> I specify an auth middleware. This will
             require a valid authenticated user session before accessing any of the methods within the Controller.
         </p>
 
@@ -258,17 +257,17 @@
         {{-- MVC - Model --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Model</div>
         <p>
-            In Laravel the Eloquent ORM is a simple ActiveRecord implementation for working with the applications
+            In Laravel the Eloquent ORM is a simple ActiveRecord implementation for working with the application's
             database. Each database table has a corresponding "Model" which is used to interact with that table. Models
-            allow the ability to query data in tables, as well as work with and manipulate the records into the tables.
+            allow for the ability to query data in tables, as well as work with and manipulate the records in the tables.
         </p>
         <p>
             Additionally, the Eloquent ORM also provides relationships as Database tables are often related to one
-            another. In my example scenario, an entity has resources owners and contributors, essentially... users of
+            another. In my example scenario, an entity has resource owners and contributors, essentially... users of
             the entity.
         </p>
         <p>
-            So to make use of the Eloquent ORM relationships in this scenario I outlined above, a relationships
+            To make use of the Eloquent ORM relationships in this scenario I outlined above, a relationship's
             definition may look something like this.
         </p>
         <ol class="list-decimal mb-4 text-xs pl-10">
@@ -282,12 +281,12 @@
         <p>
             As I have been using Entity in the examples so far, I will continue with the Entity Model, but note that
             although I mention <code class="myCode">App\User</code> above it is fairly similar, apart from the method
-            contains <code class="myCode">return $this->belongsTo(Entity::class);</code>.
+            containing <code class="myCode">return $this->belongsTo(Entity::class);</code>.
         </p>
         <p>
-            In any case, defining the relationships, an instance of the Entity model allows the use of dynamic
+            In any case, defining the relationships on an instance of the Entity model allows the use of dynamic
             properties to access the related model as if the property is defined on the model. For example, to access
-            all the users who belongs to an Entity is as simple as using <code class="myCode">$entity->users;</code>
+            all the users that belongs to an Entity is as simple as using <code class="myCode">$entity->users;</code>
         </p>
 
         {{-- MVC - Model Code Block --}}
@@ -301,28 +300,28 @@
         <p>
             The final part in the Model View Controller life cycle is the View. The controller and model retrieve and
             prepare the data that will be sent to the view, if any. The view is essentially the presentation layer or
-            logic which is separate from that of the controller / application logic or layer.
+            logic which is separate from that of the controller/application logic or layer.
         </p>
         <p>
-            In this example I make use of the Laravel templating engine, called Blade, by specifying global
-            <code class="myCode">view</code> helper with two parameters.
+            In this example I make use of the Laravel templating engine, called Blade, by specifying a global
+            <code class="myCode">view</code> helper with two parameters:
             <code class="myCode">return view('actions.entity.read', compact('entities'));</code>
         </p>
         <ol class="list-decimal mb-4 text-xs pl-10">
             <li>
-                The target view; in this case <code class="myCode">actions.entity.read</code>. All views are stored at
+                The target view - in this case <code class="myCode">actions.entity.read</code>. All views are stored at
                 <code class="myCode">resources/views/</code> which means this view lives at
-                <code class="myCode">/resources/views/entity/read.blade.php</code>. The .blade.php extension is
-                important for the templating engine to function and blade templates can be access either by
+                <code class="myCode">/resources/views/entity/read.blade.php</code>. The <code class="myCode">.blade.php</code> extension is
+                important for the templating engine to function and blade templates can be accessed either by
                 <code class="myCode">/</code> or <code class="myCode">.</code> notation.
             </li>
             <li>
-                The data object, in this case, the prepared <code class="myCode">entities</code> object in json format.
+                The data object - in this case the prepared <code class="myCode">entities</code> object in json format.
             </li>
         </ol>
         <p>
             This page you are reading now, is the actual rendered HTML from the
-            <code class="myCode">/resource/views/about.blade.php</code> view :)
+            <code class="myCode">/resource/views/about.blade.php</code> view 😀
         </p>
         <p>
             One of the neat features of the blade templating engine is the second point, the data object. This allows me
@@ -330,8 +329,8 @@
             so choose.
         </p>
         <p>
-            The data object below will be sent to the view for rendering which is essentially a JSON payload and can be
-            accessed by the view. For example,<code class="myCode">&#123;&#123; $entity->name &#125;&#125;</code> will
+            The data object below will be sent to the view for rendering that which is essentially a JSON payload, and can be
+            accessed by the view. For example, <code class="myCode">&#123;&#123; $entity->name &#125;&#125;</code> will
             render the entity name in the HTML which will be returned during the response part of the request life
             cycle.
         </p>
@@ -342,7 +341,7 @@
         </div>
         <p class="mt-6">
             It it is important to note that I am not limited to using the Laravel Blade templating engine, the
-            Laravel Application can act as a API 'service' which means data can be returned as a JSON payload as well.
+            Laravel Application can act as a API 'service' which means that data can be returned as a JSON payload as well.
         </p>
 
 
@@ -351,12 +350,12 @@
             Role Based Access Control
         </div>
         <p>
-            Moving away from the Model View Controller architecture to discuss some other components starting with
+            We are now moving away from the Model View Controller architecture to discuss some other components; starting with
             Role Based Access control which is achieved through Policies. Fortunately, Laravel has 'resourceful'
-            policies for actions on models when resourceful controllers are used, which in my case I am.
+            policies for actions on models when resourceful controllers are used, which is what I am using in this case.
         </p>
         <p>
-            To 'enable' this, the authorizeResource method in the should be added to the resourceful controller's
+            To 'enable' this, the <code class="myCode">authorizeResource</code> method should be added to the resourceful controller's
             constructor; <code class="myCode">$this->authorizeResource(Entity::class, 'Entity');</code>. The
             <code class="myCode">authorizeResource</code> method accepts the model's class name as its first
             argument, and the name of the route / request parameter that will contain the model's ID as its second
@@ -365,7 +364,7 @@
         <p>
             To have the required method signatures and type hints both the controller and the policy should be
             created using the <code class="myCode">--model</code> flag. <br>For more information on Authorizing
-            Resource Controllers please see<a target="_blank" class="text-blue-500"
+            Resource Controllers please see the <a target="_blank" class="text-blue-500"
                                               href="https://laravel.com/docs/7.x/authorization#via-controller-helpers">
                 Authorizing Resource Controllers</a> section from the Laravel Authorization Documentation.
         </p>
@@ -423,18 +422,17 @@
         </p>
         <p>
             I do, however, want to point out a few things which are required for relationships to function which in turn
-            allows me
-            make use of Roles and Abilities or assign a User to a Resource.
+            allows me make use of Roles and Abilities or assign a User to a Resource.
         </p>
 
         {{-- Roles Migration --}}
         <div class="text-l my-4">Roles Migration</div>
         <p>
             Firstly the roles migration, as can be seen from the code block below, creates two tables containing Roles
-            and Abilities. Then two pivots are creates, the first is the <code class="myCode">ability_role</code> pivot,
-            which enables the Many-to-Many relationship between Abilities and Roles. And secondly, the
+            and Abilities. Then two pivots are created, the first is the <code class="myCode">ability_role</code> pivot,
+            which enables the Many-to-Many relationship between Abilities and Roles. Secondly, the
             <code class="myCode">role_user</code> pivot which enables the Many-to-Many relationship between Roles and
-            User.
+            User is created.
         </p>
 
         {{-- Roles Migration Code Block --}}
@@ -448,9 +446,9 @@
             Secondly the resource migration which also has a pivot table, <code class="myCode">resource_user</code>, but
             something else to notice is the <code class="myCode">user_id</code> and
             <code class="myCode">entity_id</code> fields on the Resource Table. These are required for the
-            <code class="myCode">belongsTo()</code> and <code class="myCode">hadMany()</code> relationships between a
+            <code class="myCode">belongsTo()</code> and <code class="myCode">hasMany()</code> relationships between a
             Resource and a User and a Resource and an Entity. When
-            <a target="_blank" class="text-blue-500" href="/resources?actionOn=resource">viewing</a> Resources, the
+            <a target="_blank" class="text-blue-500" href="/resources?actionOn=resource">viewing</a> Resources. The
             Model section will give an overview of how these are used.<br>
             (Note: Be sure to impersonate the Resource Owner or Resource Contributor to view Resources)
         </p>
@@ -464,16 +462,16 @@
         <div class="text-l my-4">Users Migration</div>
         <p>
             Even though there is not much more to say here, I do want to mention that the User model also has a
-            <code class="myCode">belongsTo()</code> relationship with the Entity Model(<code
-                class="myCode">hasMany()</code>. And this is achieved by adding, same as the previously mentioned
-            migrations a foreign ID field <code class="myCode">$table->foreignId('entity_id')</code>
+            <code class="myCode">belongsTo()</code> relationship with the Entity Model <code
+                class="myCode">hasMany()</code>. This is achieved by adding a foreign ID field <code class="myCode">$table->foreignId('entity_id')</code> in the same way as the previously mentioned
+            migrations.
         </p>
 
         {{-- Conclusion --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Conclusion</div>
         <p>
-            With that, more detail on each of the components; Route, Controller, Model, Policy, and View, can be seen by
-            navigating all the actions. Remember, not all Impersonations will have access to all the actions.
+            With that, more detail on each of the components (Route, Controller, Model, Policy, and View) can be seen by
+            navigating through the actions in the sidebar. Remember, not all Impersonations will have access to all the actions.
         </p>
 
     </div>

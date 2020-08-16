@@ -76,9 +76,9 @@
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
-            Generally there isn't a 'dedicate' view for when a resource is deleted. A user will most probably be
+            Generally there isn't a 'dedicated' view for when a resource is deleted. A user will most probably be
             redirected to the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page or to a list of
-            resources similar to the one which was just deleted.
+            resources similar to the one that was just deleted.
         </p>
 
         <script>

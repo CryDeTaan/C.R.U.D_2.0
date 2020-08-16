@@ -7,22 +7,23 @@
             C.R.Update.D {{ slug_to_title(request()->actionOn) }} - View
         </div>
         <p>
-            The <code class="myCode">U</code> in C.R.U.D. is for updating resources in this case an Entity. Similarly to
-            how I read resource, so is updating a resources that it is a two part process. First a view to with a form
-            of sorts, more often than not, already complete withe the resource to be changed. And then secondly, the the
-            form will be sent as as a PUT request which is the step which will update the resource.
+            The <code class="myCode">U</code> in C.R.U.D. is for updating resources in this case an Entity. Updating a resource is a two-part process,
+            which is similar to how I read a resource. First, a view with a form of sorts which has been,
+            more often than not, already completed with the details of the resource to be changed. Then secondly, the the form will
+            be sent as as a PUT request which will update the resource.
         </p>
 
         {{-- Resource Table Description --}}
         <div class="text-xl mb-4 mt-12">
-            <span class="-ml-6 text-gray-700">#</span> {{ slug_to_titles(request()->actionOn) }}
+            <span class="-ml-6 text-gray-700">#</span>
+            {{ slug_to_titles(request()->actionOn) }}
         </div>
         <p>
-            Below is a list of {{ slug_to_titles(request()->actionOn) }} and selecting one will update the form below
-            which will be used to update the Entity. A Table is not generally included in the Edit view, but I did it to
-            make it a bit easier to select a resource to update. Where as the
+            Below is a list of {{ slug_to_titles(request()->actionOn) }}. Selecting one will update the form below
+            which will be used to update the Entity. A table is not generally included in the Edit view, but I did it to
+            make it a bit easier to select a resource to update. Note that the
             <a class="text-blue-500" href="/entities/1">Read</a> action will only show a resource. However, this is
-            sometimes combined so that when viewing a resource, there may be a edit button, and that edit button is what
+            sometimes combined so that when viewing a resource, there may be an edit button, and that edit button is what
             will return this view, the view to Edit, which contains a form, like I have below.
         </p>
 
@@ -36,7 +37,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Form</div>
         <p>
             As mentioned in the overview, to update an Entity resource, I start with providing a form of sorts
-            which contains the fields as well as the current values for the resource to be updated.
+            that contains the fields as well as the current values for the resource to be updated.
         </p>
 
         {{-- Form Component --}}
@@ -52,12 +53,12 @@
                 class="myCode">&#64;method('PUT')</code>) Blade directive to spoof the required HTTP verbs is included
             in the form. In addition, similar to when creating/storing a resource, an anti cross-site request forgery
             _token(<code class="myCode">&#64;csrf</code>) Blade directive is also required to be sent as part of the
-            form. This creates two hidden input field for the form:<br>
+            form. This creates two hidden input fields on the form:<br>
             1. <code class="myCode">&lt;input type="hidden" name="_method" value="PUT"&gt;</code>, and <br>
             2. <code class="myCode">&lt;input type="hidden" name="_token" value="{{ csrf_token() }}"&gt;</code>
         </p>
         <p>
-            <br> More information available from the Laravel Documentation for
+            <br> More information about this is available from the Laravel Documentation for
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/csrf">CSRF Protection</a> and
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/blade#method-field">Method
                 Fields</a>.
@@ -70,9 +71,9 @@
             <code class="myCode">{{ request()->url() }}</code>.
         </p>
         <p>
-            Take note of the <code class="myCode">{parameter}</code> sent through, similar to showing an Entity
+            Take note of the <code class="myCode">{parameter}</code> sent through. Similarly to showing an Entity
             resource, the parameter in the URI will be used by the controller to obtain the requested resource using
-            Laravel's Route Model Binding. The process of returning this view start by matching the request to a
+            Laravel's Route Model Binding. The process of returning this view starts by matching the request to a
             definition in the <code class="myCode">routes/web.php</code> as outlined below:
         </p>
 
@@ -90,7 +91,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
             The <code class="myCode">edit</code> method in the <code class="myCode">EntityController</code> will
-            handel this request and, again, we will need a form with the requested user object to be updated. Keep in
+            handle this request and, again, we will need a form with the requested user object to be updated. Keep in
             mind that it is not really necessary to include the object, but it does improve the user experience.
         </p>
         <p>
@@ -109,7 +110,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
             To perform this action the authenticated user should have the <code class="myCode">update_entity</code>
-            Ability and is authorised by the <code class="myCode">update</code> Policy method as follow:
+            Ability and should be authorised by the <code class="myCode">update</code> Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}
@@ -131,9 +132,9 @@
             view which will render the HTML of this page.
         </p>
         <p>
-            The important thing about the Edit view is that it contains a form, generally pre-populate with the
-            requested object so that the user can change/update the necessary fields. Then by triggering the update
-            action, in this case a button, the data from the form will be sent to the update route, which will be
+            The important thing about the Edit view is that it contains a form, generally pre-populated with the
+            requested object data so that the user can change/update the necessary fields. Then, by triggering the update
+            action, in this case by clicking a button, the data from the form will be sent to the update route, which will be
             explained by submitting the form above.
         </p>
         <p>

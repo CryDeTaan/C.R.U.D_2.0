@@ -7,8 +7,8 @@
             C.R.U.Destroy {{ slug_to_title(request()->actionOn) }}</div>
 
         <p>
-            The <code class="myCode">D</code> in C.R.U.D. is for Destroying a User resources. To destroy a resource a
-            form was used to spoof a <code class="myCode">DELETE</code> request to
+            The <code class="myCode">D</code> in C.R.U.D. is for Destroying a User resource. To destroy a resource a
+            form was used to spoof a <code class="myCode">DELETE</code> and a request to
             <code class="myCode">{{ request()->url() }}</code> was made.
         </p>
 
@@ -20,7 +20,7 @@
             <code class="myCode">routes/web.php</code> file:
         </p>
         <p>
-            Take note the definition includes a <code class="myCode">{parameter}</code> which is passed to the
+            Take note that the definition includes a <code class="myCode">{parameter}</code> which is passed to the
             controller so that the controller can easily obtain an instance of the user resource through Laravel's Route
             Model Binding. This is the instance which will be destroyed.
         </p>
@@ -47,7 +47,7 @@
             onDelete, in other words delete any foreign key constraints associated with the record.
         </p>
         <p>
-            For the purposes of this demo app, I will not make use of this at this time.
+            For the purposes of this demo app, I will not make use of that at this time.
         </p>
 
         {{-- Controller Code Block --}}
@@ -58,7 +58,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
             To perform this action the authenticated user should have the <code class="myCode">delete_user</code>
-            Ability and is authorised by the <code class="myCode">delete</code> Policy method as follow:
+            Ability and should be authorised by the <code class="myCode">delete</code> Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}
@@ -78,9 +78,9 @@
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
-            Generally there isn't a 'dedicate' view for when a resource is deleted. A user will most probably be
+            Generally there isn't a 'dedicated' view for when a resource is deleted. A user will most probably be
             redirected to the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page or to a list of
-            resources similar to the one which was just deleted.
+            resources similar to the one that was just deleted.
         </p>
 
         <script>

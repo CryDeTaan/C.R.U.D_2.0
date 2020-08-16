@@ -9,7 +9,7 @@
         <p>
             The <code class="myCode">D</code> in C.R.U.D. is for Deleting an Entity. Generally there isn't a view for
             deleting a resource like this, more often than not the delete action will be triggered close to where the
-            Update action lives. For that reason I am not going to go in to detail how we got to this view, just know
+            Update action lives. For that reason I am not going to go in to detail on how we got to this view, just know
             that there is usually a delete button for a entity which will trigger the delete action in a edit page
             or list of resources like the
             <a class="text-blue-500" href="/entities?actionOn={{ request()->actionOn }}">Read</a> action for
@@ -17,9 +17,9 @@
         </p>
 
         <p>
-            But to destroy a resource a funny thing actually needs to happen. And that is that even though the user will
-            most likely only see a delete button on the front end, this button will acts as a form which will send, no
-            data really, to
+            However, to destroy a resource a funny thing actually needs to happen. This is that even though the user will
+            most likely only see a delete button on the front end, this button will essentially act as a empty form that will send, virtually no
+            data, to
             <code class="myCode">{{ url('/entities/{id}?actionOn=') . request()->actionOn }}</code> as a
             <code class="myCode">DELETE</code> request.
         </p>
@@ -34,7 +34,7 @@
 
         </p>
         <p>
-            <br> More information available in the Laravel Documentation for
+            <br> More information on this is available in the Laravel Documentation for
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/csrf">CSRF Protection</a> and
             <a target="_blank" class="text-blue-500" href="https://laravel.com/docs/7.x/blade#method-field">Method
                 Field</a>.
@@ -50,14 +50,14 @@
         </div>
         <p>
             Below is a list of the {{ slug_to_titles(request()->actionOn) }}. Selecting one of the resources below will
-            trigger the delete action as explained above, the row acts as a button and each row is really a wrapped in a
+            trigger the delete action as explained above, the row acts as a button and each row is really wrapped in a
             form.
         </p>
 
         {{-- Resource Table --}}
         @if($entities->isEmpty())
             <p>
-                There aren't currently any entities, please first
+                There currently aren't any entities, please first
                 <a class="text-blue-500" href="/entities/create?actionOn={{ request()->actionOn }}">Create</a> one. :)
             </p>
         @else

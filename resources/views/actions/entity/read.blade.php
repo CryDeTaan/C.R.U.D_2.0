@@ -14,7 +14,7 @@
         </p>
         <p>
             I am covering both the options mentioned above so it should also then clear up that although both are
-            essentially the Read part of C.R.U.D, they logic is slightly different and will be seen in the Route,
+            essentially the Read part of C.R.U.D, the logic is slightly different as will be seen in the Route,
             Controller, Model, and View descriptions which follows.
         </p>
 
@@ -24,7 +24,7 @@
         </div>
         <p>
             Below is a list of the {{ slug_to_titles(request()->actionOn) }}. As with the other action pages, I'll
-            explain how the list of {{ slug_to_titles(request()->actionOn) }} were returned by explaining each area of
+            explain how the list of {{ slug_to_titles(request()->actionOn) }} was returned by explaining each area of
             importance in a bit more detail.
         </p>
 
@@ -34,10 +34,10 @@
         {{-- Route Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Route</div>
         <p>
-            To receive a view containing a list of {{ slug_to_titles(request()->actionOn) }} a
+            To receive a view containing a list of {{ slug_to_titles(request()->actionOn) }}, a
             <code class="myCode">{{ request()->method() }}</code> request was made to
             <code class="myCode">{{ request()->url() }}</code>, therefor the defined route for this request in
-            <code class="myCode">routes/web.php</code> is as follow:
+            <code class="myCode">routes/web.php</code> is as follows:
         </p>
 
         {{-- Route Code Block --}}
@@ -54,7 +54,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Controller</div>
         <p>
             The <code class="myCode">index</code> method in the <code class="myCode">EntityController</code> will
-            handel this request. The controller simply obtain all the Entities, and return them as an object to the
+            handle this request. The controller simply obtains all the Entities, and return them as an object to the
             view.
         </p>
 
@@ -82,7 +82,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
             To perform this action the authenticated user should have the <code class="myCode">read_resource</code>
-            Ability and is authorised by the <code class="myCode">viewAny</code> Policy method as follow:
+            Ability and is authorised by the <code class="myCode">viewAny</code> Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}
@@ -98,20 +98,20 @@
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
-            Based on the controller's return statement(<code class="myCode">return view('actions.entity.read',
+            Based on the controller's return statement (<code class="myCode">return view('actions.entity.read',
                 compact('entities'));</code>) the
             <code class="myCode">/resources/views/actions/entity/read.blade.php</code> view will render the HTML of
             this page.
         </p>
         <p>
-            The <code class="myCode">$entities</code> object will contain all the Entity. This object is also used to
+            The <code class="myCode">$entities</code> object will contain all the Entity information. This object is also used to
             "build" the table at the start of the page using the Laravel Blade Control Structure;
             <code class="myCode">&#64;foreach ($entities as $entity)</code>.
         </p>
         <p>
-            As mentioned in the Model section, the belongsTo relationship allows me to retrieve the users for a give
+            As mentioned in the Model section, the <code class="myCode">belongsTo</code> relationship allows me to retrieve the users for a given
             Entity using the dynamic property, <code class="myCode">$entity->users</code>. Even though the object below
-            doesn't contain the user, note that the users are accessible this way.
+            doesn't contain the user, note that the users are accessible in this way.
         </p>
 
         {{-- Resource json payload --}}

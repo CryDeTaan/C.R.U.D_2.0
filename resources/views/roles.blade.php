@@ -15,9 +15,9 @@
             </li>
         </ol>
         <p>
-            These <code class="myCode">Many-to-Many</code> relationship are defined below. Also take note of the
+            These <code class="myCode">Many-to-Many</code> relationships are defined below. Also take note of the
             <code class="myCode">allowTo($ability)</code> function, which shows the process of adding an ability to a
-            Role
+            Role.
         </p>
 
         {{-- Abilities Code Block --}}

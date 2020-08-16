@@ -43,7 +43,7 @@
             onDelete, in other words delete any foreign key constraints associated with the record.
         </p>
         <p>
-            For the purposes of this demo app, I will not make use of this at this time.
+            For the purposes of this demo app, I will not make use of that at this time.
         </p>
 
         {{-- Controller Code Block --}}
@@ -55,7 +55,7 @@
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> Policy</div>
         <p>
             To perform this action the authenticated user should have the <code class="myCode">delete_entity</code>
-            Ability and is authorised by the <code class="myCode">delete</code> Policy method as follow:
+            Ability and should be authorised by the <code class="myCode">delete</code> Policy method as follows:
         </p>
 
         {{-- Policy Code Block --}}
@@ -72,9 +72,9 @@
         {{-- View Description --}}
         <div class="text-xl mb-4 mt-12"><span class="-ml-6 text-gray-700">#</span> View</div>
         <p>
-            Generally there isn't a 'dedicate' view for when a resource is deleted. A user will most probably be
+            Generally there isn't a 'dedicated' view for when a resource is deleted. A user will most probably be
             redirected to the <a class="text-blue-500" href="{{ url()->previous() }}">previous</a> page or to a list of
-            resources similar to the one which was just deleted.
+            resources similar to the one that was just deleted.
         </p>
 
         <script>
