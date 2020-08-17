@@ -58,6 +58,9 @@ class UserController extends Controller
 
         if (request()->has('entity')) {
             $user->assignEntity($validatedAttributes['entity']);
+            while (User::whereNotNull('entity_id')->count() > 8) {
+                User::whereNotNull('entity_id')->get()[4]->delete();
+            }
         }
         else {
             while (User::whereNull('entity_id')->count() > 4) {
