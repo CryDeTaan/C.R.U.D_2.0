@@ -67,6 +67,10 @@ class ResourceController extends Controller
         $resource->assignUser(auth()->user());
         $resource->assignUser($resource_contributor);
 
+        while (Resource::all()->count() > 4) {
+            Resource::all()[1]->delete();
+        }
+
         return view('actions.resource.store', compact('resource'));
     }
 
