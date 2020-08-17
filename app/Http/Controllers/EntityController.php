@@ -53,6 +53,10 @@ class EntityController extends Controller
             'field'     => $validatedAttributes['field']
         ]);
 
+        while (Entity::all()->count() > 4) {
+            Entity::all()[1]->delete();
+        }
+
         return view('actions.entity.store', compact('entity'));
     }
 
