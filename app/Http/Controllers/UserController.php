@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entity;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
@@ -57,6 +58,11 @@ class UserController extends Controller
 
         if (request()->has('entity')) {
             $user->assignEntity($validatedAttributes['entity']);
+        }
+        else {
+            while (User::whereNull('entity_id')->count() > 4) {
+                User::whereNull('entity_id')->get()[2]->delete();
+            }
         }
 
         return view('actions.user.store', compact('user'));
